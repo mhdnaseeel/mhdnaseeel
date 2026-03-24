@@ -52,13 +52,19 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="bg-slate-900 p-8 rounded-xl shadow-lg border border-slate-800">
+                    <form 
+                        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdxVpUCFJxZHFhAMtWMUlwHOVO-yqSi21deLyhJ_zV-gWFwRQ/formResponse"
+                        method="POST"
+                        target="_blank"
+                        className="bg-slate-900 p-8 rounded-xl shadow-lg border border-slate-800"
+                    >
                         <div className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-1">Name</label>
                                 <input
                                     type="text"
                                     id="name"
+                                    name="entry.860195011"
                                     className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                                     placeholder="Your Name"
                                     required
@@ -70,6 +76,7 @@ const Contact = () => {
                                 <input
                                     type="email"
                                     id="email"
+                                    name="entry.1623330191"
                                     className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                                     placeholder="your@email.com"
                                     required
@@ -80,6 +87,7 @@ const Contact = () => {
                                 <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-1">Message</label>
                                 <textarea
                                     id="message"
+                                    name="entry.1722992847"
                                     rows="4"
                                     className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none placeholder:text-slate-600"
                                     placeholder="Your message..."
