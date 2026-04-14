@@ -6,19 +6,19 @@ const Projects = () => {
             title: "Multi-Tenant HR & Payroll System",
             description: "Architected an enterprise-grade cloud-based SaaS platform using Spring Boot microservices with dynamic datasource routing. Integrated Azure Document Intelligence and Google AI for intelligent data processing.",
             tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
-            links: { github: "https://github.com/mhdnaseeel", live: "#" }
+            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "#" }
         },
         {
             title: "Scalable E-Commerce Platform",
             description: "Developed a production-ready cloud-native microservices architecture on AWS. Implemented secure authentication using OAuth2.0 and JWT with Redis-based session management for horizontal scalability.",
             tags: ["Spring Boot", "AWS", "PostgreSQL", "Redis", "Docker"],
-            links: { github: "https://github.com/mhdnaseeel", live: "#" }
+            links: { github: "https://github.com/mhdnaseeel/spring-boot-course", live: "#" }
         },
         {
             title: "Real-Time Emergency Response",
             description: "Built a mission-critical tracking system using WebSockets for real-time bidirectional communication. Integrated Google Maps API for intelligent route optimization, reducing response times by 30%.",
             tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Google Maps API"],
-            links: { github: "https://github.com/mhdnaseeel", live: "#" }
+            links: { github: "https://github.com/mhdnaseeel/ambutracker", live: "#" }
         },
     ];
 
