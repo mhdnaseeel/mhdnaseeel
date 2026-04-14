@@ -9,6 +9,12 @@ const Projects = () => {
             links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "#" }
         },
         {
+            title: "PinBridge: Device Connectivity Bridge",
+            description: "Engineered a secure real-time OTP synchronization system using AES-256-GCM encryption. Developed a multi-platform architecture bridging Android native (Kotlin), Chrome Extensions (MV3), and Node.js servers.",
+            tags: ["Kotlin", "Node.js", "Firebase", "Chrome Extension", "WebSockets"],
+            links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
+        },
+        {
             title: "Scalable E-Commerce Platform",
             description: "Developed a production-ready cloud-native microservices architecture on AWS. Implemented secure authentication using OAuth2.0 and JWT with Redis-based session management for horizontal scalability.",
             tags: ["Spring Boot", "AWS", "PostgreSQL", "Redis", "Docker"],

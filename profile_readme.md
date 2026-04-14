@@ -108,14 +108,14 @@
 <br/>
 
 #### 📱 [PinBridge: Multi-Platform Device Connectivity Bridge](https://github.com/mhdnaseeel/PinBridge)
-**Real-Time Sync | Android (Kotlin) • Node.js • Chrome Extension • Firebase**
+**Real-Time Sync | Android (Kotlin) • Node.js • Chrome Extension (MV3) • Firebase**
 
-- **Cross-Platform Architecture**: Seamlessly bridges notifications and heartbeats between **Android native app** and **Chrome Extension**.
-- **Real-Time Data**: Engineered robust sync signals using **Firestore & WebSockets**, ensuring accurate live connection status.
-- **Resilient Design**: Implemented offline-resilient state management and graceful retry logic for internet-independent reliability.
-- **DevOps**: Established comprehensive **CI/CD** and automated error reporting via **Firebase Crashlytics**.
+- **E2E Encryption**: Engineered secure transmission using **AES-256-GCM** (Shared Secret via QR), ensuring zero plaintext visibility on servers.
+- **Cross-Platform Bridge**: Seamlessly mirrors OTPs and device heartbeats between **Android (Jetpack Compose)** and **Chrome Browser (Manifest V3)**.
+- **Bi-Directional Sync**: Implemented real-time communication using **Socket.IO & Firebase Firestore**, featuring automated **Auto-Fill** support.
+- **High Availability**: Built a Node.js presence server with **Redis** for state tracking, complemented by **Firebase Crashlytics** for robust error monitoring.
 
-> `Kotlin` `Node.js` `JavaScript` `Firebase` `Firestore` `Cloud Messaging` `GitHub Actions`
+> `Kotlin` `Node.js` `JavaScript` `Firebase` `Firestore` `Socket.IO` `Redis` `GitHub Actions`
 
 ---
 
