@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import { ExternalLink, Github, Folder, ChevronDown, ChevronUp } from 'lucide-react';
+import { ExternalLink, Github, Folder, ChevronDown, ChevronUp, Link as LinkIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
     const [showAll, setShowAll] = useState(false);
 
     const projects = [
         {
+            id: "hr-payroll",
             title: "Multi-Tenant HR & Payroll System",
             description: "Architected an enterprise-grade cloud-based SaaS platform using Spring Boot microservices with dynamic datasource routing. Integrated Azure Document Intelligence and Google AI for intelligent data processing.",
             tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
             links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" },
-            image: "/assets/projects/payroll-dashboard.png"
+            image: "/assets/projects/payroll-dashboard.png",
+            detailUrl: "/project/hr-payroll"
         },
         {
             title: "PinBridge: Device Connectivity Bridge",
@@ -49,9 +52,10 @@ const Projects = () => {
                     {visibleProjects.map((project, index) => (
                         <div
                             key={index}
-                            className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-1"
+                            className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-1 flex flex-col"
                         >
-                            <div className="h-48 bg-slate-800 flex items-center justify-center group-hover:bg-slate-800/80 transition-colors relative overflow-hidden">
+                            {/* Card Header / Image */}
+                            <div className="h-56 bg-slate-800 relative overflow-hidden">
                                 {project.image ? (
                                     <img 
                                         src={project.image} 
@@ -59,18 +63,37 @@ const Projects = () => {
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                                     />
                                 ) : (
-                                    <>
+                                    <div className="flex items-center justify-center h-full">
                                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
                                         <Folder className="w-16 h-16 text-slate-600 group-hover:text-primary transition-colors relative z-10" />
-                                    </>
+                                    </div>
+                                )}
+                                
+                                {project.detailUrl && (
+                                    <Link 
+                                        to={project.detailUrl}
+                                        className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                                    >
+                                        <div className="bg-slate-950/80 px-6 py-3 rounded-full text-white font-bold text-sm backdrop-blur-md border border-white/10 translate-y-4 group-hover:translate-y-0 transition-transform">
+                                            View Case Study
+                                        </div>
+                                    </Link>
                                 )}
                             </div>
 
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-slate-200 mb-2 group-hover:text-primary transition-colors">
-                                    {project.title}
-                                </h3>
-                                <p className="text-slate-400 mb-4 line-clamp-2">
+                            <div className="p-8 flex-grow flex flex-col">
+                                {project.detailUrl ? (
+                                    <Link to={project.detailUrl}>
+                                        <h3 className="text-2xl font-bold text-slate-100 mb-3 group-hover:text-primary transition-colors">
+                                            {project.title}
+                                        </h3>
+                                    </Link>
+                                ) : (
+                                    <h3 className="text-2xl font-bold text-slate-100 mb-3 transition-colors">
+                                        {project.title}
+                                    </h3>
+                                )}
+                                <p className="text-slate-400 mb-6 line-clamp-2 text-lg">
                                     {project.description}
                                 </p>
 

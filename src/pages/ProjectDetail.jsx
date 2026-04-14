@@ -1,0 +1,158 @@
+import { ArrowLeft, ExternalLink, Github, CheckCircle, Server, Shield, Cpu, Database } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
+const ProjectDetail = () => {
+    // Scroll to top on load
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const project = {
+        title: "Multi-Tenant HR & Payroll System",
+        subtitle: "Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker",
+        description: "A comprehensive cloud-based payroll automation platform designed for handling multiple organizations with strict data isolation. The system automates monthly payroll submissions, casual attendance tracking, and historical record management.",
+        images: [
+            { src: "/assets/projects/payroll-dashboard.png", title: "Main Dashboard", desc: "Overview of payroll operations and quick access actions." },
+            { src: "/assets/projects/payroll-login.png", title: "Secure Access", desc: "Multi-tenant login portal with premium UI/UX." }
+        ],
+        features: [
+            "Dynamic Datasource Routing for strict tenant isolation.",
+            "OAuth2.0/OIDC & JWT authentication with RBAC.",
+            "Azure Document Intelligence for automated data extraction.",
+            "Redis-based caching for high-performance API responses.",
+            "Automated PDF report generation and history tracking.",
+            "Casual attendance management for labor workforces."
+        ],
+        techStack: [
+            { icon: <Cpu className="w-5 h-5 text-primary" />, name: "Java Spring Boot", desc: "Backend Microservices" },
+            { icon: <Database className="w-5 h-5 text-green-500" />, name: "PostgreSQL", desc: "Enterprise Database" },
+            { icon: <Shield className="w-5 h-5 text-accent" />, name: "Spring Security", desc: "OAuth2.0 & JWT" },
+            { icon: <Server className="w-5 h-5 text-secondary" />, name: "Azure Cloud", desc: "AI & Infrastructure" }
+        ],
+        links: {
+            github: "https://github.com/mhdnaseeel/Payroll_Automation",
+            live: "https://workflowautomation.vercel.app/"
+        }
+    };
+
+    return (
+        <div className="min-h-screen pt-24 pb-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Navigation */}
+                <Link 
+                    to="/" 
+                    className="inline-flex items-center text-slate-400 hover:text-primary transition-colors mb-12 group"
+                >
+                    <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                    Back to Projects
+                </Link>
+
+                {/* Header */}
+                <div className="mb-16">
+                    <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
+                        {project.title}
+                    </h1>
+                    <p className="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                        {project.description}
+                    </p>
+                </div>
+
+                {/* Main Showcase Image */}
+                <div className="mb-20 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+                    <img 
+                        src={project.images[0].src} 
+                        alt={project.images[0].title}
+                        className="w-full h-auto object-cover"
+                    />
+                </div>
+
+                {/* Stats & Details Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
+                    {/* Features List */}
+                    <div className="lg:col-span-2">
+                        <h2 className="text-2xl font-bold text-slate-100 mb-8 flex items-center">
+                            Core Features
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {project.features.map((feature, i) => (
+                                <div key={i} className="flex items-start p-4 bg-slate-900/50 rounded-2xl border border-slate-800/50">
+                                    <CheckCircle className="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
+                                    <p className="text-slate-300 leading-relaxed">{feature}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Tech & Links */}
+                    <div className="space-y-12">
+                        {/* Links */}
+                        <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800">
+                            <h3 className="text-xl font-bold text-slate-100 mb-8">Project Resources</h3>
+                            <div className="space-y-4">
+                                <a 
+                                    href={project.links.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center w-full px-6 py-4 bg-slate-800 hover:bg-slate-700 text-slate-100 rounded-2xl transition-all font-semibold group"
+                                >
+                                    <Github className="w-5 h-5 mr-2" />
+                                    View Source Code
+                                </a>
+                                <a 
+                                    href={project.links.live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center w-full px-6 py-4 bg-primary hover:bg-primary-hover text-white rounded-2xl transition-all font-semibold shadow-lg shadow-primary/20"
+                                >
+                                    <ExternalLink className="w-5 h-5 mr-2" />
+                                    Launch Live Demo
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Tech Stack */}
+                        <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800">
+                            <h3 className="text-xl font-bold text-slate-100 mb-8">Technology Stack</h3>
+                            <div className="space-y-6">
+                                {project.techStack.map((tech, i) => (
+                                    <div key={i} className="flex items-center">
+                                        <div className="p-3 bg-slate-800 rounded-xl mr-4">
+                                            {tech.icon}
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-slate-100">{tech.name}</p>
+                                            <p className="text-sm text-slate-400">{tech.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Additional Screenshots */}
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-100 mb-12">Interface Gallery</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {project.images.map((img, i) => (
+                            <div key={i} className="group cursor-pointer">
+                                <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 bg-slate-900 aspect-video">
+                                    <img 
+                                        src={img.src} 
+                                        alt={img.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                </div>
+                                <h4 className="text-lg font-bold text-slate-200">{img.title}</h4>
+                                <p className="text-slate-400 text-sm">{img.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ProjectDetail;
