@@ -19,14 +19,14 @@ const Hero = () => {
                         </div>
                         
                         <h1 className="text-5xl md:text-7xl font-bold text-slate-100 leading-[1.1] tracking-tight">
-                            Building Scalable <br/>
+                            Java Full Stack <br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent animate-float inline-block">
-                                Cloud Solutions
+                                Developer
                             </span>
                         </h1>
                         
                         <h2 className="text-xl md:text-2xl font-mono text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                            {"<"} Senior-ready Java Developer with a focus on <span className="text-primary font-bold">Spring Boot</span> & <span className="text-accent font-bold">AWS</span> architectures {"/>"}
+                            {"<"} <b>Spring Boot</b>  &bull; <b>Microservices</b> &bull; <b>React.js</b> {"/>"}
                         </h2>
                     </div>
 

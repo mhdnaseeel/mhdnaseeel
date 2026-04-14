@@ -1,7 +1,7 @@
 <div align="center">
 
 # Hey there! 👋 I'm Muhammed Naseel
-**Backend Developer | Java & Spring Boot Specialist | Cloud Architect**
+**Java Full Stack Developer | Spring Boot  • Microservices • React.js**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/mhdnaseel)
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mhdnaseel521@gmail.com)
