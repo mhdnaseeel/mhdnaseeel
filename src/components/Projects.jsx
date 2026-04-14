@@ -6,7 +6,8 @@ const Projects = () => {
             title: "Multi-Tenant HR & Payroll System",
             description: "Architected an enterprise-grade cloud-based SaaS platform using Spring Boot microservices with dynamic datasource routing. Integrated Azure Document Intelligence and Google AI for intelligent data processing.",
             tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
-            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
+            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" },
+            image: "/assets/projects/payroll-dashboard.png"
         },
         {
             title: "PinBridge: Device Connectivity Bridge",
@@ -46,8 +47,18 @@ const Projects = () => {
                             className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-1"
                         >
                             <div className="h-48 bg-slate-800 flex items-center justify-center group-hover:bg-slate-800/80 transition-colors relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
-                                <Folder className="w-16 h-16 text-slate-600 group-hover:text-primary transition-colors relative z-10" />
+                                {project.image ? (
+                                    <img 
+                                        src={project.image} 
+                                        alt={project.title} 
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                                        <Folder className="w-16 h-16 text-slate-600 group-hover:text-primary transition-colors relative z-10" />
+                                    </>
+                                )}
                             </div>
 
                             <div className="p-6">
