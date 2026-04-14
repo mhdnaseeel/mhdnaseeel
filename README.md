@@ -91,19 +91,31 @@
 
 ---
 
-### 📊 GitHub Statistics
+---
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=mhdnaseeel&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Muhammed's Stats" />
-</p>
+### 📂 Showcase: Featured Projects
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mhdnaseeel&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" />
-</p>
+#### 🚀 [Multi-Tenant Cloud-Based HR & Payroll System](https://github.com/mhdnaseeel/Payroll_Automation)
+**Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker**
 
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mhdnaseeel&theme=tokyonight&hide_border=true" alt="Streak Stats" />
-</p>
+- **Architected** enterprise SaaS platform with **Dynamic Datasource Routing**, achieving strict tenant isolation for **200+ employees**.
+- **Security Engineering**: Implemented **OAuth2.0/OIDC** & **JWT** with RBAC & CSRF protection—resulting in zero security incidents.
+- **AI Integration**: Integrated **Azure Document Intelligence** & Google AI APIs, reducing manual data entry by **40%**.
+- **Performance**: Optimized SQL & Redis caching, reducing API response times from **800ms to 250ms**.
+
+> `Java` `Spring Boot` `Hibernat/JPA` `PostgreSQL` `Redis` `Azure` `Docker` `Jenkins`
+
+<br/>
+
+#### 📱 [PinBridge: Multi-Platform Device Connectivity Bridge](https://github.com/mhdnaseeel/PinBridge)
+**Real-Time Sync | Android (Kotlin) • Node.js • Chrome Extension • Firebase**
+
+- **Cross-Platform Architecture**: Seamlessly bridges notifications and heartbeats between **Android native app** and **Chrome Extension**.
+- **Real-Time Data**: Engineered robust sync signals using **Firestore & WebSockets**, ensuring accurate live connection status.
+- **Resilient Design**: Implemented offline-resilient state management and graceful retry logic for internet-independent reliability.
+- **DevOps**: Established comprehensive **CI/CD** and automated error reporting via **Firebase Crashlytics**.
+
+> `Kotlin` `Node.js` `JavaScript` `Firebase` `Firestore` `Cloud Messaging` `GitHub Actions`
 
 ---
 
