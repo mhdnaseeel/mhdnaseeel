@@ -17,7 +17,7 @@ const Hero = () => {
                                 {"<SoftwareEngineer />"}
                             </span>
                         </h1>
-                        <p className="text-primary text-xl font-medium pt-2">Java & Spring Boot Specialist</p>
+                        <p className="text-primary text-xl font-medium pt-2">Java & Spring Boot Developer</p>
                     </div>
 
                     <p className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed">
