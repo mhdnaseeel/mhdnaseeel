@@ -1,6 +1,9 @@
-import { ExternalLink, Github, Folder } from 'lucide-react';
+import { useState } from 'react';
+import { ExternalLink, Github, Folder, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Projects = () => {
+    const [showAll, setShowAll] = useState(false);
+
     const projects = [
         {
             title: "Multi-Tenant HR & Payroll System",
@@ -29,6 +32,8 @@ const Projects = () => {
         },
     ];
 
+    const visibleProjects = showAll ? projects : projects.slice(0, 2);
+
     return (
         <section id="projects" className="py-20 bg-slate-900/50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,8 +45,8 @@ const Projects = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {visibleProjects.map((project, index) => (
                         <div
                             key={index}
                             className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-1"
@@ -65,7 +70,7 @@ const Projects = () => {
                                 <h3 className="text-xl font-bold text-slate-200 mb-2 group-hover:text-primary transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-slate-400 mb-4 line-clamp-3">
+                                <p className="text-slate-400 mb-4 line-clamp-2">
                                     {project.description}
                                 </p>
 
@@ -94,6 +99,25 @@ const Projects = () => {
                         </div>
                     ))}
                 </div>
+
+                {projects.length > 2 && (
+                    <div className="mt-12 text-center">
+                        <button
+                            onClick={() => setShowAll(!showAll)}
+                            className="inline-flex items-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-full border border-slate-700 hover:border-primary/50 transition-all duration-300 group"
+                        >
+                            {showAll ? (
+                                <>
+                                    Show Less <ChevronUp className="ml-2 w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+                                </>
+                            ) : (
+                                <>
+                                    View All Projects <ChevronDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );
