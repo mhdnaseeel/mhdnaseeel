@@ -49,23 +49,14 @@ const ProjectDetail = () => {
                     Back to Projects
                 </Link>
 
-                {/* Header with Small Thumbnail */}
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-16">
-                    <div className="flex-1">
-                        <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
-                            {project.title}
-                        </h1>
-                        <p className="text-xl text-slate-400 max-w-3xl leading-relaxed">
-                            {project.description}
-                        </p>
-                    </div>
-                    <div className="w-full md:w-64 flex-shrink-0 rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900 aspect-video md:aspect-square">
-                        <img 
-                            src={project.images[0].src} 
-                            alt="Project Icon"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                {/* Header */}
+                <div className="mb-16">
+                    <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
+                        {project.title}
+                    </h1>
+                    <p className="text-xl text-slate-400 max-w-4xl leading-relaxed">
+                        {project.description}
+                    </p>
                 </div>
 
                 {/* 3-Column High-Res Gallery Row */}
