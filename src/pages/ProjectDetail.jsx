@@ -38,7 +38,7 @@ const ProjectDetail = () => {
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-20">
+        <div className="min-h-screen pt-24 pb-20 bg-slate-950">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Navigation */}
                 <Link 
@@ -49,23 +49,54 @@ const ProjectDetail = () => {
                     Back to Projects
                 </Link>
 
-                {/* Header */}
-                <div className="mb-16">
-                    <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
-                        {project.title}
-                    </h1>
-                    <p className="text-xl text-slate-400 max-w-3xl leading-relaxed">
-                        {project.description}
-                    </p>
+                {/* Header with Small Thumbnail */}
+                <div className="flex flex-col md:flex-row gap-8 items-start mb-16">
+                    <div className="flex-1">
+                        <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
+                            {project.title}
+                        </h1>
+                        <p className="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                            {project.description}
+                        </p>
+                    </div>
+                    <div className="w-full md:w-64 flex-shrink-0 rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900 aspect-video md:aspect-square">
+                        <img 
+                            src={project.images[0].src} 
+                            alt="Project Icon"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
                 </div>
 
-                {/* Main Showcase Image */}
-                <div className="mb-20 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
-                    <img 
-                        src={project.images[0].src} 
-                        alt={project.images[0].title}
-                        className="w-full h-auto object-cover"
-                    />
+                {/* 3-Column High-Res Gallery Row */}
+                <div className="mb-24">
+                    <h2 className="text-2xl font-bold text-slate-100 mb-10 flex items-center">
+                        <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>
+                        System Interface Showcase
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                        {project.images.map((img, i) => (
+                            <div key={i} className="group relative">
+                                <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10">
+                                    <img 
+                                        src={img.src} 
+                                        alt={img.title}
+                                        className="w-full h-full object-cover image-render-high-quality"
+                                        style={{ imageRendering: 'auto' }}
+                                    />
+                                    {/* Link to view full res implicitly via hover or zoom */}
+                                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                                        <p className="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                            {img.title}
+                                        </p>
+                                        <p className="text-slate-300 text-sm translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                                            {img.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Stats & Details Grid */}
@@ -104,7 +135,7 @@ const ProjectDetail = () => {
                                     href={project.links.live}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center w-full px-6 py-4 bg-primary hover:bg-primary-hover text-white rounded-2xl transition-all font-semibold shadow-lg shadow-primary/20"
+                                    className="flex items-center justify-center w-full px-6 py-4 bg-primary hover:bg-primary/90 text-white rounded-2xl transition-all font-semibold shadow-lg shadow-primary/20"
                                 >
                                     <ExternalLink className="w-5 h-5 mr-2" />
                                     Launch Live Demo
@@ -129,26 +160,6 @@ const ProjectDetail = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Additional Screenshots */}
-                <div>
-                    <h2 className="text-2xl font-bold text-slate-100 mb-12">Interface Gallery</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {project.images.map((img, i) => (
-                            <div key={i} className="group cursor-pointer">
-                                <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 bg-slate-900 aspect-video">
-                                    <img 
-                                        src={img.src} 
-                                        alt={img.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                </div>
-                                <h4 className="text-lg font-bold text-slate-200">{img.title}</h4>
-                                <p className="text-slate-400 text-sm">{img.desc}</p>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>
