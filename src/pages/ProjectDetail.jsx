@@ -49,31 +49,18 @@ const ProjectDetail = () => {
                     Back to Projects
                 </Link>
 
-                {/* Header with Small Thumbnail */}
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-16">
-                    <div className="flex-1">
-                        <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
-                            {project.title}
-                        </h1>
-                        <p className="text-xl text-slate-400 max-w-3xl leading-relaxed">
-                            {project.description}
-                        </p>
-                    </div>
-                    <div className="w-full md:w-64 flex-shrink-0 rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900 aspect-video md:aspect-square">
-                        <img 
-                            src={project.images[0].src} 
-                            alt="Project Icon"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                {/* Minimalist Header */}
+                <div className="mb-16 text-left">
+                    <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
+                        {project.title}
+                    </h1>
+                    <p className="text-xl text-slate-400 max-w-4xl leading-relaxed">
+                        {project.description}
+                    </p>
                 </div>
 
-                {/* 3-Column High-Res Gallery Row */}
+                {/* Direct 3-Column High-Res Gallery Row */}
                 <div className="mb-24">
-                    <h2 className="text-2xl font-bold text-slate-100 mb-10 flex items-center">
-                        <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>
-                        System Interface Showcase
-                    </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                         {project.images.map((img, i) => (
                             <div key={i} className="group relative">
@@ -81,10 +68,8 @@ const ProjectDetail = () => {
                                     <img 
                                         src={img.src} 
                                         alt={img.title}
-                                        className="w-full h-full object-cover image-render-high-quality"
-                                        style={{ imageRendering: 'auto' }}
+                                        className="w-full h-full object-cover"
                                     />
-                                    {/* Link to view full res implicitly via hover or zoom */}
                                     <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                                         <p className="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             {img.title}
