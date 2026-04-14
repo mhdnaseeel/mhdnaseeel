@@ -96,7 +96,7 @@
 ### 📂 Showcase: Featured Projects
 
 #### 🚀 [Multi-Tenant Cloud-Based HR & Payroll System](https://github.com/mhdnaseeel/Payroll_Automation)
-**[🔗 Live Demo](https://workflowautomation.vercel.app/)** | **Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker**
+**Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker**
 
 - **Architected** enterprise SaaS platform with **Dynamic Datasource Routing**, achieving strict tenant isolation for **200+ employees**.
 - **Security Engineering**: Implemented **OAuth2.0/OIDC** & **JWT** with RBAC & CSRF protection—resulting in zero security incidents.
