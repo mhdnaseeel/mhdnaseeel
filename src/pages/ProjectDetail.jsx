@@ -14,6 +14,7 @@ const ProjectDetail = () => {
         description: "A comprehensive cloud-based payroll automation platform designed for handling multiple organizations with strict data isolation. The system automates monthly payroll submissions, casual attendance tracking, and historical record management.",
         images: [
             { src: "/assets/projects/payroll-dashboard.png", title: "Main Dashboard", desc: "Overview of payroll operations and quick access actions." },
+            { src: "/assets/projects/payroll-reports.png", title: "Payroll & Compliance", desc: "Detailed breakdown of reports and compliance document management." },
             { src: "/assets/projects/payroll-login.png", title: "Secure Access", desc: "Multi-tenant login portal with premium UI/UX." }
         ],
         features: [
