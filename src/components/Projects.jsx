@@ -12,7 +12,7 @@ const Projects = () => {
             description: "Architected an enterprise-grade cloud-based SaaS platform using Spring Boot microservices with dynamic datasource routing. Integrated Azure Document Intelligence and Google AI for intelligent data processing.",
             tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
             links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" },
-            image: "/assets/projects/payroll-dashboard.png",
+            image: "/assets/projects/payroll-login.png",
             detailUrl: "/project/hr-payroll"
         },
         {
@@ -21,7 +21,7 @@ const Projects = () => {
             description: "A real-time OTP mirroring system that securely bridges Android notifications to Chrome. Features AES-256-GCM encryption and Socket.IO for instant, encrypted synchronization.",
             tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3", "Redis"],
             links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" },
-            image: "/assets/projects/pinbridge-mobile.png",
+            image: "/assets/projects/pinbridge-web-2.png",
             detailUrl: "/project/pinbridge"
         },
         {
