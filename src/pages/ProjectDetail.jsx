@@ -1,41 +1,28 @@
-import { ArrowLeft, ExternalLink, Github, CheckCircle, Server, Shield, Cpu, Database } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowLeft, ExternalLink, Github, CheckCircle } from 'lucide-react';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { projectsData } from '../data/projectsData';
 
 const ProjectDetail = () => {
-    // Scroll to top on load
+    const { projectId } = useParams();
+    const project = projectsData[projectId];
+
+    // Scroll to top on load or project change
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+    }, [projectId]);
 
-    const project = {
-        title: "Multi-Tenant HR & Payroll System",
-        subtitle: "Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker",
-        description: "A comprehensive cloud-based payroll automation platform designed for handling multiple organizations with strict data isolation. The system automates monthly payroll submissions, casual attendance tracking, and historical record management.",
-        images: [
-            { src: "/assets/projects/payroll-login.png", title: "Secure Portal", desc: "Premium multi-tenant login gate with end-to-end encryption." },
-            { src: "/assets/projects/payroll-reports.png", title: "Compliance Hub", desc: "Automated monthly payroll submission and period management." },
-            { src: "/assets/projects/payroll-dashboard.png", title: "Executive Dashboard", desc: "High-level overview of annual and monthly payroll statistics." }
-        ],
-        features: [
-            "Dynamic Datasource Routing for strict tenant isolation.",
-            "OAuth2.0/OIDC & JWT authentication with RBAC.",
-            "Azure Document Intelligence for automated data extraction.",
-            "Redis-based caching for high-performance API responses.",
-            "Automated PDF report generation and history tracking.",
-            "Casual attendance management for labor workforces."
-        ],
-        techStack: [
-            { icon: <Cpu className="w-5 h-5 text-primary" />, name: "Java Spring Boot", desc: "Backend Microservices" },
-            { icon: <Database className="w-5 h-5 text-green-500" />, name: "PostgreSQL", desc: "Enterprise Database" },
-            { icon: <Shield className="w-5 h-5 text-accent" />, name: "Spring Security", desc: "OAuth2.0 & JWT" },
-            { icon: <Server className="w-5 h-5 text-secondary" />, name: "Azure Cloud", desc: "AI & Infrastructure" }
-        ],
-        links: {
-            github: "https://github.com/mhdnaseeel/Payroll_Automation",
-            live: "https://workflowautomation.vercel.app/"
-        }
-    };
+    if (!project) {
+        return (
+            <div className="min-h-screen pt-24 pb-20 bg-slate-950 flex flex-col items-center justify-center text-center px-4">
+                <h1 className="text-4xl font-bold text-slate-100 mb-6">Project Not Found</h1>
+                <p className="text-slate-400 mb-8 max-w-md">The project you are looking for does not exist or has been moved.</p>
+                <Link to="/" className="text-primary hover:underline flex items-center">
+                    <ArrowLeft className="w-5 h-5 mr-2" /> Back to Home
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen pt-24 pb-20 bg-slate-950">
@@ -49,8 +36,8 @@ const ProjectDetail = () => {
                     Back to Projects
                 </Link>
 
-                {/* Header */}
-                <div className="mb-16">
+                {/* Minimalist Header */}
+                <div className="mb-16 text-left">
                     <h1 className="text-4xl md:text-6xl font-bold text-slate-100 mb-6 leading-tight">
                         {project.title}
                     </h1>
@@ -59,7 +46,7 @@ const ProjectDetail = () => {
                     </p>
                 </div>
 
-                {/* 3-Column High-Res Gallery Row */}
+                {/* Direct 3-Column High-Res Gallery Row */}
                 <div className="mb-24">
                     <h2 className="text-2xl font-bold text-slate-100 mb-10 flex items-center">
                         <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>
@@ -72,10 +59,8 @@ const ProjectDetail = () => {
                                     <img 
                                         src={img.src} 
                                         alt={img.title}
-                                        className="w-full h-full object-cover image-render-high-quality"
-                                        style={{ imageRendering: 'auto' }}
+                                        className="w-full h-full object-cover"
                                     />
-                                    {/* Link to view full res implicitly via hover or zoom */}
                                     <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                                         <p className="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             {img.title}

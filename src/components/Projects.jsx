@@ -16,10 +16,13 @@ const Projects = () => {
             detailUrl: "/project/hr-payroll"
         },
         {
+            id: "pinbridge",
             title: "PinBridge: Device Connectivity Bridge",
-            description: "Engineered a secure real-time OTP synchronization system using AES-256-GCM encryption. Developed a multi-platform architecture bridging Android native (Kotlin), Chrome Extensions (MV3), and Node.js servers.",
-            tags: ["Kotlin", "Node.js", "Firebase", "Chrome Extension", "WebSockets"],
-            links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
+            description: "A real-time OTP mirroring system that securely bridges Android notifications to Chrome. Features AES-256-GCM encryption and Socket.IO for instant, encrypted synchronization.",
+            tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3", "Redis"],
+            links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" },
+            image: "/assets/projects/pinbridge-mobile.png",
+            detailUrl: "/project/pinbridge"
         },
         {
             title: "Scalable E-Commerce Platform",
