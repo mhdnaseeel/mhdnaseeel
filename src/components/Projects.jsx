@@ -6,7 +6,7 @@ const Projects = () => {
             title: "Multi-Tenant HR & Payroll System",
             description: "Architected an enterprise-grade cloud-based SaaS platform using Spring Boot microservices with dynamic datasource routing. Integrated Azure Document Intelligence and Google AI for intelligent data processing.",
             tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
-            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "#" }
+            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
         },
         {
             title: "PinBridge: Device Connectivity Bridge",
