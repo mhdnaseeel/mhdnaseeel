@@ -58,12 +58,12 @@ const Projects = () => {
                             className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-1 flex flex-col"
                         >
                             {/* Card Header / Image */}
-                            <div className="h-56 bg-slate-800 relative overflow-hidden">
+                            <div className="h-56 bg-slate-950/40 relative overflow-hidden flex items-center justify-center p-4">
                                 {project.image ? (
                                     <img 
                                         src={project.image} 
                                         alt={project.title} 
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                        className="max-w-full max-h-full object-contain shadow-2xl group-hover:scale-105 transition-transform duration-500" 
                                     />
                                 ) : (
                                     <div className="flex items-center justify-center h-full">
