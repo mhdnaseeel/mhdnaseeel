@@ -55,11 +55,11 @@ const ProjectDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                         {project.images.map((img, i) => (
                             <div key={i} className="group relative">
-                                <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10">
+                                <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950/50 aspect-[4/3] shadow-2xl transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10 flex items-center justify-center p-2">
                                     <img 
                                         src={img.src} 
                                         alt={img.title}
-                                        className="w-full h-full object-cover"
+                                        className="max-w-full max-h-full object-contain shadow-sm"
                                     />
                                     <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                                         <p className="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
