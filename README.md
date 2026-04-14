@@ -119,8 +119,6 @@
 
 ---
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=mhdnaseeel&color=blue&style=flat-square&label=PROFILE+VIEWS" alt="Profile Views" />
-</p>
+
 
 </div>
