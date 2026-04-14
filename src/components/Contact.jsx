@@ -1,111 +1,108 @@
-import { Mail, MapPin, Phone, Send, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("Thank you for your message! This is a demo form.");
+    };
+
     return (
-        <section id="contact" className="py-24 bg-slate-950 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="contact" className="py-20 bg-slate-950 border-t border-slate-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <span className="text-primary font-mono font-semibold tracking-wider uppercase text-sm">Get In Touch</span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-slate-100 mt-2">Let's Connect</h2>
-                    <p className="mt-4 text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Interested in collaboration or have a technical role in mind? I'm always open to discussing new opportunities.
+                    <span className="text-primary font-mono font-semibold tracking-wider uppercase text-sm">Get in Touch</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mt-2">Contact Me</h2>
+                    <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
+                        Have a project in mind or want to discuss new opportunities? I'd love to hear from you.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Contact Info */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
                     <div className="space-y-8">
-                        <div className="glass p-8 rounded-2xl space-y-8">
-                            <h3 className="text-2xl font-bold text-slate-100 mb-6">Contact Information</h3>
-                            
-                            <div className="flex items-center gap-4 group">
-                                <div className="p-4 bg-slate-800 rounded-xl group-hover:bg-primary/20 transition-colors">
-                                    <Mail className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Email</p>
-                                    <a href="mailto:mhdnaseel521@gmail.com" className="text-lg font-medium text-slate-200 hover:text-primary transition-colors">
-                                        mhdnaseel521@gmail.com
-                                    </a>
-                                </div>
-                            </div>
+                        <h3 className="text-xl font-bold text-slate-200">Contact Information</h3>
 
-                            <div className="flex items-center gap-4 group">
-                                <div className="p-4 bg-slate-800 rounded-xl group-hover:bg-primary/20 transition-colors">
-                                    <Phone className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Phone</p>
-                                    <p className="text-lg font-medium text-slate-200">+91 9072131343</p>
-                                </div>
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/10 text-primary border border-slate-800">
+                                <Mail className="w-6 h-6" />
                             </div>
-
-                            <div className="flex items-center gap-4 group">
-                                <div className="p-4 bg-slate-800 rounded-xl group-hover:bg-primary/20 transition-colors">
-                                    <MapPin className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Location</p>
-                                    <p className="text-lg font-medium text-slate-200">Bengaluru, Karnataka, India</p>
-                                </div>
+                            <div>
+                                <p className="font-semibold text-slate-200">Email</p>
+                                <a href="mailto:mhdnaseel521@gmail.com" className="text-slate-400 hover:text-primary transition-colors">mhdnaseel521@gmail.com</a>
                             </div>
                         </div>
 
-                        <div className="flex gap-4">
-                            <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer" className="flex-1 glass p-4 rounded-xl flex items-center justify-center gap-3 hover:text-primary transition-colors group">
-                                <Linkedin className="w-5 h-5" />
-                                <span className="font-bold text-sm">LINKEDIN</span>
-                            </a>
-                            <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="flex-1 glass p-4 rounded-xl flex items-center justify-center gap-3 hover:text-primary transition-colors group">
-                                <Github className="w-5 h-5" />
-                                <span className="font-bold text-sm">GITHUB</span>
-                            </a>
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/10 text-primary border border-slate-800">
+                                <Phone className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <p className="font-semibold text-slate-200">Phone</p>
+                                <a href="tel:+919072131343" className="text-slate-400 hover:text-primary transition-colors">+91 9072131343</a>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/10 text-primary border border-slate-800">
+                                <MapPin className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <p className="font-semibold text-slate-200">Location</p>
+                                <p className="text-slate-400">Bangalore, India</p>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
-                    <form className="glass p-8 rounded-2xl space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-xs font-mono text-slate-400 uppercase tracking-widest ml-1">Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="John Doe"
-                                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-primary transition-colors"
+                    <form 
+                        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdxVpUCFJxZHFhAMtWMUlwHOVO-yqSi21deLyhJ_zV-gWFwRQ/formResponse"
+                        method="POST"
+                        target="_blank"
+                        className="bg-slate-900 p-8 rounded-xl shadow-lg border border-slate-800"
+                    >
+                        <div className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-1">Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="entry.860195011"
+                                    className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-600"
+                                    placeholder="Your Name"
+                                    required
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-mono text-slate-400 uppercase tracking-widest ml-1">Email</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="john@example.com"
-                                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-primary transition-colors"
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-slate-400 mb-1">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="entry.1623330191"
+                                    className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-600"
+                                    placeholder="your@email.com"
+                                    required
                                 />
                             </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-1">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="entry.1722992847"
+                                    rows="4"
+                                    className="w-full px-4 py-2 bg-slate-950 border border-slate-800 text-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none placeholder:text-slate-600"
+                                    placeholder="Your message..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25"
+                            >
+                                Send Message
+                                <Send className="w-4 h-4" />
+                            </button>
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-xs font-mono text-slate-400 uppercase tracking-widest ml-1">Subject</label>
-                            <input 
-                                type="text" 
-                                placeholder="Opportunity: Java Developer"
-                                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-primary transition-colors"
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-xs font-mono text-slate-400 uppercase tracking-widest ml-1">Message</label>
-                            <textarea 
-                                rows="4" 
-                                placeholder="Tell me about your project or role..."
-                                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-primary transition-colors resize-none"
-                            ></textarea>
-                        </div>
-                        <button 
-                            type="submit" 
-                            className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group"
-                        >
-                            <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            SEND MESSAGE
-                        </button>
                     </form>
                 </div>
             </div>
