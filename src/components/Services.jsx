@@ -1,49 +1,61 @@
-import { Code, Globe, Database, Smartphone, Cloud, Settings } from 'lucide-react';
+import { Code, Globe, Cloud, Wrench } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Services = () => {
     const services = [
         {
             title: "Enterprise Software Dev",
             description: "Building scalable, cloud-native enterprise solutions using Spring Boot microservices and robust architecture.",
-            icon: <Code className="w-10 h-10 text-primary" />
+            icon: <Code className="w-5 h-5" />
         },
         {
             title: "Full-Stack Web Apps",
             description: "Modern, responsive web applications built with React or Angular, integrated with secure backend APIs.",
-            icon: <Globe className="w-10 h-10 text-accent" />
+            icon: <Globe className="w-5 h-5" />
         },
         {
             title: "Cloud Infrastructure",
             description: "Architecting and deploying applications on AWS and Azure with containerization (Docker, Kubernetes) and CI/CD.",
-            icon: <Cloud className="w-10 h-10 text-secondary" />
+            icon: <Cloud className="w-5 h-5" />
         }
     ];
 
     return (
-        <section id="services" className="py-20 bg-slate-950">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <span className="text-primary font-mono font-semibold tracking-wider uppercase text-sm">Services</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mt-2">What I Offer</h2>
-                    <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-                        High-quality software development services to help bring your ideas to life.
-                    </p>
-                </div>
+        <section id="services" className="py-20 relative">
+            <div className="max-w-4xl mx-auto px-6">
+                {/* Section header */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 mb-12"
+                >
+                    <div className="s-icon-badge">
+                        <Wrench className="w-5 h-5" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white">What I Offer</h2>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="space-y-4">
                     {services.map((service, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="p-8 bg-slate-900 rounded-xl border border-slate-800 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 group"
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.08 }}
+                            className="s-card p-6 flex items-start gap-5 group"
                         >
-                            <div className="mb-6 bg-slate-800 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:bg-slate-700 transition-colors">
+                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary/20 transition-colors">
                                 {service.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-slate-200 mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
-                            <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
-                                {service.description}
-                            </p>
-                        </div>
+                            <div>
+                                <h3 className="text-white font-semibold text-lg mb-1 group-hover:text-primary transition-colors">{service.title}</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed">
+                                    {service.description}
+                                </p>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

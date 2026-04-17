@@ -1,13 +1,12 @@
 const Footer = () => {
     return (
-        <footer className="bg-slate-950 text-white py-8 border-t border-slate-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <footer className="py-8 border-t border-white/[0.04]">
+            <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p className="text-slate-500 text-sm">
-                    © {new Date().getFullYear()} Muhammed Naseel. All rights reserved.
+                    © {new Date().getFullYear()} Muhammed Naseel
                 </p>
                 <div className="flex gap-6 text-sm text-slate-500">
-                    <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="#" className="hover:text-slate-300 transition-colors">Privacy</a>
                 </div>
             </div>
         </footer>

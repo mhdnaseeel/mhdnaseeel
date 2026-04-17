@@ -1,4 +1,4 @@
-import { Cpu, Database, Shield, Server, Smartphone, Globe, Extension, Bell, Terminal, Code2 } from 'lucide-react';
+import { Cpu, Database, Shield, Server, Smartphone, Globe, Bell, Terminal, Code2 } from 'lucide-react';
 import React from 'react';
 
 export const projectsData = {

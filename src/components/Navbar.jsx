@@ -1,73 +1,67 @@
-import { useState } from 'react';
-import { Menu, X, Code2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Briefcase, FolderCode, Mail, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'My path', href: '#experience', icon: <Briefcase className="w-4 h-4" /> },
+    { name: 'What I build', href: '#projects', icon: <FolderCode className="w-4 h-4" /> },
+    { name: "Let's talk", href: '#contact', icon: <Mail className="w-4 h-4" /> },
   ];
 
-  const handleLinkClick = () => {
-    setIsOpen(false);
-  };
-
   return (
-    <nav className="fixed w-full bg-slate-950/80 backdrop-blur-sm z-50 border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <Code2 className="h-8 w-8 text-primary" />
-            <span className="font-mono font-bold text-xl text-slate-100">Muhammed Naseel</span>
-          </div>
-
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-slate-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800/50"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-primary focus:outline-none"
+    <div className="fixed w-full top-0 z-50 flex justify-center px-4 pt-4 transition-all duration-300">
+      <nav className={`transition-all duration-500 ${
+        scrolled 
+          ? 'bg-[#131c31]/90 backdrop-blur-xl shadow-lg shadow-black/20 border-white/[0.08]' 
+          : 'bg-transparent border-transparent'
+        } border rounded-full px-2`}
+      >
+        <div className="flex items-center h-12 gap-1 px-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="flex items-center gap-2 text-slate-400 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-white/[0.05] border border-transparent hover:border-white/[0.08]"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+              {link.icon}
+              {link.name}
+            </a>
+          ))}
+          
+          {/* Dark mode toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="ml-2 w-9 h-9 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/[0.05] border border-white/[0.08] transition-all"
+            aria-label="Toggle theme"
+          >
+            {darkMode ? (
+              <Sun className="w-4 h-4" />
+            ) : (
+              <Moon className="w-4 h-4" />
+            )}
+          </button>
         </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-slate-950 border-t border-slate-800">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={handleLinkClick}
-                className="text-slate-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </nav>
+      </nav>
+    </div>
   );
 };
 

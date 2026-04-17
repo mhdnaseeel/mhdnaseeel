@@ -1,4 +1,5 @@
-import { Calendar, MapPin, Briefcase } from 'lucide-react';
+import { Briefcase, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
     const experiences = [
@@ -30,62 +31,62 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="py-24 bg-slate-900/50 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-16">
-                    <span className="text-primary font-mono font-semibold tracking-wider uppercase text-sm">Journey</span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-slate-100 mt-2">Professional Experience</h2>
-                    <div className="w-20 h-1.5 bg-primary mx-auto mt-6 rounded-full opacity-50"></div>
-                </div>
+        <section id="experience" className="py-20 relative">
+            <div className="max-w-4xl mx-auto px-6">
+                {/* Section header */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 mb-6"
+                >
+                    <div className="s-icon-badge">
+                        <Briefcase className="w-5 h-5" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white">Work Experience</h2>
+                </motion.div>
 
-                <div className="space-y-12">
+                <motion.p 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl"
+                >
+                    End-to-end ownership across <span className="text-white font-semibold">development → deployment → optimization</span>, building enterprise solutions with Spring Boot and cloud infrastructure.
+                </motion.p>
+
+                {/* Experience items - simple list items with icons */}
+                <div className="space-y-4">
                     {experiences.map((exp, index) => (
-                        <div key={index} className="relative pl-8 md:pl-0">
-                            {/* Desktop Timeline Line */}
-                            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-slate-800"></div>
-                            
-                            <div className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                                {/* Content Card */}
-                                <div className="w-full md:w-[45%]">
-                                    <div className="glass p-8 rounded-2xl glass-hover group">
-                                        <div className="flex flex-col gap-1 mb-6">
-                                            <h3 className="text-2xl font-bold text-slate-100 group-hover:text-primary transition-colors">
-                                                {exp.role}
-                                            </h3>
-                                            <div className="flex flex-wrap items-center gap-4 text-slate-400 text-sm mt-2">
-                                                <span className="flex items-center gap-1.5 font-medium text-slate-300">
-                                                    <Briefcase className="w-4 h-4 text-primary" />
-                                                    {exp.company}
-                                                </span>
-                                                <span className="flex items-center gap-1.5">
-                                                    <Calendar className="w-4 h-4" />
-                                                    {exp.period}
-                                                </span>
-                                                <span className="flex items-center gap-1.5">
-                                                    <MapPin className="w-4 h-4" />
-                                                    {exp.location}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <ul className="space-y-3">
-                                            {exp.achievements.map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-3 text-slate-400 leading-relaxed text-sm">
-                                                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0"></div>
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                        <motion.details
+                            key={index}
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="s-card group"
+                        >
+                            <summary className="flex items-center gap-4 p-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none">
+                                <Zap className="w-5 h-5 text-primary shrink-0" />
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-white font-semibold text-lg">{exp.role}</h3>
+                                    <p className="text-slate-500 text-sm mt-0.5">{exp.company} · {exp.period}</p>
                                 </div>
-
-                                {/* Timeline Point */}
-                                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-4 border-slate-900 bg-primary z-20 shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
-                                
-                                {/* Spacing for the other side on desktop */}
-                                <div className="hidden md:block md:w-[45%]"></div>
+                                <svg className="w-4 h-4 text-slate-500 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </summary>
+                            <div className="px-5 pb-5 pt-1 border-t border-white/[0.04] ml-9">
+                                <ul className="space-y-3 mt-4">
+                                    {exp.achievements.map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+                                            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0"></div>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        </div>
+                        </motion.details>
                     ))}
                 </div>
             </div>

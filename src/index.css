@@ -2,22 +2,241 @@
 
 @theme {
   --color-primary: #3b82f6;
-  /* Blue 500 */
-  --color-secondary: #94a3b8;
-  /* Slate 400 */
-  --color-bg: #020617;
-  /* Slate 950 */
-  --color-surface: #0f172a;
-  /* Slate 900 */
   --color-accent: #06b6d4;
-  /* Cyan 500 */
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --color-secondary: #94a3b8;
+  --color-bg: #020617; /* Dark background (Slate 950) */
+  --color-surface: #030712; /* Dark card background (Gray 950) */
+  --color-border: #1e293b; /* Card border (Slate 800) */
+  --color-bg-light: #ffffff; /* Light background */
+  --color-surface-light: #f8fafc; /* Light card background (Slate 50) */
+  --font-sans: 'DM Sans', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== DARK MODE (default) ===== */
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
-  color: #f1f5f9;
-  /* Slate 100 */
+  color: #e2e8f0;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.s-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.s-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.s-icon-badge {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.side-glow-left {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.03), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.side-glow-right {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(59, 130, 246, 0.03), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.project-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.project-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== LIGHT MODE ===== */
+html.light body {
+  background-color: var(--color-bg-light);
+  color: #1e293b;
+}
+
+html.light .bg-dot-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+html.light .s-card {
+  background: var(--color-surface-light);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+html.light .s-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+html.light .project-card {
+  background: var(--color-surface-light);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+html.light .project-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+html.light .project-row {
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+html.light .project-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.light .s-icon-badge {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+html.light .side-glow-left,
+html.light .side-glow-right {
+  background: none;
+}
+
+/* Light mode text overrides */
+html.light .text-white { color: #0f172a !important; }
+html.light .text-slate-100 { color: #1e293b !important; }
+html.light .text-slate-200 { color: #334155 !important; }
+html.light .text-slate-300 { color: #475569 !important; }
+html.light .text-slate-400 { color: #64748b !important; }
+html.light .text-slate-500 { color: #94a3b8 !important; }
+
+/* Light mode navbar */
+html.light nav {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Light mode input fields */
+html.light input,
+html.light textarea {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #1e293b !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Light mode buttons */
+html.light .border-white\/\[0\.1\],
+html.light .border-white\/\[0\.08\] {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\] {
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Light mode tech stack cards */
+html.light .rounded-2xl {
+  background: var(--color-surface-light) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Light mode footer */
+html.light footer {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Light mode hero ambient blurs */
+html.light .bg-primary\/\[0\.06\] { background: rgba(59, 130, 246, 0.04) !important; }
+html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !important; }
+
+/* Custom Animations */
+@keyframes hero-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+.animate-hero-glow {
+  animation: hero-glow 8s ease-in-out infinite;
+}
+.animate-hero-glow-reverse {
+  animation: hero-glow 11s ease-in-out infinite reverse;
 }

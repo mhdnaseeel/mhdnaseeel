@@ -3,13 +3,20 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Footer from './components/Footer';
+import CursorGlow from './components/CursorGlow';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen relative">
+        <CursorGlow />
+        
+        {/* Ambient side glow strips */}
+        <div className="side-glow-left"></div>
+        <div className="side-glow-right"></div>
+        
         <Navbar />
-        <main>
+        <main className="relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/project/:projectId" element={<ProjectDetail />} />
@@ -22,4 +29,3 @@ function App() {
 }
 
 export default App;
-

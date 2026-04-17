@@ -1,58 +1,75 @@
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import TinyMovingDot from './TinyMovingDot';
 
 const Hero = () => {
     return (
-        <section id="hero" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10 animate-pulse delay-1000"></div>
+        <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dot-pattern">
+            <TinyMovingDot />
+            {/* Ambient background blurs - pulsing ambient blobs */}
+            <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/[0.06] rounded-full blur-[150px] pointer-events-none animate-hero-glow"></div>
+            <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none animate-hero-glow-reverse"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center gap-12 text-center">
-                <div className="w-full max-w-3xl space-y-6 flex flex-col items-center">
-                    <div className="space-y-2">
-                        <h2 className="text-primary font-mono text-lg tracking-wide">Hello, I'm</h2>
-                        <h1 className="text-4xl md:text-6xl font-bold text-slate-100 leading-tight">
-                            Muhammed Naseel
-                            <span className="block text-slate-400 text-3xl md:text-5xl mt-2 font-mono">
-                                {"<SoftwareEngineer />"}
-                            </span>
-                        </h1>
-                        <p className="text-primary text-xl font-medium pt-2">Java & Spring Boot Developer</p>
-                    </div>
+            <div className="max-w-3xl mx-auto px-6 py-20 text-center relative z-10">
+                <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-slate-400 text-lg mb-3"
+                >
+                    Hi, I'm <span className="text-primary font-semibold">@mhdnaseel</span>,
+                </motion.p>
 
-                    <p className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed">
-                        Results-driven Java Developer with 2+ years of experience in building cloud-based
-                        enterprise solutions using Spring Boot, AWS, and Python.
-                    </p>
+                <motion.h1 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.15] tracking-tight"
+                >
+                    <span className="text-gradient">Software Engineer</span>
+                    <br />
+                    who builds <span className="text-white">cloud-native</span>
+                    <br />
+                    enterprise <span className="text-primary">solutions</span>
+                </motion.h1>
 
-                    <div className="flex flex-wrap gap-4 pt-4 justify-center">
-                        <a
-                            href="#projects"
-                            className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/25 flex items-center gap-2"
-                        >
-                            View Work
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
-                        <a
-                            href="#contact"
-                            className="px-8 py-3 border border-slate-700 text-slate-300 rounded-lg font-medium hover:border-primary hover:text-primary hover:bg-slate-800/50 transition-all"
-                        >
-                            Contact Me
-                        </a>
-                    </div>
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="flex flex-wrap gap-3 justify-center mt-10"
+                >
+                    <span className="px-5 py-2.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-slate-300 text-sm font-medium">
+                        Java & Spring Boot
+                    </span>
+                    <span className="px-5 py-2.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-slate-300 text-sm font-medium">
+                        Cloud Architecture
+                    </span>
+                    <span className="px-5 py-2.5 rounded-full border border-primary/30 bg-primary/[0.08] text-primary text-sm font-medium flex items-center gap-2">
+                        <Github className="w-4 h-4" />
+                        mhdnaseeel
+                    </span>
+                </motion.div>
 
-                    <div className="flex gap-6 pt-6 justify-center">
-                        <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                            <Github className="w-6 h-6" />
-                        </a>
-                        <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                            <Linkedin className="w-6 h-6" />
-                        </a>
-                        <a href="mailto:mhdnaseel521@gmail.com" className="text-slate-500 hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                            <Mail className="w-6 h-6" />
-                        </a>
-                    </div>
-                </div>
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="flex gap-4 justify-center mt-8"
+                >
+                    <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" 
+                       className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.02] flex items-center justify-center text-slate-400 hover:text-white hover:border-white/20 transition-all">
+                        <Github className="w-5 h-5" />
+                    </a>
+                    <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer" 
+                       className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.02] flex items-center justify-center text-slate-400 hover:text-white hover:border-white/20 transition-all">
+                        <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a href="mailto:mhdnaseel521@gmail.com" 
+                       className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.02] flex items-center justify-center text-slate-400 hover:text-white hover:border-white/20 transition-all">
+                        <Mail className="w-5 h-5" />
+                    </a>
+                </motion.div>
             </div>
         </section>
     );
