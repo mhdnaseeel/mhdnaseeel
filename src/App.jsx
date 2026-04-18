@@ -4,12 +4,14 @@ import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Footer from './components/Footer';
 import CursorGlow from './components/CursorGlow';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen relative">
         <CursorGlow />
+        <ThemeToggle />
         
         {/* Ambient side glow strips */}
         <div className="side-glow-left"></div>
