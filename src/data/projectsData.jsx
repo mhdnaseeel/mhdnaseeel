@@ -62,5 +62,33 @@ export const projectsData = {
             github: "https://github.com/mhdnaseeel/PinBridge",
             live: "https://pin-bridge.vercel.app"
         }
+    },
+    "nexcart": {
+        title: "NexCart: Premium E-Commerce Solution",
+        subtitle: "Full-Stack Storefront | Spring Boot • React • Redux • Stripe",
+        description: "NexCart is a high-performance, full-stack e-commerce solution designed with a modern React frontend and a robust Spring Boot backend. It features a premium storefront, automated data seeding with high-quality assets, fully dynamic profile editing, and integrated Stripe payments.",
+        images: [
+            { src: "/assets/projects/nexcart-home.png", title: "Premium Storefront", desc: "Aesthetic landing page with high-quality photography and smooth animations." },
+            { src: "/assets/projects/nexcart-profile.png", title: "Dynamic Profiles", desc: "Real-time avatar uploads and profile customization via Redux state." },
+            { src: "/assets/projects/nexcart-admin.png", title: "Admin Ecosystem", desc: "Comprehensive dashboard for product management and store analytics." }
+        ],
+        features: [
+            "Secure Multi-Role Auth (Admin, Seller, User) using Spring Security 6 & JWT.",
+            "Dynamic User Profile management with real-time avatar uploads.",
+            "Full Stripe Payment integration for secure and reliable checkout flows.",
+            "Automated Database Seeding for categories, users, and professional product assets.",
+            "Restricted Seller & Admin Dashboards for inventory and user management.",
+            "Mobile-Responsive UI built with React 18 and TailwindCSS."
+        ],
+        techStack: [
+            { icon: <Cpu className="w-5 h-5 text-primary" />, name: "Spring Boot 3", desc: "Backend API & Security" },
+            { icon: <Code2 className="w-5 h-5 text-accent" />, name: "React 18 & Redux", desc: "Frontend State Management" },
+            { icon: <Database className="w-5 h-5 text-green-500" />, name: "PostgreSQL", desc: "Relational Database" },
+            { icon: <Shield className="w-5 h-5 text-secondary" />, name: "Stripe", desc: "Payment Gateway" }
+        ],
+        links: {
+            github: "https://github.com/mhdnaseeel/e-commerce.git",
+            live: "https://e-commerce-olive-chi-31.vercel.app/"
+        }
     }
 };

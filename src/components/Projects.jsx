@@ -26,13 +26,18 @@ const Projects = () => {
                     links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
                 },
                 {
+                    id: "nexcart",
                     icon: <Globe className="w-5 h-5 text-green-400" />,
-                    title: "Scalable E-Commerce Platform",
-                    badge: "Cloud Native",
+                    title: "NexCart: Premium E-Commerce Solution",
+                    badge: "Full Stack",
                     badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
-                    description: "Microservices architecture on AWS with OAuth2.0/JWT auth and Redis-based session management.",
-                    tags: ["Spring Boot", "AWS", "PostgreSQL", "Redis"],
-                    links: { github: "https://github.com/mhdnaseeel/spring-boot-course" }
+                    description: "High-performance storefront with Spring Boot Microservices, automated data seeding, dynamic profile management, and Stripe integration.",
+                    tags: ["Spring Boot", "React", "Stripe", "PostgreSQL", "Redux"],
+                    detailUrl: "/project/nexcart",
+                    links: { 
+                        github: "https://github.com/mhdnaseeel/e-commerce.git", 
+                        live: "https://e-commerce-olive-chi-31.vercel.app/" 
+                    }
                 }
             ]
         },

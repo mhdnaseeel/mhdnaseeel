@@ -70,8 +70,18 @@
 
 > `Kotlin` `Node.js` `JavaScript` `Firebase` `Firestore` `Socket.IO` `Redis` `GitHub Actions`
 
+<br/>
+
+#### 🛒 [NexCart: Professional Full-Stack E-Commerce Platform](https://github.com/mhdnaseeel/e-commerce)
+**High-Performance Storefront | Spring Boot • React • Redux • Stripe**
+
+- **Full-Stack Architecture**: Developed a scalable storefront with a **Spring Boot 3** backend and **React 18** frontend, featuring **Stripe** integration.
+- **Dynamic Profiles**: Implemented real-time **avatar uploads** and profile management using **Redux Toolkit** and background state sync.
+- **Automated Ecosystem**: Engineered automated database seeding with professional product assets and secure role-based access control (RBAC).
+- **Admin Efficiency**: Built comprehensive seller and admin dashboards for inventory tracking and platform-wide analytics.
+
+> `Java` `Spring Boot` `React` `Redux` `Stripe` `PostgreSQL` `JWT` `Maven` `Vite`
+
 ---
-
-
 
 </div>
