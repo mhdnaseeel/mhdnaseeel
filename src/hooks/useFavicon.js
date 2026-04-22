@@ -21,13 +21,11 @@ const useFavicon = (imageSrc) => {
       ctx.closePath();
       ctx.clip();
 
-      // Draw image centered & cropped to fill circle with a small padding
-      const padding = 4;
-      const drawSize = size - (padding * 2);
+      // Draw image centered & cropped to fill circle (focus on face/top)
       const cropSize = Math.min(img.naturalWidth, img.naturalHeight);
       const sx = (img.naturalWidth - cropSize) / 2;
       const sy = 0; // Start from top to capture the face
-      ctx.drawImage(img, sx, sy, cropSize, cropSize, padding, padding, drawSize, drawSize);
+      ctx.drawImage(img, sx, sy, cropSize, cropSize, 0, 0, size, size);
 
       // Set as favicon
       const dataUrl = canvas.toDataURL('image/png');
