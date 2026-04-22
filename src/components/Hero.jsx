@@ -98,8 +98,8 @@ const Hero = () => {
                     <div className="hero-avatar-wrapper">
                         <div className="hero-avatar-ring">
                             <div className="hero-avatar-inner">
-                                <img 
-                                    src="/assets/profile.jpg" 
+                                <img
+                                    src="/assets/profile.jpg"
                                     alt="Muhammed Naseel"
                                     className="hero-avatar-img"
                                 />
@@ -110,7 +110,7 @@ const Hero = () => {
 
                 {/* Right: Text content */}
                 <div className="text-center md:text-left">
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -120,7 +120,7 @@ const Hero = () => {
                     </motion.p>
 
                     {/* Main heading with typing animation */}
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
@@ -145,7 +145,7 @@ const Hero = () => {
                     </motion.p>
 
                     {/* Floating pill tags */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
@@ -155,7 +155,7 @@ const Hero = () => {
                             Java & Spring Boot
                         </span>
                         <span className="hero-pill">
-                            Cloud Architecture
+                            Full Stack Developer
                         </span>
                         <span className="hero-pill hero-pill-accent">
                             <Github className="w-3.5 h-3.5" />
@@ -164,7 +164,7 @@ const Hero = () => {
                     </motion.div>
 
                     {/* CTA Buttons */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
@@ -182,22 +182,22 @@ const Hero = () => {
                     </motion.div>
 
                     {/* Social icons */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.7 }}
                         className="flex gap-3 justify-center md:justify-start mt-6"
                     >
-                        <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" 
-                           className="hero-social-icon">
+                        <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer"
+                            className="hero-social-icon">
                             <Github className="w-4 h-4" />
                         </a>
-                        <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer" 
-                           className="hero-social-icon">
+                        <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer"
+                            className="hero-social-icon">
                             <Linkedin className="w-4 h-4" />
                         </a>
-                        <a href="mailto:mhdnaseel521@gmail.com" 
-                           className="hero-social-icon">
+                        <a href="mailto:mhdnaseel521@gmail.com"
+                            className="hero-social-icon">
                             <Mail className="w-4 h-4" />
                         </a>
                     </motion.div>
