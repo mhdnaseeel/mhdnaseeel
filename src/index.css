@@ -4,11 +4,16 @@
   --color-primary: #3b82f6;
   --color-accent: #06b6d4;
   --color-secondary: #94a3b8;
-  --color-bg: #020617; /* Dark background (Slate 950) */
-  --color-surface: #030712; /* Dark card background (Gray 950) */
-  --color-border: #1e293b; /* Card border (Slate 800) */
-  --color-bg-light: #ffffff; /* Light background */
-  --color-surface-light: #f8fafc; /* Light card background (Slate 50) */
+  --color-bg: #020617;
+  /* Dark background (Slate 950) */
+  --color-surface: #030712;
+  /* Dark card background (Gray 950) */
+  --color-border: #1e293b;
+  /* Card border (Slate 800) */
+  --color-bg-light: #ffffff;
+  /* Light background */
+  --color-surface-light: #f8fafc;
+  /* Light card background (Slate 50) */
   --font-sans: 'DM Sans', sans-serif;
   --font-heading: 'Space Grotesk', sans-serif;
 }
@@ -30,7 +35,12 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
@@ -167,12 +177,29 @@ html.light .side-glow-right {
 }
 
 /* Light mode text overrides */
-html.light .text-white { color: #0f172a !important; }
-html.light .text-slate-100 { color: #1e293b !important; }
-html.light .text-slate-200 { color: #334155 !important; }
-html.light .text-slate-300 { color: #475569 !important; }
-html.light .text-slate-400 { color: #64748b !important; }
-html.light .text-slate-500 { color: #94a3b8 !important; }
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-100 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-200 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
 
 /* Light mode navbar */
 html.light nav {
@@ -220,12 +247,17 @@ html.light footer {
 }
 
 /* Light mode hero ambient blurs */
-html.light .bg-primary\/\[0\.06\] { background: rgba(59, 130, 246, 0.04) !important; }
-html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !important; }
+html.light .bg-primary\/\[0\.06\] {
+  background: rgba(59, 130, 246, 0.04) !important;
+}
+
+html.light .bg-accent\/\[0\.04\] {
+  background: rgba(6, 182, 212, 0.03) !important;
+}
 
 /* ===== Hero Section Styles ===== */
 
-/* Hero heading — properly sized like santifer.io */
+/* Hero heading — properly sized */
 .hero-heading {
   font-family: var(--font-heading);
   font-size: 2rem;
@@ -237,11 +269,17 @@ html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !importan
 }
 
 @media (min-width: 640px) {
-  .hero-heading { font-size: 2.5rem; min-height: 3.125rem; }
+  .hero-heading {
+    font-size: 2.5rem;
+    min-height: 3.125rem;
+  }
 }
 
 @media (min-width: 768px) {
-  .hero-heading { font-size: 3rem; min-height: 3.75rem; }
+  .hero-heading {
+    font-size: 3rem;
+    min-height: 3.75rem;
+  }
 }
 
 /* Hero avatar */
@@ -261,7 +299,7 @@ html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !importan
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary));
   background-size: 200% 200%;
   animation: avatar-ring-rotate 4s ease-in-out infinite;
-  box-shadow: 
+  box-shadow:
     0 0 25px rgba(59, 130, 246, 0.25),
     0 0 50px rgba(59, 130, 246, 0.12),
     0 0 80px rgba(6, 182, 212, 0.08);
@@ -299,11 +337,18 @@ html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !importan
 }
 
 @media (min-width: 640px) {
-  .hero-avatar-ring { width: 160px; height: 160px; }
+  .hero-avatar-ring {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 @media (min-width: 768px) {
-  .hero-avatar-ring { width: 200px; height: 200px; padding: 4px; }
+  .hero-avatar-ring {
+    width: 200px;
+    height: 200px;
+    padding: 4px;
+  }
 }
 
 /* Hero pill tags (floating skill badges) */
@@ -406,36 +451,48 @@ html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !importan
 }
 
 /* ===== Light mode hero adjustments ===== */
-html.light .hero-heading { color: #0f172a; }
-html.light .hero-avatar-inner { background: var(--color-bg-light); }
+html.light .hero-heading {
+  color: #0f172a;
+}
+
+html.light .hero-avatar-inner {
+  background: var(--color-bg-light);
+}
+
 html.light .hero-avatar-ring {
   box-shadow: 0 0 25px rgba(59, 130, 246, 0.15), 0 0 50px rgba(59, 130, 246, 0.08);
 }
+
 html.light .hero-pill {
   border-color: rgba(0, 0, 0, 0.08);
   background: rgba(0, 0, 0, 0.03);
   color: #475569;
 }
+
 html.light .hero-pill:hover {
   border-color: rgba(0, 0, 0, 0.15);
   background: rgba(0, 0, 0, 0.06);
   color: #1e293b;
 }
+
 html.light .hero-btn-secondary {
   border-color: rgba(0, 0, 0, 0.1);
   background: rgba(0, 0, 0, 0.03);
   color: #475569;
 }
+
 html.light .hero-btn-secondary:hover {
   border-color: rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.06);
   color: #0f172a;
 }
+
 html.light .hero-social-icon {
   border-color: rgba(0, 0, 0, 0.08);
   background: rgba(0, 0, 0, 0.02);
   color: #94a3b8;
 }
+
 html.light .hero-social-icon:hover {
   border-color: rgba(0, 0, 0, 0.2);
   color: #0f172a;
@@ -444,15 +501,25 @@ html.light .hero-social-icon:hover {
 
 /* ===== Animations ===== */
 @keyframes avatar-ring-rotate {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes hero-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.12);
