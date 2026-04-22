@@ -22,7 +22,7 @@ const Hero = () => {
                         <div className="hero-avatar-ring">
                             <div className="hero-avatar-inner">
                                 <img 
-                                    src="/assets/profile.png" 
+                                    src="/assets/profile.jpg" 
                                     alt="Muhammed Naseel"
                                     className="hero-avatar-img"
                                 />

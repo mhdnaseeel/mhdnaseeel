@@ -9,7 +9,7 @@ import useFavicon from './hooks/useFavicon';
 
 function App() {
   // Dynamically creates a round favicon from the profile photo
-  useFavicon('/assets/profile.png');
+  useFavicon('/assets/profile.jpg');
 
   return (
     <Router>
