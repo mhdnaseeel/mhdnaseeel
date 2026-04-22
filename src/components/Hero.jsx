@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TinyMovingDot from './TinyMovingDot';
 
-const roles = ['Software Engineer', 'Cloud Architect', 'Backend Developer', 'Problem Solver'];
+const roles = ['Software Engineer', 'Backend Developer', 'Fullstack Developer', 'Problem Solver'];
 
 // Floating tech symbols scattered around the hero
 const floatingSymbols = [
