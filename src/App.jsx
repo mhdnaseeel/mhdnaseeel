@@ -5,8 +5,12 @@ import ProjectDetail from './pages/ProjectDetail';
 import Footer from './components/Footer';
 import CursorGlow from './components/CursorGlow';
 import ThemeToggle from './components/ThemeToggle';
+import useFavicon from './hooks/useFavicon';
 
 function App() {
+  // Dynamically creates a round favicon from the profile photo
+  useFavicon('/assets/profile.png');
+
   return (
     <Router>
       <div className="min-h-screen relative">

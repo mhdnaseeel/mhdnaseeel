@@ -223,6 +223,96 @@ html.light footer {
 html.light .bg-primary\/\[0\.06\] { background: rgba(59, 130, 246, 0.04) !important; }
 html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !important; }
 
+/* ===== Hero Avatar Styles ===== */
+.hero-avatar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-avatar-ring {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary));
+  background-size: 200% 200%;
+  animation: avatar-ring-rotate 4s ease-in-out infinite;
+  box-shadow: 
+    0 0 30px rgba(59, 130, 246, 0.3),
+    0 0 60px rgba(59, 130, 246, 0.15),
+    0 0 100px rgba(6, 182, 212, 0.1);
+}
+
+.hero-avatar-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary));
+  background-size: 200% 200%;
+  animation: avatar-ring-rotate 4s ease-in-out infinite;
+  opacity: 0.4;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.hero-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-bg);
+  padding: 3px;
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Responsive avatar sizing */
+@media (min-width: 640px) {
+  .hero-avatar-ring {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-avatar-ring {
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+  }
+}
+
+/* Light mode avatar adjustments */
+html.light .hero-avatar-inner {
+  background: var(--color-bg-light);
+}
+
+html.light .hero-avatar-ring {
+  box-shadow: 
+    0 0 30px rgba(59, 130, 246, 0.2),
+    0 0 60px rgba(59, 130, 246, 0.1);
+}
+
+@keyframes avatar-ring-rotate {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Custom Animations */
 @keyframes hero-glow {
   0%, 100% {
