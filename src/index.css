@@ -264,7 +264,7 @@ html.light .bg-accent\/\[0\.04\] { background: rgba(6, 182, 212, 0.03) !importan
   border-radius: 50%;
   overflow: hidden;
   background: var(--color-bg);
-  padding: 2px;
+  padding: 8px;
 }
 
 .hero-avatar-img {
