@@ -7,9 +7,9 @@ export const projectsData = {
         subtitle: "Enterprise SaaS | Spring Boot • PostgreSQL • Azure • Docker",
         description: "A comprehensive cloud-based payroll automation platform designed for handling multiple organizations with strict data isolation. The system automates monthly payroll submissions, casual attendance tracking, and historical record management.",
         images: [
-            { src: "/assets/projects/payroll-login.png", title: "Secure Portal", desc: "Premium multi-tenant login gate with end-to-end encryption." },
-            { src: "/assets/projects/payroll-reports.png", title: "Compliance Hub", desc: "Automated monthly payroll submission and period management." },
-            { src: "/assets/projects/payroll-dashboard.png", title: "Executive Dashboard", desc: "High-level overview of annual and monthly payroll statistics." }
+            { src: "/assets/projects/payroll-login.webp", title: "Secure Portal", desc: "Premium multi-tenant login gate with end-to-end encryption.", width: 1024, height: 542 },
+            { src: "/assets/projects/payroll-reports.webp", title: "Compliance Hub", desc: "Automated monthly payroll submission and period management.", width: 1024, height: 550 },
+            { src: "/assets/projects/payroll-dashboard.webp", title: "Executive Dashboard", desc: "High-level overview of annual and monthly payroll statistics.", width: 1024, height: 551 }
         ],
         features: [
             "Dynamic Datasource Routing for strict tenant isolation.",
@@ -35,14 +35,14 @@ export const projectsData = {
         subtitle: "Real-time SMS Mirroring | Kotlin • Manifest V3 • Node.js",
         description: "Get OTPs from your Android phone on your computer instantly and securely. PinBridge mirrors one-time passwords (OTPs) received via SMS on your Android device to your Chrome browser in real-time, eliminating device switching during authentication.",
         images: [
-            { src: "/assets/projects/pinbridge-web-1.jpg", title: "Web: Secure Entry", desc: "Universal web dashboard locked behind encrypted cloud authentication." },
-            { src: "/assets/projects/pinbridge-web-2.png", title: "Web: Control Center", desc: "Live terminal displaying active verification codes and device health (Privacy Secured)." },
-            { src: "/assets/projects/pinbridge-extension-1.png", title: "Extension: Interface", desc: "Lightweight browser side-panel for instant access to bridged data." },
-            { src: "/assets/projects/pinbridge-extension-2.png", title: "Extension: Bridge", desc: "QR-based pairing portal linking browser to encrypted Android signals (Privacy Secured)." },
-            { src: "/assets/projects/pinbridge-extension-3.png", title: "Extension: Mirroring", desc: "Real-time OTP interception with one-click copy and sync functionality." },
-            { src: "/assets/projects/pinbridge-mobile-1.jpg", title: "Mobile: Identity", desc: "Android-native Google Sign-In to establish secure multi-device ownership." },
-            { src: "/assets/projects/pinbridge-mobile-2.png", title: "Mobile: Encryption", desc: "AES-256-GCM key generation and pairing status (Privacy Secured)." },
-            { src: "/assets/projects/pinbridge-mobile-3.jpg", title: "Mobile: Heartbeat", desc: "Background service monitoring SMS and transmitting encrypted payloads." }
+            { src: "/assets/projects/pinbridge-web-1.webp", title: "Web: Secure Entry", desc: "Universal web dashboard locked behind encrypted cloud authentication.", width: 589, height: 1024 },
+            { src: "/assets/projects/pinbridge-web-2.webp", title: "Web: Control Center", desc: "Live terminal displaying active verification codes and device health (Privacy Secured).", width: 1024, height: 1024 },
+            { src: "/assets/projects/pinbridge-extension-1.webp", title: "Extension: Interface", desc: "Lightweight browser side-panel for instant access to bridged data.", width: 496, height: 1024 },
+            { src: "/assets/projects/pinbridge-extension-2.webp", title: "Extension: Bridge", desc: "QR-based pairing portal linking browser to encrypted Android signals (Privacy Secured).", width: 1024, height: 1024 },
+            { src: "/assets/projects/pinbridge-extension-3.webp", title: "Extension: Mirroring", desc: "Real-time OTP interception with one-click copy and sync functionality.", width: 493, height: 1024 },
+            { src: "/assets/projects/pinbridge-mobile-1.webp", title: "Mobile: Identity", desc: "Android-native Google Sign-In to establish secure multi-device ownership.", width: 536, height: 1024 },
+            { src: "/assets/projects/pinbridge-mobile-2.webp", title: "Mobile: Encryption", desc: "AES-256-GCM key generation and pairing status (Privacy Secured).", width: 1024, height: 1024 },
+            { src: "/assets/projects/pinbridge-mobile-3.webp", title: "Mobile: Heartbeat", desc: "Background service monitoring SMS and transmitting encrypted payloads.", width: 537, height: 1024 }
         ],
         features: [
             "End-to-End Encryption using AES-256-GCM architecture.",

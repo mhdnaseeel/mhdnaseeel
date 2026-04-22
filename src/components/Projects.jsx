@@ -90,7 +90,7 @@ const Projects = () => {
                         </div>
                         <h2 className="text-3xl font-bold text-white">Projects</h2>
                     </div>
-                    <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-white text-sm transition-colors">
+                    <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white text-sm transition-colors">
                         <Github className="w-4 h-4" />
                         <span className="hidden sm:inline">mhdnaseeel</span>
                     </a>
@@ -115,7 +115,7 @@ const Projects = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold text-white">{group.title}</h3>
-                                        <p className="text-slate-500 text-sm">{group.description}</p>
+                                        <p className="text-slate-400 text-sm">{group.description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@ const Projects = () => {
                                                     {project.badge}
                                                 </span>
                                             </div>
-                                            <p className="text-slate-500 text-sm leading-relaxed mb-2.5">{project.description}</p>
+                                            <p className="text-slate-400 text-sm leading-relaxed mb-2.5">{project.description}</p>
 
                                             {/* Tags */}
                                             <div className="flex flex-wrap gap-1.5 mb-2.5">
@@ -157,19 +157,19 @@ const Projects = () => {
                                             {/* Links */}
                                             <div className="flex gap-4">
                                                 {project.links?.github && (
-                                                    <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-white transition-colors">
+                                                    <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors" aria-label={`View source code for ${project.title}`}>
                                                         <Github className="w-3.5 h-3.5" />
                                                         Source
                                                     </a>
                                                 )}
                                                 {project.links?.live && (
-                                                    <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-white transition-colors">
+                                                    <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors" aria-label={`View live demo for ${project.title}`}>
                                                         <ExternalLink className="w-3.5 h-3.5" />
                                                         Live
                                                     </a>
                                                 )}
                                                 {project.detailUrl && (
-                                                    <Link to={project.detailUrl} className="flex items-center gap-1.5 text-xs text-primary hover:text-blue-300 transition-colors">
+                                                    <Link to={project.detailUrl} className="flex items-center gap-1.5 text-xs text-primary hover:text-blue-300 transition-colors" aria-label={`View case study for ${project.title}`}>
                                                         Case Study →
                                                     </Link>
                                                 )}

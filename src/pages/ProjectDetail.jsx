@@ -59,6 +59,9 @@ const ProjectDetail = () => {
                                     <img 
                                         src={img.src} 
                                         alt={img.title}
+                                        width={img.width}
+                                        height={img.height}
+                                        loading="lazy"
                                         className="max-w-full max-h-full object-contain shadow-sm"
                                     />
                                     <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
@@ -103,6 +106,7 @@ const ProjectDetail = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center w-full px-6 py-4 bg-slate-800 hover:bg-slate-700 text-slate-100 rounded-2xl transition-all font-semibold group"
+                                    aria-label={`View source code for ${project.title}`}
                                 >
                                     <Github className="w-5 h-5 mr-2" />
                                     View Source Code
@@ -112,6 +116,7 @@ const ProjectDetail = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center w-full px-6 py-4 bg-primary hover:bg-primary/90 text-white rounded-2xl transition-all font-semibold shadow-lg shadow-primary/20"
+                                    aria-label={`Launch live demo for ${project.title}`}
                                 >
                                     <ExternalLink className="w-5 h-5 mr-2" />
                                     Launch Live Demo

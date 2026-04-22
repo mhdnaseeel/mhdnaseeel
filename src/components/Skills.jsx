@@ -92,6 +92,9 @@ const Skills = () => {
                 <img 
                     src={`https://skillicons.dev/icons?i=${skill.slug}`} 
                     alt={skill.name}
+                    width={20}
+                    height={20}
+                    loading="lazy"
                     className="w-5 h-5 object-contain"
                 />
             );

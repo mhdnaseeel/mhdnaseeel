@@ -99,8 +99,11 @@ const Hero = () => {
                         <div className="hero-avatar-ring">
                             <div className="hero-avatar-inner">
                                 <img
-                                    src="/assets/profile.jpg"
+                                    src="/assets/profile.webp"
                                     alt="Muhammed Naseel"
+                                    width={767}
+                                    height={1024}
+                                    fetchPriority="high"
                                     className="hero-avatar-img"
                                 />
                             </div>
@@ -189,15 +192,15 @@ const Hero = () => {
                         className="flex gap-3 justify-center md:justify-start mt-6"
                     >
                         <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer"
-                            className="hero-social-icon">
+                            className="hero-social-icon" aria-label="GitHub Profile">
                             <Github className="w-4 h-4" />
                         </a>
                         <a href="https://linkedin.com/in/mhdnaseel" target="_blank" rel="noopener noreferrer"
-                            className="hero-social-icon">
+                            className="hero-social-icon" aria-label="LinkedIn Profile">
                             <Linkedin className="w-4 h-4" />
                         </a>
                         <a href="mailto:mhdnaseel521@gmail.com"
-                            className="hero-social-icon">
+                            className="hero-social-icon" aria-label="Send Email">
                             <Mail className="w-4 h-4" />
                         </a>
                     </motion.div>
