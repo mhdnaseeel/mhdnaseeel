@@ -25,8 +25,8 @@ export default async function handler(req, res) {
 
     const lastMessage = messages[messages.length - 1];
 
-    // Use Gemini 2.0 Flash via REST API (no SDK needed)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // Use Gemini 1.5 Flash (stable)
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const requestBody = {
       system_instruction: systemPrompt
@@ -58,7 +58,11 @@ export default async function handler(req, res) {
     if (!geminiResponse.ok) {
       const errorData = await geminiResponse.json().catch(() => ({}));
       console.error("Gemini API error:", errorData);
-      throw new Error(`Gemini API error: ${geminiResponse.status}`);
+      
+      // Return the actual API error to the frontend for debugging
+      return res.status(geminiResponse.status).json({ 
+        error: errorData?.error?.message || `Gemini API error: ${geminiResponse.status}` 
+      });
     }
 
     const data = await geminiResponse.json();
@@ -81,7 +85,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Chat API Error:", error);
     return res.status(500).json({
-      error: "I'm having trouble right now. Please try again in a moment.",
+      error: `Server Error: ${error.message}`,
     });
   }
 }
