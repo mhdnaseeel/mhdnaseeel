@@ -5,6 +5,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import Footer from './components/Footer';
 import CursorGlow from './components/CursorGlow';
 import ThemeToggle from './components/ThemeToggle';
+import FloatingChat from './components/FloatingChat';
 import useFavicon from './hooks/useFavicon';
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Routes>
         </main>
         <Footer />
+
+        {/* AI Chat Widget */}
+        <FloatingChat />
       </div>
     </Router>
   );

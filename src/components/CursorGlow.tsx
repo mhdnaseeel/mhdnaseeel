@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const CursorGlow = () => {
+const CursorGlow: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
     };
