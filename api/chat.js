@@ -15,9 +15,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Messages are required" });
     }
 
-    // According to your diagnostic, 'gemini-2.0-flash' is available on your key.
-    // We use the v1beta endpoint as it's the standard for these newer models.
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // Switching to 'gemini-flash-latest' because 'gemini-2.0-flash' returned a 0-quota limit error.
+    // 'gemini-flash-latest' is the stable alias for 1.5 Flash and is on your diagnostic list.
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
     const history = messages.slice(0, -1).map((m) => ({
       role: m.role === "assistant" ? "model" : "user",
