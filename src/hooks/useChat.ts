@@ -135,11 +135,11 @@ export const useChat = (): UseChatReturn => {
       const errorMessage = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
       setError(errorMessage);
 
-      // Add error message as assistant response
+      // Add actual error message as assistant response so we can debug it
       const errorAssistantMessage: ChatMessage = {
         id: generateId(),
         role: 'assistant',
-        content: '⚠️ I\'m having trouble connecting right now. Please try again in a moment, or reach out directly at mhdnaseel521@gmail.com.',
+        content: `⚠️ Error: ${errorMessage}`,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorAssistantMessage]);
