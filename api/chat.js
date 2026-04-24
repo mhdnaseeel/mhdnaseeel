@@ -29,8 +29,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Messages are required" });
     }
 
-    // Using 'gemini-1.5-flash' on v1 for better stability.
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Using 'gemini-1.5-flash' on v1beta with message-based instructions
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     // Prepend system prompt to the first user message for maximum compatibility
     const contents = messages.map((m) => ({
