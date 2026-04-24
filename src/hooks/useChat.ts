@@ -82,18 +82,31 @@ export const useChat = (): UseChatReturn => {
     abortControllerRef.current = new AbortController();
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: [...messages, userMessage].map(m => ({
-            role: m.role,
-            content: m.content,
-          })),
-          systemPrompt: SYSTEM_PROMPT,
-        }),
-        signal: abortControllerRef.current.signal,
-      });
+      const historyLimit = 10;
+      const history = messages.slice(-historyLimit);
+      
+      const fetchWithRetry = async (retries = 2, delay = 2000): Promise<Response> => {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: [...history, userMessage].map(m => ({
+              role: m.role,
+              content: m.content,
+            })),
+            systemPrompt: SYSTEM_PROMPT,
+          }),
+          signal: abortControllerRef.current?.signal,
+        });
+
+        if (response.status === 429 && retries > 0) {
+          await new Promise(resolve => setTimeout(resolve, delay));
+          return fetchWithRetry(retries - 1, delay * 2);
+        }
+        return response;
+      };
+
+      const response = await fetchWithRetry();
 
       if (!response.ok) {
         if (response.status === 429) {
