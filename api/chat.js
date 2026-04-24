@@ -32,16 +32,21 @@ export default async function handler(req, res) {
     // Using 'gemini-1.5-flash' on v1 for better stability.
     const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
+    // Prepend system prompt to the first user message for maximum compatibility
+    const contents = messages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    }));
+
+    if (systemPrompt && contents.length > 0) {
+      // Prepend to the very first message
+      contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
+    }
+
     const requestBody = {
-      contents: messages.map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }],
-      })),
-      system_instruction: systemPrompt
-        ? { parts: [{ text: systemPrompt }] }
-        : undefined,
+      contents,
       generationConfig: {
-        maxOutputTokens: 512, // Reduced for speed
+        maxOutputTokens: 512,
         temperature: 0.7,
       }
     };
