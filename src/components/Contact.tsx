@@ -135,8 +135,9 @@ const Contact = () => {
 
                         <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                             <div>
-                                <label className="block text-xs text-slate-400 mb-1.5 font-medium">Name</label>
+                                <label htmlFor="user_name" className="block text-xs text-slate-400 mb-1.5 font-medium">Name</label>
                                 <input
+                                    id="user_name"
                                     type="text"
                                     name="user_name"
                                     className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
@@ -145,8 +146,9 @@ const Contact = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs text-slate-400 mb-1.5 font-medium">Email</label>
+                                <label htmlFor="user_email" className="block text-xs text-slate-400 mb-1.5 font-medium">Email</label>
                                 <input
+                                    id="user_email"
                                     type="email"
                                     name="user_email"
                                     className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
@@ -155,8 +157,9 @@ const Contact = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs text-slate-400 mb-1.5 font-medium">Message</label>
+                                <label htmlFor="message" className="block text-xs text-slate-400 mb-1.5 font-medium">Message</label>
                                 <textarea
+                                    id="message"
                                     name="message"
                                     rows={4}
                                     className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all resize-none placeholder:text-slate-600 text-sm"
