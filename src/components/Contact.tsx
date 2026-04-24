@@ -135,22 +135,22 @@ const Contact = () => {
 
                         <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                             <div>
-                                <label htmlFor="from_name" className="block text-xs text-slate-400 mb-1.5 font-medium">Name</label>
+                                <label htmlFor="name" className="block text-xs text-slate-400 mb-1.5 font-medium">Name</label>
                                 <input
-                                    id="from_name"
+                                    id="name"
                                     type="text"
-                                    name="from_name"
+                                    name="name"
                                     className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
                                     placeholder="Your name"
                                     required
                                 />
                             </div>
                             <div>
-                                <label htmlFor="from_email" className="block text-xs text-slate-400 mb-1.5 font-medium">Email</label>
+                                <label htmlFor="email" className="block text-xs text-slate-400 mb-1.5 font-medium">Email</label>
                                 <input
-                                    id="from_email"
+                                    id="email"
                                     type="email"
-                                    name="from_email"
+                                    name="email"
                                     className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
                                     placeholder="your@email.com"
                                     required
