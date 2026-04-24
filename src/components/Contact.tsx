@@ -12,21 +12,32 @@ const Contact = () => {
         e.preventDefault();
         if (!formRef.current) return;
 
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('EmailJS Error: Missing configuration. Check your .env.local file or Vercel environment variables.');
+            setStatus('error');
+            return;
+        }
+
         setIsSubmitting(true);
         setStatus('idle');
 
         try {
-            // Replace these with your actual IDs from EmailJS Dashboard
-            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_id';
-            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_id';
-            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key';
-
-            await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+            const result = await emailjs.sendForm(
+                serviceId, 
+                templateId, 
+                formRef.current, 
+                { publicKey: publicKey }
+            );
             
+            console.log('EmailJS Success:', result.text);
             setStatus('success');
             formRef.current.reset();
-        } catch (error) {
-            console.error('EmailJS Error:', error);
+        } catch (error: any) {
+            console.error('EmailJS Error Detail:', error);
             setStatus('error');
         } finally {
             setIsSubmitting(false);
