@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
-import { X, Send, Trash2, Sparkles, ArrowDown } from 'lucide-react';
+import { X, Send, Trash2, Sparkles, ArrowDown, Code2, Briefcase, Cpu, Layers, UserCheck, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useChat, type ChatMessage } from '../hooks/useChat';
 
 const SUGGESTED_QUESTIONS = [
-  "What's your tech stack?",
-  "Tell me about your projects",
-  "What's your work experience?",
-  "How did you optimize API performance?",
-  "Are you available for new opportunities?",
+  { text: "Tech Stack", icon: <Code2 className="w-3.5 h-3.5" />, query: "What's your tech stack?" },
+  { text: "Projects", icon: <Layers className="w-3.5 h-3.5" />, query: "Tell me about your projects" },
+  { text: "Experience", icon: <Briefcase className="w-3.5 h-3.5" />, query: "What's your work experience?" },
+  { text: "Performance", icon: <Cpu className="w-3.5 h-3.5" />, query: "How did you optimize API performance?" },
+  { text: "Availability", icon: <UserCheck className="w-3.5 h-3.5" />, query: "Are you available for new opportunities?" },
 ];
 
 const FloatingChat: React.FC = () => {
@@ -117,18 +117,14 @@ const FloatingChat: React.FC = () => {
             {/* Header */}
             <div className="chat-header">
               <div className="flex items-center gap-3">
-                <div className="chat-avatar">
-                  <img
-                    src="/assets/profile.webp"
-                    alt="Naseel AI"
-                    className="w-full h-full object-cover rounded-full"
-                  />
+                <div className="chat-avatar flex items-center justify-center bg-primary/10">
+                  <Sparkles className="w-5 h-5 text-primary" />
                   <div className="chat-avatar-status" />
                 </div>
                 <div>
-                  <h3 className="chat-header-name">Naseel AI</h3>
+                  <h3 className="chat-header-name">Ask ..</h3>
                   <p className="chat-header-status">
-                    {isLoading ? 'Thinking...' : 'Online • Ask me anything'}
+                    {isLoading ? 'Thinking...' : 'Online'}
                   </p>
                 </div>
               </div>
@@ -160,26 +156,23 @@ const FloatingChat: React.FC = () => {
             >
               {messages.length === 0 ? (
                 <div className="chat-welcome">
-                  <div className="chat-welcome-avatar">
-                    <img
-                      src="/assets/profile.webp"
-                      alt="Naseel"
-                      className="w-full h-full object-cover rounded-full"
-                    />
+                  <div className="chat-welcome-avatar flex items-center justify-center bg-primary/10 mb-4">
+                    <MessageSquare className="w-8 h-8 text-primary" />
                   </div>
                   <h4 className="chat-welcome-title">Hi! I'm Naseel's AI 👋</h4>
-                  <p className="chat-welcome-text">
-                    Ask me about my experience, projects, tech stack, or anything else.
+                  <p className="chat-welcome-text mb-6">
+                    How can I help you today?
                   </p>
-                  <div className="chat-suggestions">
+                  <div className="chat-suggestions-grid">
                     {SUGGESTED_QUESTIONS.map((q, i) => (
                       <button
                         key={i}
-                        onClick={() => handleSuggestionClick(q)}
-                        className="chat-suggestion-btn"
+                        onClick={() => handleSuggestionClick(q.query)}
+                        className="chat-suggestion-chip"
                         disabled={isLoading}
                       >
-                        {q}
+                        {q.icon}
+                        <span>{q.text}</span>
                       </button>
                     ))}
                   </div>
@@ -191,15 +184,6 @@ const FloatingChat: React.FC = () => {
                       key={msg.id}
                       className={`chat-message ${msg.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}`}
                     >
-                      {msg.role === 'assistant' && (
-                        <div className="chat-message-avatar">
-                          <img
-                            src="/assets/profile.webp"
-                            alt="Naseel AI"
-                            className="w-full h-full object-cover rounded-full"
-                          />
-                        </div>
-                      )}
                       <div
                         className={`chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}
                         dangerouslySetInnerHTML={{ __html: formatMessage(msg.content) }}
@@ -210,13 +194,6 @@ const FloatingChat: React.FC = () => {
                   {/* Typing indicator */}
                   {isLoading && (
                     <div className="chat-message chat-message-assistant">
-                      <div className="chat-message-avatar">
-                        <img
-                          src="/assets/profile.webp"
-                          alt="Naseel AI"
-                          className="w-full h-full object-cover rounded-full"
-                        />
-                      </div>
                       <div className="chat-bubble chat-bubble-assistant">
                         <div className="chat-typing">
                           <span /><span /><span />

@@ -660,8 +660,8 @@ html.light .chat-header-status {
   height: 2.5rem;
   border-radius: 50%;
   position: relative;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
 }
 
 .chat-avatar-status {
@@ -748,9 +748,7 @@ html.light .chat-messages::-webkit-scrollbar-thumb {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  margin-bottom: 1rem;
+  border: 1px solid var(--color-border);
 }
 
 .chat-welcome-title {
@@ -767,7 +765,6 @@ html.light .chat-welcome-title {
 .chat-welcome-text {
   font-size: 0.875rem;
   color: #94a3b8;
-  margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
@@ -775,38 +772,43 @@ html.light .chat-welcome-text {
   color: #64748b;
 }
 
-.chat-suggestions {
+.chat-suggestions-grid {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   width: 100%;
 }
 
-.chat-suggestion-btn {
-  padding: 0.75rem 1rem;
+.chat-suggestion-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
+  border-radius: 9999px;
   color: #cbd5e1;
-  font-size: 0.8125rem;
-  text-align: left;
-  transition: all 0.2s;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
-html.light .chat-suggestion-btn {
+html.light .chat-suggestion-chip {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.08);
   color: #334155;
 }
 
-.chat-suggestion-btn:hover {
+.chat-suggestion-chip:hover {
   background: rgba(59, 130, 246, 0.1);
   border-color: rgba(59, 130, 246, 0.3);
   color: #fff;
+  transform: translateY(-1px);
 }
 
-html.light .chat-suggestion-btn:hover {
+html.light .chat-suggestion-chip:hover {
   background: rgba(59, 130, 246, 0.05);
   border-color: rgba(59, 130, 246, 0.2);
   color: #0f172a;
@@ -826,15 +828,6 @@ html.light .chat-suggestion-btn:hover {
 
 .chat-message-assistant {
   align-self: flex-start;
-}
-
-.chat-message-avatar {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
 }
 
 .chat-bubble {
