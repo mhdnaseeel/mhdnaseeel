@@ -122,7 +122,7 @@ const FloatingChat: React.FC = () => {
                   <div className="chat-avatar-status" />
                 </div>
                 <div>
-                  <h3 className="chat-header-name">Ask ..</h3>
+                  <h3 className="chat-header-name">Ask me</h3>
                   <p className="chat-header-status">
                     {isLoading ? 'Thinking...' : 'Online'}
                   </p>
@@ -159,7 +159,7 @@ const FloatingChat: React.FC = () => {
                   <div className="chat-welcome-avatar flex items-center justify-center bg-primary/10 mb-4">
                     <MessageSquare className="w-8 h-8 text-primary" />
                   </div>
-                  <h4 className="chat-welcome-title">Hi! I'm Naseel's AI 👋</h4>
+                  <h4 className="chat-welcome-title">Hi! I'm an AI assistant 🤖. Ask me anything.</h4>
                   <p className="chat-welcome-text mb-6">
                     How can I help you today?
                   </p>
