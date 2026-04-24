@@ -19,7 +19,7 @@ const FloatingChat: React.FC = () => {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, isLoading, sendMessage, clearMessages } = useChat();
+  const { messages, isLoading, error, sendMessage, clearMessages } = useChat();
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -190,6 +190,16 @@ const FloatingChat: React.FC = () => {
                       />
                     </div>
                   ))}
+
+                  {/* Error message */}
+                  {error && (
+                    <div className="chat-message chat-message-assistant">
+                      <div className="chat-bubble chat-bubble-error">
+                        <p className="text-xs font-medium mb-1">Error</p>
+                        <p>{error}</p>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Typing indicator */}
                   {isLoading && (

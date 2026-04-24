@@ -851,10 +851,24 @@ html.light .chat-suggestion-chip:hover {
   border-bottom-left-radius: 0.25rem;
 }
 
+.chat-bubble-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-bottom-left-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
 html.light .chat-bubble-assistant {
   background: rgba(0, 0, 0, 0.03);
   border-color: rgba(0, 0, 0, 0.08);
   color: #1e293b;
+}
+
+html.light .chat-bubble-error {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
 }
 
 .chat-inline-code {

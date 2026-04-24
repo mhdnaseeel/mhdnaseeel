@@ -96,6 +96,9 @@ export const useChat = (): UseChatReturn => {
       });
 
       if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error("The AI is currently receiving too many requests. Please wait a minute before trying again.");
+        }
         const errData = await response.json().catch(() => ({}));
         throw new Error(errData.error || `Request failed (${response.status})`);
       }

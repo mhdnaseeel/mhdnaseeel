@@ -59,9 +59,14 @@ export default async function handler(req, res) {
 
     if (!geminiResponse.ok) {
       const errorData = await geminiResponse.json().catch(() => ({}));
-      return res.status(geminiResponse.status).json({ 
-        error: errorData?.error?.message || `Gemini API Error ${geminiResponse.status}` 
-      });
+      let errorMessage = errorData?.error?.message || `Gemini API Error ${geminiResponse.status}`;
+      
+      // Specifically handle rate limits
+      if (geminiResponse.status === 429) {
+        errorMessage = "The AI is currently receiving too many requests. Please wait a minute before trying again.";
+      }
+      
+      return res.status(geminiResponse.status).json({ error: errorMessage });
     }
 
     const data = await geminiResponse.json();
