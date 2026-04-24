@@ -114,15 +114,6 @@ export const useChat = (): UseChatReturn => {
       if (err instanceof Error && err.name === 'AbortError') return;
       const errorMessage = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
       setError(errorMessage);
-
-      // Add actual error message as assistant response so we can debug it
-      const errorAssistantMessage: ChatMessage = {
-        id: generateId(),
-        role: 'assistant',
-        content: `⚠️ Debug Error: ${errorMessage}`,
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, errorAssistantMessage]);
     } finally {
       setIsLoading(false);
     }
