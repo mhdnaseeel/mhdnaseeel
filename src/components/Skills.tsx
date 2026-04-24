@@ -146,7 +146,7 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.06 }}
-                            className="rounded-2xl border border-white/[0.06] bg-[#131c31]/60 p-6"
+                            className="rounded-2xl border border-white/[0.05] bg-[#0c0c0f]/80 p-6"
                         >
                             <p className={`text-xs font-bold uppercase tracking-[0.12em] ${category.color} mb-5`}>
                                 {category.title}
@@ -155,7 +155,7 @@ const Skills = () => {
                                 {category.skills.map((skill, idx) => (
                                     <div key={idx} className="flex items-center gap-2.5">
                                         {renderIcon(skill)}
-                                        <span className="text-sm text-slate-300">{skill.name}</span>
+                                        <span className="text-sm text-zinc-400">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>

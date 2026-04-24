@@ -20,7 +20,7 @@ const ThemeToggle = () => {
         onClick={() => setDarkMode(!darkMode)}
         className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-xl shadow-lg transition-all hover:scale-110 border ${
           darkMode
-            ? 'bg-[#131c31]/90 shadow-black/20 text-slate-400 hover:text-white border-white/[0.08] hover:border-white/[0.15]'
+            ? 'bg-[#0c0c0f]/90 shadow-black/30 text-zinc-500 hover:text-zinc-200 border-white/[0.06] hover:border-white/[0.1]'
             : 'bg-white/90 shadow-black/5 text-slate-600 hover:text-slate-800 border-slate-200 hover:border-slate-300'
         }`}
         aria-label="Toggle theme"

@@ -68,7 +68,7 @@ const Hero = () => {
             {floatingSymbols.map((sym, i) => (
                 <motion.span
                     key={i}
-                    className="absolute pointer-events-none font-mono select-none text-slate-400"
+                    className="absolute pointer-events-none font-mono select-none text-zinc-500"
                     style={{ left: sym.x, top: sym.y, fontSize: sym.size, opacity: 0 }}
                     animate={{
                         opacity: [0, sym.opacity, sym.opacity, 0],
@@ -117,7 +117,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-slate-400 text-base sm:text-lg mb-4"
+                        className="text-zinc-500 text-base sm:text-lg mb-4"
                     >
                         Hi, I'm <span className="text-primary font-semibold">@mhdnaseel</span>,
                     </motion.p>
@@ -138,7 +138,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className="text-slate-400 text-base sm:text-lg mt-4 max-w-xl leading-relaxed"
+                        className="text-zinc-500 text-base sm:text-lg mt-4 max-w-xl leading-relaxed"
                     >
                         who builds <span className="text-white font-medium">cloud-native</span> enterprise{' '}
                         <span className="text-white font-medium">solutions</span> with{' '}

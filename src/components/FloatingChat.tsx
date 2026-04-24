@@ -73,12 +73,38 @@ const FloatingChat: React.FC = () => {
   };
 
   const formatMessage = (content: string) => {
-    // Simple markdown-like formatting
     return content
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code class="chat-inline-code">$1</code>')
       .replace(/\n/g, '<br />');
+  };
+
+  // Parse [[ACTION:label|target]] tags from AI responses
+  const parseActions = (content: string): { text: string; actions: { label: string; target: string }[] } => {
+    const actionRegex = /\[\[ACTION:(.*?)\|(.*?)\]\]/g;
+    const actions: { label: string; target: string }[] = [];
+    let match;
+    while ((match = actionRegex.exec(content)) !== null) {
+      actions.push({ label: match[1], target: match[2] });
+    }
+    const text = content.replace(actionRegex, '').trim();
+    return { text, actions };
+  };
+
+  const handleActionClick = (target: string) => {
+    if (target.startsWith('/')) {
+      setIsOpen(false);
+      window.location.href = target;
+    } else {
+      setIsOpen(false);
+      setTimeout(() => {
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
   };
 
   return (
@@ -179,17 +205,36 @@ const FloatingChat: React.FC = () => {
                 </div>
               ) : (
                 <>
-                  {messages.map((msg: ChatMessage) => (
-                    <div
-                      key={msg.id}
-                      className={`chat-message ${msg.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}`}
-                    >
+                  {messages.map((msg: ChatMessage) => {
+                    const isAssistant = msg.role === 'assistant';
+                    const { text, actions } = isAssistant ? parseActions(msg.content) : { text: msg.content, actions: [] };
+
+                    return (
                       <div
-                        className={`chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}
-                        dangerouslySetInnerHTML={{ __html: formatMessage(msg.content) }}
-                      />
-                    </div>
-                  ))}
+                        key={msg.id}
+                        className={`chat-message ${msg.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}`}
+                      >
+                        <div
+                          className={`chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}
+                          dangerouslySetInnerHTML={{ __html: formatMessage(text) }}
+                        />
+                        {isAssistant && actions.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mt-2">
+                            {actions.map((action, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => handleActionClick(action.target)}
+                                className="chat-action-btn"
+                              >
+                                {action.target === 'contact' ? '✉️' : action.target.startsWith('/') ? '📄' : '→'}
+                                <span>{action.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
 
                   {/* Error message */}
                   {error && (

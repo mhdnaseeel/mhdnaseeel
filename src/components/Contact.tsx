@@ -68,11 +68,11 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="s-card p-8 flex flex-col justify-between"
+                        className="s-card p-5 sm:p-8 flex flex-col justify-between"
                     >
                         <div>
                             <h3 className="text-2xl font-bold text-white mb-3">Let's Talk</h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                            <p className="text-zinc-500 text-sm leading-relaxed mb-8">
                                 Have a project in mind or want to discuss new opportunities? I'd love to hear from you. Let's build something great together.
                             </p>
                         </div>
@@ -83,19 +83,19 @@ const Contact = () => {
                                 <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-primary shrink-0 group-hover:border-primary/30 transition-colors">
                                     <Mail className="w-4 h-4" />
                                 </div>
-                                <a href="mailto:mhdnaseel521@gmail.com" className="text-sm text-slate-300 hover:text-white transition-colors">mhdnaseel521@gmail.com</a>
+                                <a href="mailto:mhdnaseel521@gmail.com" className="text-sm text-zinc-400 hover:text-white transition-colors">mhdnaseel521@gmail.com</a>
                             </div>
                             <div className="flex items-center gap-3 group">
                                 <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-accent shrink-0 group-hover:border-accent/30 transition-colors">
                                     <Phone className="w-4 h-4" />
                                 </div>
-                                <a href="tel:+919072131343" className="text-sm text-slate-300 hover:text-white transition-colors">+91 9072131343</a>
+                                <a href="tel:+919072131343" className="text-sm text-zinc-400 hover:text-white transition-colors">+91 9072131343</a>
                             </div>
                             <div className="flex items-center gap-3 group">
                                 <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-primary shrink-0 group-hover:border-primary/30 transition-colors">
                                     <MapPin className="w-4 h-4" />
                                 </div>
-                                <span className="text-sm text-slate-300">Bangalore, India</span>
+                                <span className="text-sm text-zinc-400">Bangalore, India</span>
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="s-card p-8 relative overflow-hidden"
+                        className="s-card p-5 sm:p-8 relative overflow-hidden"
                     >
                         <div className="flex items-center gap-2.5 mb-6">
                             <MessageSquare className="w-5 h-5 text-primary" />
@@ -135,34 +135,34 @@ const Contact = () => {
 
                         <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                             <div>
-                                <label htmlFor="name" className="block text-xs text-slate-400 mb-1.5 font-medium">Name</label>
+                                <label htmlFor="name" className="block text-xs text-zinc-500 mb-1.5 font-medium">Name</label>
                                 <input
                                     id="name"
                                     type="text"
                                     name="name"
-                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
+                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-zinc-600 text-sm"
                                     placeholder="Your name"
                                     required
                                 />
                             </div>
                             <div>
-                                <label htmlFor="email" className="block text-xs text-slate-400 mb-1.5 font-medium">Email</label>
+                                <label htmlFor="email" className="block text-xs text-zinc-500 mb-1.5 font-medium">Email</label>
                                 <input
                                     id="email"
                                     type="email"
                                     name="email"
-                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-slate-600 text-sm"
+                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all placeholder:text-zinc-600 text-sm"
                                     placeholder="your@email.com"
                                     required
                                 />
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-xs text-slate-400 mb-1.5 font-medium">Message</label>
+                                <label htmlFor="message" className="block text-xs text-zinc-500 mb-1.5 font-medium">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows={4}
-                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all resize-none placeholder:text-slate-600 text-sm"
+                                    className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.08] text-white rounded-xl focus:ring-1 focus:ring-primary/50 focus:border-primary/40 outline-none transition-all resize-none placeholder:text-zinc-600 text-sm"
                                     placeholder="Tell me about your project..."
                                     required
                                 ></textarea>
@@ -227,7 +227,7 @@ const Contact = () => {
                                         <CheckCircle2 className="w-8 h-8 text-green-400" />
                                     </motion.div>
                                     <h4 className="text-white font-bold text-lg mb-1">Message Received!</h4>
-                                    <p className="text-slate-300 text-sm">I'll get back to you as soon as possible.</p>
+                                    <p className="text-zinc-400 text-sm">I'll get back to you as soon as possible.</p>
                                     <button 
                                         onClick={() => setStatus('idle')}
                                         className="mt-4 text-xs text-primary hover:underline"

@@ -1,78 +1,60 @@
-import { useState } from 'react';
-import { ExternalLink, Github, FolderCode, Server, Smartphone, Star, ChevronDown, ChevronUp, Shield, Cpu, Globe, Zap, Database, Cloud } from 'lucide-react';
+import { ExternalLink, Github, FolderCode, Smartphone, Cpu, Globe, Shield, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Projects = () => {
-    const [showAll, setShowAll] = useState(false);
-
-    const projectGroups = [
+    // Featured projects — shown as large cards
+    const featured = [
         {
-            title: "Enterprise Solutions",
-            description: "Production-grade cloud systems built for scale and security.",
-            tintColor: "border-blue-500/20",
-            labelColor: "text-blue-400",
-            icon: <Server className="w-6 h-6 text-blue-400" />,
-            projects: [
-                {
-                    id: "hr-payroll",
-                    icon: <Cpu className="w-5 h-5 text-blue-400" />,
-                    title: "Multi-Tenant HR & Payroll System",
-                    badge: "SaaS",
-                    badgeColor: "text-blue-400 bg-blue-400/10 border-blue-400/20",
-                    description: "Cloud-based payroll automation with dynamic datasource routing, Azure AI integration, and role-based multi-tenancy.",
-                    tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
-                    detailUrl: "/project/hr-payroll",
-                    links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
-                },
-                {
-                    id: "nexcart",
-                    icon: <Globe className="w-5 h-5 text-green-400" />,
-                    title: "NexCart: Premium E-Commerce Solution",
-                    badge: "Full Stack",
-                    badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
-                    description: "High-performance storefront with Spring Boot Microservices, automated data seeding, dynamic profile management, and Stripe integration.",
-                    tags: ["Spring Boot", "React", "Stripe", "PostgreSQL", "Redux"],
-                    detailUrl: "/project/nexcart",
-                    links: { 
-                        github: "https://github.com/mhdnaseeel/e-commerce.git", 
-                        live: "https://e-commerce-olive-chi-31.vercel.app/" 
-                    }
-                }
-            ]
+            id: "hr-payroll",
+            icon: <Cpu className="w-5 h-5" />,
+            iconColor: "text-indigo-400",
+            accentBorder: "border-indigo-500/15 hover:border-indigo-500/30",
+            title: "Multi-Tenant HR & Payroll System",
+            badge: "SaaS",
+            badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
+            description: "Cloud-based payroll automation with dynamic datasource routing, Azure AI integration, and role-based multi-tenancy.",
+            tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
+            detailUrl: "/project/hr-payroll",
+            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
         },
         {
-            title: "Real-Time Systems",
-            description: "Low-latency applications with live data synchronization.",
-            tintColor: "border-cyan-500/20",
-            labelColor: "text-cyan-400",
-            icon: <Zap className="w-6 h-6 text-cyan-400" />,
-            projects: [
-                {
-                    id: "pinbridge",
-                    icon: <Smartphone className="w-5 h-5 text-cyan-400" />,
-                    title: "PinBridge",
-                    badge: "Open Source",
-                    badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
-                    description: "End-to-end encrypted OTP mirroring from Android to Chrome with AES-256-GCM and Socket.IO.",
-                    tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3"],
-                    detailUrl: "/project/pinbridge",
-                    links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
-                },
-                {
-                    icon: <Shield className="w-5 h-5 text-yellow-400" />,
-                    title: "Real-Time Emergency Response",
-                    badge: "Mission Critical",
-                    badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20",
-                    description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
-                    tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
-                    links: { github: "https://github.com/mhdnaseeel/ambutracker" }
-                }
-            ]
+            id: "pinbridge",
+            icon: <Smartphone className="w-5 h-5" />,
+            iconColor: "text-cyan-400",
+            accentBorder: "border-cyan-500/15 hover:border-cyan-500/30",
+            title: "PinBridge",
+            badge: "Open Source",
+            badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+            description: "End-to-end encrypted OTP mirroring from Android to Chrome with AES-256-GCM and Socket.IO.",
+            tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3"],
+            detailUrl: "/project/pinbridge",
+            links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
         }
     ];
 
-    const visibleGroups = showAll ? projectGroups : projectGroups.slice(0, 2);
+    // Other projects — shown as compact rows
+    const others = [
+        {
+            icon: <Globe className="w-4 h-4 text-green-400" />,
+            title: "NexCart: Premium E-Commerce",
+            badge: "Full Stack",
+            badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
+            description: "High-performance storefront with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
+            tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
+            detailUrl: "/project/nexcart",
+            links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
+        },
+        {
+            icon: <Shield className="w-4 h-4 text-yellow-400" />,
+            title: "Real-Time Emergency Response",
+            badge: "Mission Critical",
+            badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20",
+            description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
+            tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
+            links: { github: "https://github.com/mhdnaseeel/ambutracker" }
+        }
+    ];
 
     return (
         <section id="projects" className="py-20 relative">
@@ -90,97 +72,131 @@ const Projects = () => {
                         </div>
                         <h2 className="text-3xl font-bold text-white">Projects</h2>
                     </div>
-                    <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white text-sm transition-colors">
+                    <a href="https://github.com/mhdnaseeel" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-500 hover:text-white text-sm transition-colors">
                         <Github className="w-4 h-4" />
                         <span className="hidden sm:inline">mhdnaseeel</span>
                     </a>
                 </motion.div>
 
-                {/* Project groups - grouped card pattern */}
-                <div className="space-y-8">
-                    {visibleGroups.map((group, gIndex) => (
+                {/* Featured projects — large cards */}
+                <div className="space-y-4 mb-6">
+                    {featured.map((project, index) => (
                         <motion.div
-                            key={gIndex}
+                            key={project.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: gIndex * 0.12 }}
-                            className={`project-card ${group.tintColor}`}
+                            transition={{ delay: index * 0.1 }}
+                            className={`project-card ${project.accentBorder} transition-all`}
                         >
-                            {/* Group header */}
-                            <div className="p-6 pb-4">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
-                                        {group.icon}
+                            <div className="p-5 sm:p-6">
+                                {/* Top: Icon + Title + Badge */}
+                                <div className="flex items-start gap-3.5 mb-3">
+                                    <div className={`w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center shrink-0 ${project.iconColor}`}>
+                                        {project.icon}
                                     </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white">{group.title}</h3>
-                                        <p className="text-slate-400 text-sm">{group.description}</p>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2.5 flex-wrap mb-1">
+                                            {project.detailUrl ? (
+                                                <Link to={project.detailUrl} className="font-bold text-white hover:text-primary transition-colors text-base sm:text-lg">
+                                                    {project.title}
+                                                </Link>
+                                            ) : (
+                                                <span className="font-bold text-white text-base sm:text-lg">{project.title}</span>
+                                            )}
+                                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${project.badgeColor}`}>
+                                                {project.badge}
+                                            </span>
+                                        </div>
+                                        <p className="text-zinc-500 text-sm leading-relaxed">{project.description}</p>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Project items stacked inside the group card */}
-                            <div className="px-5 pb-5 space-y-3">
-                                {group.projects.map((project, pIndex) => (
-                                    <div key={pIndex} className="project-row group">
-                                        {/* Icon */}
-                                        <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center shrink-0 mt-0.5">
-                                            {project.icon}
-                                        </div>
+                                {/* Tags */}
+                                <div className="flex flex-wrap gap-1.5 mb-3 ml-[3.375rem]">
+                                    {project.tags.map((tag, tIdx) => (
+                                        <span key={tIdx} className="text-[11px] text-zinc-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
 
-                                        {/* Content */}
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                                {project.detailUrl ? (
-                                                    <Link to={project.detailUrl} className="font-bold text-white hover:text-primary transition-colors text-[15px]">
-                                                        {project.title}
-                                                    </Link>
-                                                ) : (
-                                                    <span className="font-bold text-white text-[15px]">{project.title}</span>
-                                                )}
-                                                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${project.badgeColor}`}>
-                                                    {project.badge}
-                                                </span>
-                                            </div>
-                                            <p className="text-slate-400 text-sm leading-relaxed mb-2.5">{project.description}</p>
-
-                                            {/* Tags */}
-                                            <div className="flex flex-wrap gap-1.5 mb-2.5">
-                                                {project.tags.map((tag, tIdx) => (
-                                                    <span key={tIdx} className="text-[11px] text-slate-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
-                                                        {tag}
-                                                    </span>
-                                                ))}
-                                            </div>
-
-                                            {/* Links */}
-                                            <div className="flex gap-4">
-                                                {project.links?.github && (
-                                                    <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors" aria-label={`View source code for ${project.title}`}>
-                                                        <Github className="w-3.5 h-3.5" />
-                                                        Source
-                                                    </a>
-                                                )}
-                                                {project.links?.live && (
-                                                    <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors" aria-label={`View live demo for ${project.title}`}>
-                                                        <ExternalLink className="w-3.5 h-3.5" />
-                                                        Live
-                                                    </a>
-                                                )}
-                                                {project.detailUrl && (
-                                                    <Link to={project.detailUrl} className="flex items-center gap-1.5 text-xs text-primary hover:text-blue-300 transition-colors" aria-label={`View case study for ${project.title}`}>
-                                                        Case Study →
-                                                    </Link>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
+                                {/* Links */}
+                                <div className="flex gap-4 ml-[3.375rem]">
+                                    {project.links?.github && (
+                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white transition-colors" aria-label={`View source code for ${project.title}`}>
+                                            <Github className="w-3.5 h-3.5" />
+                                            Source
+                                        </a>
+                                    )}
+                                    {project.links?.live && (
+                                        <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white transition-colors" aria-label={`View live demo for ${project.title}`}>
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            Live
+                                        </a>
+                                    )}
+                                    {project.detailUrl && (
+                                        <Link to={project.detailUrl} className="flex items-center gap-1.5 text-xs text-primary hover:text-indigo-300 transition-colors" aria-label={`View case study for ${project.title}`}>
+                                            Case Study →
+                                        </Link>
+                                    )}
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Other projects — compact rows */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-2"
+                >
+                    <p className="text-xs font-semibold uppercase tracking-widest text-zinc-600 mb-3 ml-1">Also built</p>
+                    {others.map((project, index) => (
+                        <div key={index} className="project-row group">
+                            <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center shrink-0">
+                                {project.icon}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                                    {project.detailUrl ? (
+                                        <Link to={project.detailUrl} className="font-semibold text-white hover:text-primary transition-colors text-sm">
+                                            {project.title}
+                                        </Link>
+                                    ) : (
+                                        <span className="font-semibold text-white text-sm">{project.title}</span>
+                                    )}
+                                    <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-px rounded border ${project.badgeColor}`}>
+                                        {project.badge}
+                                    </span>
+                                </div>
+                                <p className="text-zinc-500 text-xs leading-relaxed mb-2">{project.description}</p>
+                                <div className="flex flex-wrap items-center gap-3">
+                                    {project.links?.github && (
+                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
+                                            <Github className="w-3 h-3" />
+                                            Source
+                                        </a>
+                                    )}
+                                    {project.links?.live && (
+                                        <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
+                                            <ExternalLink className="w-3 h-3" />
+                                            Live
+                                        </a>
+                                    )}
+                                    {project.detailUrl && (
+                                        <Link to={project.detailUrl} className="flex items-center gap-1 text-[11px] text-primary hover:text-indigo-300 transition-colors">
+                                            Case Study →
+                                        </Link>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );

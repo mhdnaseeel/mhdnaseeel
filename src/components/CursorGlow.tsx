@@ -29,7 +29,7 @@ const CursorGlow: React.FC = () => {
       className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300 hidden sm:block delay-75"
       style={{
         opacity: isVisible ? 1 : 0,
-        background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.06), transparent 40%)`,
+        background: `radial-gradient(900px circle at ${position.x}px ${position.y}px, rgba(99, 102, 241, 0.04), transparent 40%)`,
       }}
     />
   );

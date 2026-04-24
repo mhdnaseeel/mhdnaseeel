@@ -39,7 +39,7 @@ const TinyMovingDot = () => {
 
   return (
     <motion.div
-      className="absolute top-0 left-0 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)] z-[1]"
+      className="absolute top-0 left-0 w-1 h-1 bg-primary rounded-full shadow-[0_0_6px_rgba(99,102,241,0.7)] z-[1]"
       animate={{
         x: path.x,
         y: path.y,

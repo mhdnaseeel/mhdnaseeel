@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="fixed w-full top-0 z-50 flex justify-center px-4 pt-4 transition-all duration-300 pointer-events-none">
       <nav className={`pointer-events-auto transition-all duration-500 ${
         scrolled 
-          ? 'bg-[#131c31]/90 backdrop-blur-xl shadow-lg shadow-black/20 border-white/[0.08]' 
+          ? 'bg-[#0c0c0f]/85 backdrop-blur-2xl shadow-lg shadow-black/30 border-white/[0.06]' 
           : 'bg-transparent border-transparent'
         } border rounded-full px-2`}
       >
@@ -29,10 +29,10 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="flex items-center gap-2 text-slate-400 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-white/[0.05] border border-transparent hover:border-white/[0.08]"
+              className="flex items-center gap-2 text-zinc-500 hover:text-zinc-200 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white/[0.04] border border-transparent hover:border-white/[0.06]"
             >
               {link.icon}
-              {link.name}
+              <span className="hidden sm:inline">{link.name}</span>
             </a>
           ))}
           
