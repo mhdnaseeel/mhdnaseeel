@@ -15,29 +15,20 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Messages are required" });
     }
 
-    // Switching to 'gemini-flash-latest' because 'gemini-2.0-flash' returned a 0-quota limit error.
-    // 'gemini-flash-latest' is the stable alias for 1.5 Flash and is on your diagnostic list.
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
-
-    const history = messages.slice(0, -1).map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
-
-    const lastMessage = messages[messages.length - 1];
+    // Using 'gemini-1.5-flash' specifically for better stability.
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const requestBody = {
+      contents: messages.map((m) => ({
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: m.content }],
+      })),
       system_instruction: systemPrompt
         ? { parts: [{ text: systemPrompt }] }
         : undefined,
-      contents: [
-        ...history,
-        { role: "user", parts: [{ text: lastMessage.content }] },
-      ],
       generationConfig: {
-        maxOutputTokens: 1024,
+        maxOutputTokens: 512, // Reduced for speed
         temperature: 0.7,
-        topP: 0.9,
       }
     };
 
@@ -47,14 +38,14 @@ export default async function handler(req, res) {
       body: JSON.stringify(requestBody),
     });
 
-    const data = await geminiResponse.json();
-
     if (!geminiResponse.ok) {
+      const errorData = await geminiResponse.json().catch(() => ({}));
       return res.status(geminiResponse.status).json({ 
-        error: data?.error?.message || `API Error: ${geminiResponse.status}` 
+        error: errorData?.error?.message || `Gemini API Error ${geminiResponse.status}` 
       });
     }
 
+    const data = await geminiResponse.json();
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
     return res.status(200).json({ message: text });
 
