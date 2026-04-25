@@ -830,6 +830,8 @@ html.light .chat-suggestion-chip:hover {
 
 .chat-message-assistant {
   align-self: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .chat-action-btn {

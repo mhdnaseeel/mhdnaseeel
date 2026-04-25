@@ -221,7 +221,7 @@ const FloatingChat: React.FC = () => {
                           dangerouslySetInnerHTML={{ __html: formatMessage(text) }}
                         />
                         {isAssistant && actions.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5 mt-2">
+                          <div className="flex flex-col items-start gap-1.5 mt-1">
                             {actions.map((action, idx) => (
                               <button
                                 key={idx}
