@@ -59,6 +59,15 @@ const Projects = () => {
             description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
             tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
             links: { github: "https://github.com/mhdnaseeel/ambutracker" }
+        },
+        {
+            icon: <Cpu className="w-4 h-4 text-purple-400" />,
+            title: "E-Shop Admin Ecosystem",
+            badge: "Dashboard",
+            badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+            description: "Comprehensive management dashboard for the E-Commerce platform with analytics, order tracking, and inventory control.",
+            tags: ["React", "Spring Boot", "Dashboard"],
+            links: { github: "https://github.com/mhdnaseeel/e-commerce.git" }
         }
     ];
 
