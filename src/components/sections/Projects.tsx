@@ -1,8 +1,11 @@
-import { ExternalLink, Github, FolderCode, Smartphone, Cpu, Globe, Shield, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { ExternalLink, Github, FolderCode, Smartphone, Cpu, Globe, Shield, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Projects = () => {
+    const [showOthers, setShowOthers] = useState(false);
+
     // Featured projects — shown as large cards
     const featured = [
         {
@@ -146,57 +149,72 @@ const Projects = () => {
                     ))}
                 </div>
 
+                {/* Other projects Toggle */}
+                <div className="mt-8 flex items-center justify-center">
+                    <button
+                        onClick={() => setShowOthers(!showOthers)}
+                        className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition-colors group"
+                    >
+                        {showOthers ? 'Hide other projects' : 'View other projects'}
+                        <motion.div animate={{ rotate: showOthers ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                            <ChevronDown className="w-4 h-4 group-hover:text-primary transition-colors" />
+                        </motion.div>
+                    </button>
+                </div>
+
                 {/* Other projects — compact rows */}
-                <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="space-y-2"
-                >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-zinc-600 mb-3 ml-1">Also built</p>
-                    {others.map((project, index) => (
-                        <div key={index} className="project-row group">
-                            <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center shrink-0">
-                                {project.icon}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                                    {project.detailUrl ? (
-                                        <Link to={project.detailUrl} className="font-semibold text-white hover:text-primary transition-colors text-sm">
-                                            {project.title}
-                                        </Link>
-                                    ) : (
-                                        <span className="font-semibold text-white text-sm">{project.title}</span>
-                                    )}
-                                    <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-px rounded border ${project.badgeColor}`}>
-                                        {project.badge}
-                                    </span>
+                <AnimatePresence>
+                    {showOthers && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            className="space-y-2 overflow-hidden"
+                        >
+                            {others.map((project, index) => (
+                                <div key={index} className="project-row group">
+                                    <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center shrink-0">
+                                        {project.icon}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                                            {project.detailUrl ? (
+                                                <Link to={project.detailUrl} className="font-semibold text-white hover:text-primary transition-colors text-sm">
+                                                    {project.title}
+                                                </Link>
+                                            ) : (
+                                                <span className="font-semibold text-white text-sm">{project.title}</span>
+                                            )}
+                                            <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-px rounded border ${project.badgeColor}`}>
+                                                {project.badge}
+                                            </span>
+                                        </div>
+                                        <p className="text-zinc-500 text-xs leading-relaxed mb-2">{project.description}</p>
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            {project.links?.github && (
+                                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
+                                                    <Github className="w-3 h-3" />
+                                                    Source
+                                                </a>
+                                            )}
+                                            {project.links?.live && (
+                                                <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
+                                                    <ExternalLink className="w-3 h-3" />
+                                                    Live
+                                                </a>
+                                            )}
+                                            {project.detailUrl && (
+                                                <Link to={project.detailUrl} className="flex items-center gap-1 text-[11px] text-primary hover:text-indigo-300 transition-colors">
+                                                    Case Study →
+                                                </Link>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                                <p className="text-zinc-500 text-xs leading-relaxed mb-2">{project.description}</p>
-                                <div className="flex flex-wrap items-center gap-3">
-                                    {project.links?.github && (
-                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
-                                            <Github className="w-3 h-3" />
-                                            Source
-                                        </a>
-                                    )}
-                                    {project.links?.live && (
-                                        <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-zinc-500 hover:text-white transition-colors">
-                                            <ExternalLink className="w-3 h-3" />
-                                            Live
-                                        </a>
-                                    )}
-                                    {project.detailUrl && (
-                                        <Link to={project.detailUrl} className="flex items-center gap-1 text-[11px] text-primary hover:text-indigo-300 transition-colors">
-                                            Case Study →
-                                        </Link>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
