@@ -74,6 +74,7 @@ const FloatingChat: React.FC = () => {
 
   const formatMessage = (content: string) => {
     return content
+      .replace(/\n{3,}/g, '\n\n') // Collapse 3+ newlines into 2
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code class="chat-inline-code">$1</code>')
@@ -216,12 +217,14 @@ const FloatingChat: React.FC = () => {
                         key={msg.id}
                         className={`chat-message ${msg.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}`}
                       >
-                        <div
-                          className={`chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}
-                          dangerouslySetInnerHTML={{ __html: formatMessage(text) }}
-                        />
+                        {text && (
+                          <div
+                            className={`chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}
+                            dangerouslySetInnerHTML={{ __html: formatMessage(text) }}
+                          />
+                        )}
                         {isAssistant && actions.length > 0 && (
-                          <div className="flex flex-col items-start gap-1.5 mt-1">
+                          <div className={`flex flex-col items-start gap-1.5 ${text ? 'mt-1' : ''}`}>
                             {actions.map((action, idx) => (
                               <button
                                 key={idx}
