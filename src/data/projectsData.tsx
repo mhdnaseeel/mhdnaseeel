@@ -69,7 +69,7 @@ export const projectsData = {
         description: "NexCart is a high-performance, full-stack e-commerce solution designed with a modern React frontend and a robust Spring Boot backend. It features a premium storefront, automated data seeding with high-quality assets, fully dynamic profile editing, and integrated Stripe payments.",
         images: [
             { src: "/assets/projects/nexcart-home.png", title: "Premium Storefront", desc: "Aesthetic landing page with high-quality photography and smooth animations." },
-            { src: "/assets/projects/nexcart-profile.png", title: "Dynamic Profiles", desc: "Real-time avatar uploads and profile customization via Redux state." },
+            { src: "/assets/projects/nexcart-profile.png", title: "Dynamic Profiles", desc: "System Interface Showcase featuring real-time avatar uploads and profile customization via Redux state." },
             { src: "/assets/projects/nexcart-admin.png", title: "Admin Ecosystem", desc: "Comprehensive dashboard for product management and store analytics." }
         ],
         features: [
