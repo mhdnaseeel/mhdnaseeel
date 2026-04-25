@@ -39,10 +39,10 @@ const Projects = () => {
             icon: <Globe className="w-5 h-5" />,
             iconColor: "text-green-400",
             accentBorder: "border-green-500/15 hover:border-green-500/30",
-            title: "NexCart: Storefront & Admin",
+            title: "NexCart: Premium E-Commerce",
             badge: "Full Stack",
             badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
-            description: "High-performance storefront and Admin Ecosystem with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
+            description: "High-performance storefront with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
             tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
             detailUrl: "/project/nexcart",
             links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
@@ -66,7 +66,7 @@ const Projects = () => {
         <section id="projects" className="py-20 relative">
             <div className="max-w-4xl mx-auto px-6">
                 {/* Section header */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
