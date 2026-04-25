@@ -135,7 +135,7 @@ export const useChat = (): UseChatReturn => {
     try {
       const historyLimit = 10;
       const history = messages.slice(-historyLimit);
-      
+
       const fetchWithRetry = async (retries = 2, delay = 2000): Promise<Response> => {
         const response = await fetch('/api/chat', {
           method: 'POST',
