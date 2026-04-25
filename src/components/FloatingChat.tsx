@@ -77,6 +77,8 @@ const FloatingChat: React.FC = () => {
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code class="chat-inline-code">$1</code>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
+      .replace(/\[([^\]]+)\]\((mailto:[^\)]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
       .replace(/\n/g, '<br />');
   };
 

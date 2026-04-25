@@ -919,6 +919,22 @@ html.light .chat-inline-code {
   background: rgba(0, 0, 0, 0.05);
 }
 
+.chat-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+  word-break: break-all;
+}
+
+.chat-link:hover {
+  opacity: 0.8;
+}
+
+html.light .chat-link {
+  color: #4f46e5;
+}
+
 .chat-input-area {
   padding: 1rem;
   border-top: 1px solid var(--color-border);
