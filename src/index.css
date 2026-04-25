@@ -315,9 +315,16 @@ html.light .bg-accent\/\[0\.04\] {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary));
   background-size: 200% 200%;
   animation: avatar-ring-rotate 4s ease-in-out infinite;
-  opacity: 0.25;
-  filter: blur(10px);
+  opacity: 0.15;
+  filter: blur(4px);
   z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .hero-avatar-ring::before {
+    opacity: 0.25;
+    filter: blur(10px);
+  }
 }
 
 .hero-avatar-inner {

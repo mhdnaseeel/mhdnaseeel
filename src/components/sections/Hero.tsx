@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import TinyMovingDot from './TinyMovingDot';
+import TinyMovingDot from '../ui/TinyMovingDot';
 
 const roles = ['Software Engineer', 'Backend Developer', 'Fullstack Developer', 'Problem Solver'];
 
@@ -60,9 +60,9 @@ const Hero = () => {
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dot-pattern">
             <TinyMovingDot />
 
-            {/* Ambient background blurs */}
-            <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/[0.06] rounded-full blur-[150px] pointer-events-none animate-hero-glow"></div>
-            <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none animate-hero-glow-reverse"></div>
+            {/* Ambient background blurs (Hidden on mobile for performance) */}
+            <div className="hidden md:block absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/[0.06] rounded-full blur-[150px] pointer-events-none animate-hero-glow"></div>
+            <div className="hidden md:block absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none animate-hero-glow-reverse"></div>
 
             {/* Floating tech symbols */}
             {floatingSymbols.map((sym, i) => (

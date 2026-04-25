@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
 import { X, Send, Trash2, Sparkles, ArrowDown, Code2, Briefcase, Cpu, Layers, UserCheck, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useChat, type ChatMessage } from '../hooks/useChat';
+import { useChat, type ChatMessage } from '../../hooks/useChat';
 
 const SUGGESTED_QUESTIONS = [
   { text: "Tech Stack", icon: <Code2 className="w-3.5 h-3.5" />, query: "What's your tech stack?" },

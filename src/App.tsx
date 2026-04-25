@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
-import Footer from './components/Footer';
-import CursorGlow from './components/CursorGlow';
-import ThemeToggle from './components/ThemeToggle';
-import FloatingChat from './components/FloatingChat';
+import Footer from './components/layout/Footer';
+import CursorGlow from './components/ui/CursorGlow';
+import ThemeToggle from './components/ui/ThemeToggle';
+import FloatingChat from './components/chat/FloatingChat';
 import useFavicon from './hooks/useFavicon';
 
 function App() {
