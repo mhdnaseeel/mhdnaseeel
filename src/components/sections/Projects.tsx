@@ -33,13 +33,12 @@ const Projects = () => {
             tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3"],
             detailUrl: "/project/pinbridge",
             links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
-        }
-    ];
-
-    // Other projects — shown as compact rows
-    const others = [
+        },
         {
-            icon: <Globe className="w-4 h-4 text-green-400" />,
+            id: "nexcart",
+            icon: <Globe className="w-5 h-5" />,
+            iconColor: "text-green-400",
+            accentBorder: "border-green-500/15 hover:border-green-500/30",
             title: "NexCart: Premium E-Commerce",
             badge: "Full Stack",
             badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
@@ -47,7 +46,11 @@ const Projects = () => {
             tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
             detailUrl: "/project/nexcart",
             links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
-        },
+        }
+    ];
+
+    // Other projects — shown as compact rows
+    const others = [
         {
             icon: <Shield className="w-4 h-4 text-yellow-400" />,
             title: "Real-Time Emergency Response",
