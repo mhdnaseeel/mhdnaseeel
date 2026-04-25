@@ -74,7 +74,7 @@ const FloatingChat: React.FC = () => {
 
   const formatMessage = (content: string) => {
     return content
-      .replace(/\n{3,}/g, '\n\n') // Collapse 3+ newlines into 2
+      .replace(/\n+/g, '\n') // Collapse all consecutive newlines into a single newline
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code class="chat-inline-code">$1</code>')
