@@ -39,10 +39,10 @@ const Projects = () => {
             icon: <Globe className="w-5 h-5" />,
             iconColor: "text-green-400",
             accentBorder: "border-green-500/15 hover:border-green-500/30",
-            title: "NexCart: Premium E-Commerce",
+            title: "NexCart: Storefront & Admin",
             badge: "Full Stack",
             badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
-            description: "High-performance storefront with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
+            description: "High-performance storefront and Admin Ecosystem with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
             tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
             detailUrl: "/project/nexcart",
             links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
@@ -59,15 +59,6 @@ const Projects = () => {
             description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
             tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
             links: { github: "https://github.com/mhdnaseeel/ambutracker" }
-        },
-        {
-            icon: <Cpu className="w-4 h-4 text-purple-400" />,
-            title: "E-Shop Admin Ecosystem",
-            badge: "Dashboard",
-            badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
-            description: "Comprehensive management dashboard for the E-Commerce platform with analytics, order tracking, and inventory control.",
-            tags: ["React", "Spring Boot", "Dashboard"],
-            links: { github: "https://github.com/mhdnaseeel/e-commerce.git" }
         }
     ];
 
