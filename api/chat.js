@@ -17,11 +17,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: "AI service not configured" });
-  }
-
   try {
     const { messages, systemPrompt } = req.body;
 
@@ -29,53 +24,147 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Messages are required" });
     }
 
-    // Using 'gemini-2.5-flash' — the current free-tier Flash model (1.5 was sunset)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Build the list of available providers (order = priority)
+    const providers = [];
 
-    // Prepend system prompt to the first user message for maximum compatibility
-    const contents = messages.map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
-
-    if (systemPrompt && contents.length > 0) {
-      // Prepend to the very first message
-      contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
+    if (process.env.OPENAI_API_KEY) {
+      providers.push({ name: "chatgpt", key: process.env.OPENAI_API_KEY });
+    }
+    if (process.env.GEMINI_API_KEY) {
+      providers.push({ name: "gemini", key: process.env.GEMINI_API_KEY });
     }
 
-    const requestBody = {
-      contents,
-      generationConfig: {
-        maxOutputTokens: 2048,
-        temperature: 0.7,
-      }
-    };
+    if (providers.length === 0) {
+      return res.status(500).json({ error: "AI service not configured" });
+    }
 
-    const geminiResponse = await fetch(geminiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody),
+    let lastError = null;
+
+    // Try each provider in order; fallback to the next on failure
+    for (const provider of providers) {
+      try {
+        const text = await callProvider(provider, messages, systemPrompt);
+        return res.status(200).json({ message: text });
+      } catch (err) {
+        lastError = err;
+        console.error(`[${provider.name}] failed:`, err.message);
+        // Continue to the next provider
+      }
+    }
+
+    // All providers failed
+    const status = lastError?.status || 500;
+    return res.status(status).json({
+      error: lastError?.message || "All AI providers failed. Please try again later.",
     });
-
-    if (!geminiResponse.ok) {
-      const errorData = await geminiResponse.json().catch(() => ({}));
-      let errorMessage = errorData?.error?.message || `Gemini API Error ${geminiResponse.status}`;
-      
-      // Specifically handle rate limits
-      if (geminiResponse.status === 429) {
-        errorMessage = "The AI is currently receiving too many requests. Please wait a minute before trying again.";
-      }
-      
-      return res.status(geminiResponse.status).json({ error: errorMessage });
-    }
-
-    const data = await geminiResponse.json();
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-    return res.status(200).json({ message: text });
 
   } catch (error) {
     return res.status(500).json({
       error: `Server Error: ${error.message}`,
     });
+  }
+}
+
+// ─── Provider implementations ────────────────────────────────────────
+
+async function callProvider(provider, messages, systemPrompt) {
+  if (provider.name === "chatgpt") {
+    return callChatGPT(provider.key, messages, systemPrompt);
+  }
+  if (provider.name === "gemini") {
+    return callGemini(provider.key, messages, systemPrompt);
+  }
+  throw new ProviderError(`Unknown provider: ${provider.name}`, 500);
+}
+
+// ─── ChatGPT (OpenAI) ───────────────────────────────────────────────
+
+async function callChatGPT(apiKey, messages, systemPrompt) {
+  const openaiMessages = [];
+
+  if (systemPrompt) {
+    openaiMessages.push({ role: "system", content: systemPrompt });
+  }
+
+  for (const m of messages) {
+    openaiMessages.push({ role: m.role, content: m.content });
+  }
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: openaiMessages,
+      max_tokens: 2048,
+      temperature: 0.7,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const msg = response.status === 429
+      ? "Too many requests — please wait a minute."
+      : errorData?.error?.message || `OpenAI API Error ${response.status}`;
+    throw new ProviderError(msg, response.status);
+  }
+
+  const data = await response.json();
+  const text = data?.choices?.[0]?.message?.content;
+  if (!text) throw new ProviderError("OpenAI returned empty response", 500);
+  return text;
+}
+
+// ─── Gemini (Google) ─────────────────────────────────────────────────
+
+async function callGemini(apiKey, messages, systemPrompt) {
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  // Build Gemini-format contents
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  // Prepend system prompt to the first user message (Gemini doesn't have a system role)
+  if (systemPrompt && contents.length > 0) {
+    contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
+  }
+
+  const response = await fetch(geminiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents,
+      generationConfig: {
+        maxOutputTokens: 2048,
+        temperature: 0.7,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const msg = response.status === 429
+      ? "Too many requests — please wait a minute."
+      : errorData?.error?.message || `Gemini API Error ${response.status}`;
+    throw new ProviderError(msg, response.status);
+  }
+
+  const data = await response.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) throw new ProviderError("Gemini returned empty response", 500);
+  return text;
+}
+
+// ─── Custom error with HTTP status ──────────────────────────────────
+
+class ProviderError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.status = status;
   }
 }

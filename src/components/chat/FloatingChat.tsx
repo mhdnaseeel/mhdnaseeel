@@ -35,6 +35,19 @@ const FloatingChat: React.FC = () => {
     }
   }, [isOpen]);
 
+  // Lock body scroll on mobile when chat is open
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    if (isOpen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   // Detect scroll position for "scroll to bottom" button
   useEffect(() => {
     const container = messagesContainerRef.current;
