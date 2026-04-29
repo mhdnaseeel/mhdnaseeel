@@ -44,7 +44,10 @@ export default async function handler(req, res) {
     for (const provider of providers) {
       try {
         const text = await callProvider(provider, messages, systemPrompt);
-        return res.status(200).json({ message: text });
+        return res.status(200).json({
+          message: text,
+          provider: provider.name,
+        });
       } catch (err) {
         errors.push(`[${provider.name}]: ${err.message}`);
         console.error(`[${provider.name}] failed:`, err.message);
@@ -97,12 +100,12 @@ async function callChatGPT(apiKey, messages, systemPrompt) {
     temperature: 0.7,
   });
 
-  // Retry once on 503 (high demand) with a short delay
-  let response = await fetchOpenAI(apiKey, body);
-  if (response.status === 503) {
-    await sleep(1500);
-    response = await fetchOpenAI(apiKey, body);
-  }
+  // Retry up to 2 times on transient errors (429, 503) with exponential backoff
+  const response = await fetchWithRetry(
+    () => fetchOpenAI(apiKey, body),
+    2,
+    [429, 503]
+  );
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -143,12 +146,12 @@ async function callGemini(apiKey, messages, systemPrompt) {
     contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
   }
 
-  // Retry once on 503 with a short delay
-  let response = await fetchGemini(geminiUrl, contents);
-  if (response.status === 503) {
-    await sleep(1500);
-    response = await fetchGemini(geminiUrl, contents);
-  }
+  // Retry up to 2 times on transient errors (429, 503) with exponential backoff
+  const response = await fetchWithRetry(
+    () => fetchGemini(geminiUrl, contents),
+    2,
+    [429, 503]
+  );
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -177,6 +180,28 @@ async function fetchGemini(url, contents) {
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────
+
+/**
+ * Retries a fetch call on specific status codes with exponential backoff.
+ * @param {Function} fetchFn - A function that returns a fetch Promise
+ * @param {number} maxRetries - Max number of retries
+ * @param {number[]} retryOnStatuses - HTTP status codes to retry on
+ */
+async function fetchWithRetry(fetchFn, maxRetries, retryOnStatuses) {
+  let lastResponse;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    lastResponse = await fetchFn();
+    if (!retryOnStatuses.includes(lastResponse.status)) {
+      return lastResponse;
+    }
+    if (attempt < maxRetries) {
+      const delay = 2000 * Math.pow(2, attempt); // 2s, 4s
+      console.log(`Retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries})...`);
+      await sleep(delay);
+    }
+  }
+  return lastResponse;
+}
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

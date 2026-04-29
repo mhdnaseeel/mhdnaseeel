@@ -5,6 +5,7 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  provider?: 'chatgpt' | 'gemini';
 }
 
 interface UseChatReturn {
@@ -150,7 +151,8 @@ export const useChat = (): UseChatReturn => {
           signal: abortControllerRef.current?.signal,
         });
 
-        if (response.status === 429 && retries > 0) {
+        // Retry on rate limit or temporary unavailability
+        if ((response.status === 429 || response.status === 503) && retries > 0) {
           await new Promise(resolve => setTimeout(resolve, delay));
           return fetchWithRetry(retries - 1, delay * 2);
         }
@@ -160,9 +162,6 @@ export const useChat = (): UseChatReturn => {
       const response = await fetchWithRetry();
 
       if (!response.ok) {
-        if (response.status === 429) {
-          throw new Error("The AI is currently receiving too many requests. Please wait a minute before trying again.");
-        }
         const errData = await response.json().catch(() => ({}));
         throw new Error(errData.error || `Request failed (${response.status})`);
       }
@@ -174,6 +173,7 @@ export const useChat = (): UseChatReturn => {
         role: 'assistant',
         content: data.message || 'Sorry, I couldn\'t generate a response.',
         timestamp: new Date(),
+        provider: data.provider || undefined,
       };
 
       setMessages(prev => [...prev, assistantMessage]);
