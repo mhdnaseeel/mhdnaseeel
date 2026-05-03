@@ -38,30 +38,37 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "AI service not configured. No API keys found." });
     }
 
+    console.log(`[chat] Available providers: ${providers.map(p => p.name).join(', ')}`);
+
     const errors = [];
 
     // Try each provider in order; fallback to the next on failure
     for (const provider of providers) {
       try {
+        console.log(`[chat] Trying provider: ${provider.name}...`);
         const text = await callProvider(provider, messages, systemPrompt);
+        console.log(`[chat] ✅ Success with: ${provider.name}`);
         return res.status(200).json({
           message: text,
           provider: provider.name,
         });
       } catch (err) {
-        errors.push(`[${provider.name}]: ${err.message}`);
-        console.error(`[${provider.name}] failed:`, err.message);
+        const errMsg = err.message || 'Unknown error';
+        errors.push(`[${provider.name}]: ${errMsg}`);
+        console.error(`[chat] ❌ ${provider.name} failed: ${errMsg}`);
         // Continue to the next provider
       }
     }
 
     // All providers failed — return a user-friendly message
-    console.error("All providers failed:", errors.join(" | "));
+    console.error("[chat] All providers failed:", errors.join(" | "));
     return res.status(503).json({
       error: "AI is temporarily unavailable. Please try again in a moment.",
+      details: errors,
     });
 
   } catch (error) {
+    console.error("[chat] Server error:", error);
     return res.status(500).json({
       error: `Server Error: ${error.message}`,
     });
@@ -100,16 +107,13 @@ async function callChatGPT(apiKey, messages, systemPrompt) {
     temperature: 0.7,
   });
 
-  // Retry up to 2 times on transient errors (429, 503) with exponential backoff
-  const response = await fetchWithRetry(
-    () => fetchOpenAI(apiKey, body),
-    2,
-    [429, 503]
-  );
+  // Single attempt — no internal retry; let the outer fallback handle it
+  const response = await fetchOpenAI(apiKey, body);
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
     const msg = errorData?.error?.message || `OpenAI Error ${response.status}`;
+    console.error(`[ChatGPT] HTTP ${response.status}: ${msg}`);
     throw new ProviderError(msg, response.status);
   }
 
@@ -133,7 +137,25 @@ async function fetchOpenAI(apiKey, body) {
 // ─── Gemini (Google) ─────────────────────────────────────────────────
 
 async function callGemini(apiKey, messages, systemPrompt) {
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  // Try multiple models in case one is unavailable or rate-limited
+  const models = ["gemini-2.0-flash", "gemini-1.5-flash"];
+
+  for (const model of models) {
+    try {
+      console.log(`[Gemini] Trying model: ${model}`);
+      const text = await attemptGeminiModel(apiKey, model, messages, systemPrompt);
+      return text;
+    } catch (err) {
+      console.error(`[Gemini] Model ${model} failed: ${err.message}`);
+      // Try next model
+    }
+  }
+
+  throw new ProviderError("All Gemini models exhausted", 429);
+}
+
+async function attemptGeminiModel(apiKey, model, messages, systemPrompt) {
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   // Build Gemini-format contents
   const contents = messages.map((m) => ({
@@ -146,27 +168,7 @@ async function callGemini(apiKey, messages, systemPrompt) {
     contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
   }
 
-  // Retry up to 2 times on transient errors (429, 503) with exponential backoff
-  const response = await fetchWithRetry(
-    () => fetchGemini(geminiUrl, contents),
-    2,
-    [429, 503]
-  );
-
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    const msg = errorData?.error?.message || `Gemini Error ${response.status}`;
-    throw new ProviderError(msg, response.status);
-  }
-
-  const data = await response.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new ProviderError("Gemini returned empty response", 500);
-  return text;
-}
-
-async function fetchGemini(url, contents) {
-  return fetch(url, {
+  const response = await fetch(geminiUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -177,35 +179,27 @@ async function fetchGemini(url, contents) {
       },
     }),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const msg = errorData?.error?.message || `Gemini Error ${response.status}`;
+    console.error(`[Gemini] HTTP ${response.status}: ${msg}`);
+    throw new ProviderError(msg, response.status);
+  }
+
+  const data = await response.json();
+
+  // Check for blocked responses
+  if (data?.promptFeedback?.blockReason) {
+    throw new ProviderError(`Gemini blocked: ${data.promptFeedback.blockReason}`, 400);
+  }
+
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) throw new ProviderError("Gemini returned empty response", 500);
+  return text;
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────
-
-/**
- * Retries a fetch call on specific status codes with exponential backoff.
- * @param {Function} fetchFn - A function that returns a fetch Promise
- * @param {number} maxRetries - Max number of retries
- * @param {number[]} retryOnStatuses - HTTP status codes to retry on
- */
-async function fetchWithRetry(fetchFn, maxRetries, retryOnStatuses) {
-  let lastResponse;
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    lastResponse = await fetchFn();
-    if (!retryOnStatuses.includes(lastResponse.status)) {
-      return lastResponse;
-    }
-    if (attempt < maxRetries) {
-      const delay = 2000 * Math.pow(2, attempt); // 2s, 4s
-      console.log(`Retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries})...`);
-      await sleep(delay);
-    }
-  }
-  return lastResponse;
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 class ProviderError extends Error {
   constructor(message, status) {

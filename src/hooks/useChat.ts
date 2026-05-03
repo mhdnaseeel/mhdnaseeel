@@ -137,7 +137,7 @@ export const useChat = (): UseChatReturn => {
       const historyLimit = 10;
       const history = messages.slice(-historyLimit);
 
-      const fetchWithRetry = async (retries = 2, delay = 2000): Promise<Response> => {
+      const fetchWithRetry = async (retries = 1, delay = 2000): Promise<Response> => {
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -151,8 +151,8 @@ export const useChat = (): UseChatReturn => {
           signal: abortControllerRef.current?.signal,
         });
 
-        // Retry on rate limit or temporary unavailability
-        if ((response.status === 429 || response.status === 503) && retries > 0) {
+        // Only retry on 429 (client-level rate limit); server handles provider fallback for 503
+        if (response.status === 429 && retries > 0) {
           await new Promise(resolve => setTimeout(resolve, delay));
           return fetchWithRetry(retries - 1, delay * 2);
         }
