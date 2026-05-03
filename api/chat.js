@@ -27,6 +27,9 @@ export default async function handler(req, res) {
     // Build the list of available providers (order = priority)
     const providers = [];
 
+    if (process.env.GROQ_API_KEY) {
+      providers.push({ name: "groq", key: process.env.GROQ_API_KEY });
+    }
     if (process.env.OPENAI_API_KEY) {
       providers.push({ name: "chatgpt", key: process.env.OPENAI_API_KEY });
     }
@@ -78,6 +81,9 @@ export default async function handler(req, res) {
 // ─── Provider implementations ────────────────────────────────────────
 
 async function callProvider(provider, messages, systemPrompt) {
+  if (provider.name === "groq") {
+    return callGroq(provider.key, messages, systemPrompt);
+  }
   if (provider.name === "chatgpt") {
     return callChatGPT(provider.key, messages, systemPrompt);
   }
@@ -85,6 +91,46 @@ async function callProvider(provider, messages, systemPrompt) {
     return callGemini(provider.key, messages, systemPrompt);
   }
   throw new ProviderError(`Unknown provider: ${provider.name}`, 500);
+}
+
+// ─── Groq ────────────────────────────────────────────────────────────
+
+async function callGroq(apiKey, messages, systemPrompt) {
+  const groqMessages = [];
+
+  if (systemPrompt) {
+    groqMessages.push({ role: "system", content: systemPrompt });
+  }
+
+  for (const m of messages) {
+    groqMessages.push({ role: m.role, content: m.content });
+  }
+
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "llama-3.3-70b-versatile",
+      messages: groqMessages,
+      max_tokens: 2048,
+      temperature: 0.7,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const msg = errorData?.error?.message || `Groq Error ${response.status}`;
+    console.error(`[Groq] HTTP ${response.status}: ${msg}`);
+    throw new ProviderError(msg, response.status);
+  }
+
+  const data = await response.json();
+  const text = data?.choices?.[0]?.message?.content;
+  if (!text) throw new ProviderError("Groq returned empty response", 500);
+  return text;
 }
 
 // ─── ChatGPT (OpenAI) ───────────────────────────────────────────────
@@ -100,15 +146,19 @@ async function callChatGPT(apiKey, messages, systemPrompt) {
     openaiMessages.push({ role: m.role, content: m.content });
   }
 
-  const body = JSON.stringify({
-    model: "gpt-4o-mini",
-    messages: openaiMessages,
-    max_tokens: 2048,
-    temperature: 0.7,
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: openaiMessages,
+      max_tokens: 2048,
+      temperature: 0.7,
+    }),
   });
-
-  // Single attempt — no internal retry; let the outer fallback handle it
-  const response = await fetchOpenAI(apiKey, body);
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -123,21 +173,9 @@ async function callChatGPT(apiKey, messages, systemPrompt) {
   return text;
 }
 
-async function fetchOpenAI(apiKey, body) {
-  return fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body,
-  });
-}
-
 // ─── Gemini (Google) ─────────────────────────────────────────────────
 
 async function callGemini(apiKey, messages, systemPrompt) {
-  // Try multiple models in case one is unavailable or rate-limited
   const models = ["gemini-2.0-flash", "gemini-1.5-flash"];
 
   for (const model of models) {
@@ -147,7 +185,6 @@ async function callGemini(apiKey, messages, systemPrompt) {
       return text;
     } catch (err) {
       console.error(`[Gemini] Model ${model} failed: ${err.message}`);
-      // Try next model
     }
   }
 
@@ -157,13 +194,11 @@ async function callGemini(apiKey, messages, systemPrompt) {
 async function attemptGeminiModel(apiKey, model, messages, systemPrompt) {
   const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-  // Build Gemini-format contents
   const contents = messages.map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
     parts: [{ text: m.content }],
   }));
 
-  // Prepend system prompt to the first user message (Gemini doesn't have a system role)
   if (systemPrompt && contents.length > 0) {
     contents[0].parts[0].text = `Instructions: ${systemPrompt}\n\nUser Message: ${contents[0].parts[0].text}`;
   }
@@ -189,7 +224,6 @@ async function attemptGeminiModel(apiKey, model, messages, systemPrompt) {
 
   const data = await response.json();
 
-  // Check for blocked responses
   if (data?.promptFeedback?.blockReason) {
     throw new ProviderError(`Gemini blocked: ${data.promptFeedback.blockReason}`, 400);
   }

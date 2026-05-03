@@ -5,7 +5,7 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  provider?: 'chatgpt' | 'gemini';
+  provider?: 'chatgpt' | 'gemini' | 'groq';
 }
 
 interface UseChatReturn {

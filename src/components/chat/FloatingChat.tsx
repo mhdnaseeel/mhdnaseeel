@@ -251,8 +251,12 @@ const FloatingChat: React.FC = () => {
                           </div>
                         )}
                         {isAssistant && msg.provider && (
-                          <span className={`chat-provider-badge ${msg.provider === 'chatgpt' ? 'chat-provider-chatgpt' : 'chat-provider-gemini'}`}>
-                            {msg.provider === 'chatgpt' ? '⚡ ChatGPT' : '✦ Gemini'}
+                          <span className={`chat-provider-badge ${
+                            msg.provider === 'groq' ? 'chat-provider-chatgpt' :
+                            msg.provider === 'chatgpt' ? 'chat-provider-chatgpt' : 'chat-provider-gemini'
+                          }`}>
+                            {msg.provider === 'groq' ? '⚡ OpenAI' :
+                             msg.provider === 'chatgpt' ? '⚡ ChatGPT' : '✦ Gemini'}
                           </span>
                         )}
                       </div>
