@@ -548,7 +548,7 @@ html.light .hero-social-icon:hover {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 50;
+  z-index: 70;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -597,7 +597,7 @@ html.light .chat-fab:hover {
   position: fixed;
   bottom: 5rem;
   right: 2rem;
-  z-index: 50;
+  z-index: 70;
   width: 380px;
   max-width: calc(100vw - 2rem);
   height: 600px;
@@ -982,7 +982,7 @@ html.light .chat-link {
   background: var(--color-surface);
   display: flex;
   gap: 0.5rem;
-  align-items: flex-end;
+  align-items: center;
 }
 
 html.light .chat-input-area {
