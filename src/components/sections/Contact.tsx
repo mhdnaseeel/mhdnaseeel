@@ -7,7 +7,8 @@ const Contact = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
-    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const timerRef = useRef<number | null>(null);
 
     useEffect(() => {
         return () => {
@@ -25,12 +26,14 @@ const Contact = () => {
 
         if (!serviceId || !templateId || !publicKey) {
             console.error('EmailJS Error: Missing configuration. Check your .env.local file or Vercel environment variables.');
+            setErrorMsg('Missing configuration (.env)');
             setStatus('error');
             return;
         }
 
         setIsSubmitting(true);
         setStatus('idle');
+        setErrorMsg(null);
 
         try {
             const result = await emailjs.sendForm(
@@ -43,13 +46,14 @@ const Contact = () => {
 
             setStatus('success');
             formRef.current.reset();
-        } catch (error: unknown) {
-            console.error('EmailJS Error Detail:', error instanceof Error ? error.message : error);
+        } catch (error: any) {
+            console.error('EmailJS Error Detail:', error);
+            setErrorMsg(error?.text || error?.message || 'Something went wrong');
             setStatus('error');
         } finally {
             setIsSubmitting(false);
-            if (timerRef.current) clearTimeout(timerRef.current);
-            timerRef.current = setTimeout(() => setStatus('idle'), 5000);
+            if (timerRef.current) window.clearTimeout(timerRef.current);
+            timerRef.current = window.setTimeout(() => setStatus('idle'), 5000);
         }
     };
 
@@ -208,10 +212,10 @@ const Contact = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0 }}
-                                        className="flex items-center gap-2 text-red-400 text-xs mt-2 justify-center"
+                                        className="flex items-center gap-2 text-red-400 text-xs mt-2 justify-center text-center px-4"
                                     >
-                                        <AlertCircle className="w-3.5 h-3.5" />
-                                        Something went wrong. Please try again.
+                                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                                        <span>{errorMsg || 'Something went wrong. Please try again.'}</span>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
