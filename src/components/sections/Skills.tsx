@@ -3,15 +3,7 @@ import { motion } from 'framer-motion';
 
 const skillCategories = [
     {
-        title: "AI / LLM",
-        color: "text-purple-400",
-        skills: [
-            { name: "OpenAI", customIcon: "openai" },
-            { name: "Claude", customIcon: "claude" }
-        ]
-    },
-    {
-        title: "CORE TECHNOLOGIES",
+        title: "Core",
         color: "text-blue-400",
         skills: [
             { name: "Java", slug: "java" },
@@ -22,7 +14,7 @@ const skillCategories = [
         ]
     },
     {
-        title: "CLOUD PLATFORMS",
+        title: "Cloud",
         color: "text-orange-400",
         skills: [
             { name: "AWS", slug: "aws" },
@@ -33,7 +25,7 @@ const skillCategories = [
         ]
     },
     {
-        title: "SECURITY & AUTH",
+        title: "Security",
         color: "text-red-400",
         skills: [
             { name: "Spring Security", slug: "spring" },
@@ -42,7 +34,7 @@ const skillCategories = [
         ]
     },
     {
-        title: "CONFIG & CI/CD",
+        title: "CI/CD",
         color: "text-yellow-400",
         skills: [
             { name: "Git", slug: "git" },
@@ -53,7 +45,7 @@ const skillCategories = [
         ]
     },
     {
-        title: "FRAMEWORKS & APIS",
+        title: "Frameworks",
         color: "text-green-400",
         skills: [
             { name: "Spring Data JPA", slug: "spring" },
@@ -64,7 +56,7 @@ const skillCategories = [
         ]
     },
     {
-        title: "WEB TECHNOLOGIES",
+        title: "Frontend",
         color: "text-cyan-400",
         skills: [
             { name: "React.js", slug: "react" },
@@ -74,13 +66,21 @@ const skillCategories = [
         ]
     },
     {
-        title: "DATABASES",
+        title: "Databases",
         color: "text-emerald-400",
         skills: [
             { name: "PostgreSQL", slug: "postgres" },
             { name: "MySQL", slug: "mysql" },
             { name: "MongoDB", slug: "mongodb" },
             { name: "Redis", slug: "redis" }
+        ]
+    },
+    {
+        title: "AI",
+        color: "text-purple-400",
+        skills: [
+            { name: "OpenAI", customIcon: "openai" },
+            { name: "Claude", customIcon: "claude" }
         ]
     }
 ];
@@ -124,7 +124,7 @@ const Skills = () => {
 
     return (
         <section id="skills" className="py-20 relative">
-            <div className="max-w-4xl mx-auto px-6">
+            <div className="max-w-5xl mx-auto px-6">
                 {/* Section header */}
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -138,8 +138,8 @@ const Skills = () => {
                     <h2 className="text-3xl font-bold text-white">Tech Stack</h2>
                 </motion.div>
 
-                {/* Category cards with inline icon+text items, NO individual borders */}
-                <div className="space-y-4">
+                {/* Category grid with pill items */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={index}
@@ -147,16 +147,19 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.06 }}
-                            className="rounded-2xl border border-white/[0.05] bg-[#0c0c0f]/80 p-6"
+                            className="rounded-2xl border border-white/[0.05] bg-[#0c0c0f]/80 p-6 flex flex-col"
                         >
                             <p className={`text-xs font-bold uppercase tracking-[0.12em] ${category.color} mb-5`}>
                                 {category.title}
                             </p>
-                            <div className="flex flex-wrap gap-x-8 gap-y-4">
+                            <div className="flex flex-wrap gap-3 mt-auto">
                                 {category.skills.map((skill, idx) => (
-                                    <div key={idx} className="flex items-center gap-2.5">
+                                    <div 
+                                        key={idx} 
+                                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.02] hover:bg-white/[0.08] hover:border-white/[0.1] transition-all duration-300"
+                                    >
                                         {renderIcon(skill)}
-                                        <span className="text-sm text-zinc-400">{skill.name}</span>
+                                        <span className="text-sm font-medium text-zinc-300">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>
