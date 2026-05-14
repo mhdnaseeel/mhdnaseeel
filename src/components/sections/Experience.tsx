@@ -7,7 +7,7 @@ const Experience = () => {
             role: "Junior Java Developer",
             company: "TrickyDot Technologies Pvt. Ltd",
             location: "Kerala, India",
-            period: "July 2024 – November 2025",
+            period: "July 2024 – January 2026",
             achievements: [
                 "Developed cloud-based enterprise solutions using Spring Boot microservices architecture on AWS, handling 500+ concurrent requests with 99.9% uptime and achieving 40% reduction in response time.",
                 "Implemented secure authentication and authorization using OAuth2.0, OpenID Connect, and JWT with Spring Security, reducing unauthorized access incidents by 95% across 3 production applications.",
