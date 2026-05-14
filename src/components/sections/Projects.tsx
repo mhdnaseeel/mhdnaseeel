@@ -3,64 +3,64 @@ import { ExternalLink, Github, FolderCode, Smartphone, Cpu, Globe, Shield, Chevr
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Featured projects — shown as large cards
+const featured = [
+    {
+        id: "hr-payroll",
+        icon: <Cpu className="w-5 h-5" />,
+        iconColor: "text-indigo-400",
+        accentBorder: "border-indigo-500/15 hover:border-indigo-500/30",
+        title: "Multi-Tenant HR & Payroll System",
+        badge: "SaaS",
+        badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
+        description: "Cloud-based payroll automation with dynamic datasource routing, Azure AI integration, and role-based multi-tenancy.",
+        tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
+        detailUrl: "/project/hr-payroll",
+        links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
+    },
+    {
+        id: "pinbridge",
+        icon: <Smartphone className="w-5 h-5" />,
+        iconColor: "text-cyan-400",
+        accentBorder: "border-cyan-500/15 hover:border-cyan-500/30",
+        title: "PinBridge",
+        badge: "Open Source",
+        badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+        description: "End-to-end encrypted OTP mirroring from Android to Chrome with AES-256-GCM and Socket.IO.",
+        tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3"],
+        detailUrl: "/project/pinbridge",
+        links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
+    },
+    {
+        id: "nexcart",
+        icon: <Globe className="w-5 h-5" />,
+        iconColor: "text-green-400",
+        accentBorder: "border-green-500/15 hover:border-green-500/30",
+        title: "NexCart: Premium E-Commerce",
+        badge: "Full Stack",
+        badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
+        description: "High-performance storefront with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
+        tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
+        detailUrl: "/project/nexcart",
+        links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
+    }
+];
+
+// Other projects — shown as compact rows
+const others = [
+    {
+        icon: <Shield className="w-4 h-4 text-yellow-400" />,
+        title: "Real-Time Emergency Response",
+        badge: "Mission Critical",
+        badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20",
+        description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
+        tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
+        links: { github: "https://github.com/mhdnaseeel/ambutracker" }
+    }
+];
+
 const Projects = () => {
     const [showOthers, setShowOthers] = useState(false);
-
-    // Featured projects — shown as large cards
-    const featured = [
-        {
-            id: "hr-payroll",
-            icon: <Cpu className="w-5 h-5" />,
-            iconColor: "text-indigo-400",
-            accentBorder: "border-indigo-500/15 hover:border-indigo-500/30",
-            title: "Multi-Tenant HR & Payroll System",
-            badge: "SaaS",
-            badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
-            description: "Cloud-based payroll automation with dynamic datasource routing, Azure AI integration, and role-based multi-tenancy.",
-            tags: ["Spring Boot", "PostgreSQL", "Azure", "Docker", "OAuth2.0"],
-            detailUrl: "/project/hr-payroll",
-            links: { github: "https://github.com/mhdnaseeel/Payroll_Automation", live: "https://workflowautomation.vercel.app/" }
-        },
-        {
-            id: "pinbridge",
-            icon: <Smartphone className="w-5 h-5" />,
-            iconColor: "text-cyan-400",
-            accentBorder: "border-cyan-500/15 hover:border-cyan-500/30",
-            title: "PinBridge",
-            badge: "Open Source",
-            badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
-            description: "End-to-end encrypted OTP mirroring from Android to Chrome with AES-256-GCM and Socket.IO.",
-            tags: ["Kotlin", "Socket.IO", "Firebase", "Manifest V3"],
-            detailUrl: "/project/pinbridge",
-            links: { github: "https://github.com/mhdnaseeel/PinBridge", live: "https://pin-bridge.vercel.app" }
-        },
-        {
-            id: "nexcart",
-            icon: <Globe className="w-5 h-5" />,
-            iconColor: "text-green-400",
-            accentBorder: "border-green-500/15 hover:border-green-500/30",
-            title: "NexCart: Premium E-Commerce",
-            badge: "Full Stack",
-            badgeColor: "text-green-400 bg-green-400/10 border-green-400/20",
-            description: "High-performance storefront with Spring Boot Microservices, Stripe integration, and dynamic profile management.",
-            tags: ["Spring Boot", "React", "Stripe", "PostgreSQL"],
-            detailUrl: "/project/nexcart",
-            links: { github: "https://github.com/mhdnaseeel/e-commerce.git", live: "https://e-commerce-olive-chi-31.vercel.app/" }
-        }
-    ];
-
-    // Other projects — shown as compact rows
-    const others = [
-        {
-            icon: <Shield className="w-4 h-4 text-yellow-400" />,
-            title: "Real-Time Emergency Response",
-            badge: "Mission Critical",
-            badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20",
-            description: "Live ambulance tracking with WebSockets and Google Maps API, reducing response times by 30%.",
-            tags: ["Spring Boot", "WebSockets", "PostgreSQL", "Maps API"],
-            links: { github: "https://github.com/mhdnaseeel/ambutracker" }
-        }
-    ];
 
     return (
         <section id="projects" className="py-20 relative">

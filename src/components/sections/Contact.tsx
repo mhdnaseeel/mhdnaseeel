@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Mail, Linkedin, Send, Phone, MapPin, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
@@ -7,6 +7,13 @@ const Contact = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, []);
 
     const sendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,16 +40,16 @@ const Contact = () => {
                 { publicKey: publicKey }
             );
             
-            console.log('EmailJS Success:', result.text);
+
             setStatus('success');
             formRef.current.reset();
-        } catch (error: any) {
-            console.error('EmailJS Error Detail:', error);
+        } catch (error: unknown) {
+            console.error('EmailJS Error Detail:', error instanceof Error ? error.message : error);
             setStatus('error');
         } finally {
             setIsSubmitting(false);
-            // Reset status after 5 seconds
-            setTimeout(() => setStatus('idle'), 5000);
+            if (timerRef.current) clearTimeout(timerRef.current);
+            timerRef.current = setTimeout(() => setStatus('idle'), 5000);
         }
     };
 

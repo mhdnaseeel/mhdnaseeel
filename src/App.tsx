@@ -1,12 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Home from './pages/Home';
-import ProjectDetail from './pages/ProjectDetail';
-import Footer from './components/layout/Footer';
-import CursorGlow from './components/ui/CursorGlow';
-import ThemeToggle from './components/ui/ThemeToggle';
-import FloatingChat from './components/chat/FloatingChat';
-import useFavicon from './hooks/useFavicon';
+import { Navbar, Footer } from './components/layout';
+import { Home, ProjectDetail } from './pages';
+import { CursorGlow, ThemeToggle } from './components/ui';
+import { FloatingChat } from './components/chat';
+import { useFavicon } from './hooks';
 
 function App() {
   // Dynamically creates a round favicon from the profile photo

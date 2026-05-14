@@ -1,90 +1,91 @@
 import { Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const skillCategories = [
+    {
+        title: "AI / LLM",
+        color: "text-purple-400",
+        skills: [
+            { name: "OpenAI", customIcon: "openai" },
+            { name: "Claude", customIcon: "claude" }
+        ]
+    },
+    {
+        title: "CORE TECHNOLOGIES",
+        color: "text-blue-400",
+        skills: [
+            { name: "Java", slug: "java" },
+            { name: "Spring Boot", slug: "spring" },
+            { name: "Python", slug: "py" },
+            { name: "Kotlin", slug: "kotlin" },
+            { name: "JavaScript", slug: "js" }
+        ]
+    },
+    {
+        title: "CLOUD PLATFORMS",
+        color: "text-orange-400",
+        skills: [
+            { name: "AWS", slug: "aws" },
+            { name: "Azure", slug: "azure" },
+            { name: "Docker", slug: "docker" },
+            { name: "Kubernetes", slug: "kubernetes" },
+            { name: "Firebase", slug: "firebase" }
+        ]
+    },
+    {
+        title: "SECURITY & AUTH",
+        color: "text-red-400",
+        skills: [
+            { name: "Spring Security", slug: "spring" },
+            { name: "OAuth2.0", customIcon: "oauth" },
+            { name: "JWT", customIcon: "jwt" }
+        ]
+    },
+    {
+        title: "CONFIG & CI/CD",
+        color: "text-yellow-400",
+        skills: [
+            { name: "Git", slug: "git" },
+            { name: "Jenkins", slug: "jenkins" },
+            { name: "Maven", slug: "maven" },
+            { name: "Gradle", slug: "gradle" },
+            { name: "Nginx", slug: "nginx" }
+        ]
+    },
+    {
+        title: "FRAMEWORKS & APIS",
+        color: "text-green-400",
+        skills: [
+            { name: "Spring Data JPA", slug: "spring" },
+            { name: "Hibernate", slug: "hibernate" },
+            { name: "FastAPI", slug: "fastapi" },
+            { name: "Node.js", slug: "nodejs" },
+            { name: "Socket.IO", customIcon: "socketio" }
+        ]
+    },
+    {
+        title: "WEB TECHNOLOGIES",
+        color: "text-cyan-400",
+        skills: [
+            { name: "React.js", slug: "react" },
+            { name: "Angular", slug: "angular" },
+            { name: "HTML5", slug: "html" },
+            { name: "CSS3", slug: "css" }
+        ]
+    },
+    {
+        title: "DATABASES",
+        color: "text-emerald-400",
+        skills: [
+            { name: "PostgreSQL", slug: "postgres" },
+            { name: "MySQL", slug: "mysql" },
+            { name: "MongoDB", slug: "mongodb" },
+            { name: "Redis", slug: "redis" }
+        ]
+    }
+];
+
 const Skills = () => {
-    const skillCategories = [
-        {
-            title: "AI / LLM",
-            color: "text-purple-400",
-            skills: [
-                { name: "OpenAI", customIcon: "openai" },
-                { name: "Claude", customIcon: "claude" }
-            ]
-        },
-        {
-            title: "CORE TECHNOLOGIES",
-            color: "text-blue-400",
-            skills: [
-                { name: "Java", slug: "java" },
-                { name: "Spring Boot", slug: "spring" },
-                { name: "Python", slug: "py" },
-                { name: "Kotlin", slug: "kotlin" },
-                { name: "JavaScript", slug: "js" }
-            ]
-        },
-        {
-            title: "CLOUD PLATFORMS",
-            color: "text-orange-400",
-            skills: [
-                { name: "AWS", slug: "aws" },
-                { name: "Azure", slug: "azure" },
-                { name: "Docker", slug: "docker" },
-                { name: "Kubernetes", slug: "kubernetes" },
-                { name: "Firebase", slug: "firebase" }
-            ]
-        },
-        {
-            title: "SECURITY & AUTH",
-            color: "text-red-400",
-            skills: [
-                { name: "Spring Security", slug: "spring" },
-                { name: "OAuth2.0", customIcon: "oauth" },
-                { name: "JWT", customIcon: "jwt" }
-            ]
-        },
-        {
-            title: "CONFIG & CI/CD",
-            color: "text-yellow-400",
-            skills: [
-                { name: "Git", slug: "git" },
-                { name: "Jenkins", slug: "jenkins" },
-                { name: "Maven", slug: "maven" },
-                { name: "Gradle", slug: "gradle" },
-                { name: "Nginx", slug: "nginx" }
-            ]
-        },
-        {
-            title: "FRAMEWORKS & APIS",
-            color: "text-green-400",
-            skills: [
-                { name: "Spring Data JPA", slug: "spring" },
-                { name: "Hibernate", slug: "hibernate" },
-                { name: "FastAPI", slug: "fastapi" },
-                { name: "Node.js", slug: "nodejs" },
-                { name: "Socket.IO", customIcon: "socketio" }
-            ]
-        },
-        {
-            title: "WEB TECHNOLOGIES",
-            color: "text-cyan-400",
-            skills: [
-                { name: "React.js", slug: "react" },
-                { name: "Angular", slug: "angular" },
-                { name: "HTML5", slug: "html" },
-                { name: "CSS3", slug: "css" }
-            ]
-        },
-        {
-            title: "DATABASES",
-            color: "text-emerald-400",
-            skills: [
-                { name: "PostgreSQL", slug: "postgres" },
-                { name: "MySQL", slug: "mysql" },
-                { name: "MongoDB", slug: "mongodb" },
-                { name: "Redis", slug: "redis" }
-            ]
-        }
-    ];
 
     const renderIcon = (skill) => {
         if (skill.slug) {

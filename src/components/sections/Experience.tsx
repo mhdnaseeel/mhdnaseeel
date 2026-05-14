@@ -1,34 +1,35 @@
 import { Briefcase, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const experiences = [
+    {
+        role: "Junior Java Developer",
+        company: "TrickyDot Technologies Pvt. Ltd",
+        location: "Kerala, India",
+        period: "July 2024 – January 2026",
+        achievements: [
+            "Developed cloud-based enterprise solutions using Spring Boot microservices architecture on AWS, handling 500+ concurrent requests with 99.9% uptime and achieving 40% reduction in response time.",
+            "Implemented secure authentication and authorization using OAuth2.0, OpenID Connect, and JWT with Spring Security, reducing unauthorized access incidents by 95% across 3 production applications.",
+            "Architected and deployed RESTful APIs with comprehensive error handling and validation, integrating PostgreSQL and Redis for optimal data management and caching strategies.",
+            "Established robust CI/CD pipelines using Jenkins and Git, automating build, test, and deployment processes, reducing deployment time from 45 minutes to 10 minutes with zero downtime.",
+            "Optimized database performance with PostgreSQL query tuning, indexing strategies, and connection pooling, improving complex query execution time by 45%."
+        ]
+    },
+    {
+        role: "Junior Java Developer Intern",
+        company: "TrickyDot Technologies Pvt. Ltd",
+        location: "Kerala, India",
+        period: "January 2024 – June 2024",
+        achievements: [
+            "Built 15+ RESTful API endpoints using Spring Boot with PostgreSQL backend, processing 10K+ daily requests with comprehensive error handling and validation.",
+            "Developed responsive web applications using React.js and Angular with backend integration, implementing lazy loading and code splitting for enhanced performance.",
+            "Enhanced test coverage from 65% to 85% using JUnit and Mockito, identifying and resolving 40+ critical bugs pre-production.",
+            "Redesigned data access layer using Spring Data JPA with custom queries and specifications, reducing boilerplate code by 60%."
+        ]
+    }
+];
+
 const Experience = () => {
-    const experiences = [
-        {
-            role: "Junior Java Developer",
-            company: "TrickyDot Technologies Pvt. Ltd",
-            location: "Kerala, India",
-            period: "July 2024 – January 2026",
-            achievements: [
-                "Developed cloud-based enterprise solutions using Spring Boot microservices architecture on AWS, handling 500+ concurrent requests with 99.9% uptime and achieving 40% reduction in response time.",
-                "Implemented secure authentication and authorization using OAuth2.0, OpenID Connect, and JWT with Spring Security, reducing unauthorized access incidents by 95% across 3 production applications.",
-                "Architected and deployed RESTful APIs with comprehensive error handling and validation, integrating PostgreSQL and Redis for optimal data management and caching strategies.",
-                "Established robust CI/CD pipelines using Jenkins and Git, automating build, test, and deployment processes, reducing deployment time from 45 minutes to 10 minutes with zero downtime.",
-                "Optimized database performance with PostgreSQL query tuning, indexing strategies, and connection pooling, improving complex query execution time by 45%."
-            ]
-        },
-        {
-            role: "Junior Java Developer Intern",
-            company: "TrickyDot Technologies Pvt. Ltd",
-            location: "Kerala, India",
-            period: "January 2024 – June 2024",
-            achievements: [
-                "Built 15+ RESTful API endpoints using Spring Boot with PostgreSQL backend, processing 10K+ daily requests with comprehensive error handling and validation.",
-                "Developed responsive web applications using React.js and Angular with backend integration, implementing lazy loading and code splitting for enhanced performance.",
-                "Enhanced test coverage from 65% to 85% using JUnit and Mockito, identifying and resolving 40+ critical bugs pre-production.",
-                "Redesigned data access layer using Spring Data JPA with custom queries and specifications, reducing boilerplate code by 60%."
-            ]
-        }
-    ];
 
     return (
         <section id="experience" className="py-20 relative">
