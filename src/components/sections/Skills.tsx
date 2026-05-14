@@ -147,12 +147,12 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.06 }}
-                            className="rounded-2xl border border-white/[0.05] bg-[#0c0c0f]/80 p-6 flex flex-col"
+                            className="rounded-2xl border border-white/[0.05] bg-[#0c0c0f]/80 p-6"
                         >
                             <p className={`text-xs font-bold uppercase tracking-[0.12em] ${category.color} mb-5`}>
                                 {category.title}
                             </p>
-                            <div className="flex flex-wrap gap-3 mt-auto">
+                            <div className="flex flex-wrap gap-3">
                                 {category.skills.map((skill, idx) => (
                                     <div 
                                         key={idx} 
