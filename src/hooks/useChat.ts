@@ -1,5 +1,4 @@
 import { useState, useCallback, useRef } from 'react';
-import { SYSTEM_PROMPT } from '../data/systemPrompt';
 
 export interface ChatMessage {
   id: string;
@@ -62,7 +61,6 @@ export const useChat = (): UseChatReturn => {
               role: m.role,
               content: m.content,
             })),
-            systemPrompt: SYSTEM_PROMPT,
           }),
           signal: abortControllerRef.current?.signal,
         });
