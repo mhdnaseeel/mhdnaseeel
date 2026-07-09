@@ -92,8 +92,8 @@ const FloatingChat: React.FC = () => {
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>')
-      .replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s()]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
-      .replace(/\[([^\]\n]+)\]\((mailto:[^\s()]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
+      .replace(/\[([^\]\n]{1,500})\]\((https?:\/\/[^\s()]{1,2000})\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
+      .replace(/\[([^\]\n]{1,500})\]\((mailto:[^\s()]{1,1000})\)/g, '<a href="$2" class="chat-link">$1</a>')
       .replace(/\n/g, '<br />');
 
     return DOMPurify.sanitize(rawHtml);
