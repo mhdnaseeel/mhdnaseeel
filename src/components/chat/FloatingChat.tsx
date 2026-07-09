@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
 import { X, Send, Trash2, Sparkles, ArrowDown, Code2, Briefcase, Cpu, Layers, UserCheck, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DOMPurify from 'dompurify';
 import { useChat, type ChatMessage } from '../../hooks/useChat';
 
 const SUGGESTED_QUESTIONS = [
@@ -86,7 +87,7 @@ const FloatingChat: React.FC = () => {
   };
 
   const formatMessage = (content: string) => {
-    return content
+    const rawHtml = content
       .replace(/\n+/g, '\n') // Collapse all consecutive newlines into a single newline
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -94,6 +95,8 @@ const FloatingChat: React.FC = () => {
       .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
       .replace(/\[([^\]]+)\]\((mailto:[^\)]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
       .replace(/\n/g, '<br />');
+
+    return DOMPurify.sanitize(rawHtml);
   };
 
   // Parse [[ACTION:label|target]] tags from AI responses

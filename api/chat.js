@@ -117,8 +117,16 @@ const RATE_LIMIT_MAX = 15;           // max requests per window per IP
 
 function isRateLimited(ip) {
   const now = Date.now();
-  const entry = rateLimitMap.get(ip);
 
+  // Lazy prune expired entries to prevent memory leaks in serverless functions
+  // without relying on unreliable background timers (setInterval)
+  for (const [key, entry] of rateLimitMap.entries()) {
+    if (now - entry.windowStart > RATE_LIMIT_WINDOW_MS * 2) {
+      rateLimitMap.delete(key);
+    }
+  }
+
+  const entry = rateLimitMap.get(ip);
   if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
     rateLimitMap.set(ip, { windowStart: now, count: 1 });
     return false;
@@ -130,16 +138,6 @@ function isRateLimited(ip) {
   }
   return false;
 }
-
-// Periodic cleanup to prevent memory leak (every 5 minutes)
-setInterval(() => {
-  const now = Date.now();
-  for (const [ip, entry] of rateLimitMap) {
-    if (now - entry.windowStart > RATE_LIMIT_WINDOW_MS * 2) {
-      rateLimitMap.delete(ip);
-    }
-  }
-}, 300_000);
 
 // ─── Security: Input validation ─────────────────────────────────────
 const MAX_MESSAGE_LENGTH = 2000;   // max chars per message
@@ -386,17 +384,14 @@ async function attemptGeminiModel(apiKey, model, messages) {
     parts: [{ text: m.content }],
   }));
 
-  // Prepend system prompt into the first user message for Gemini
-  // (Gemini doesn't support a dedicated system role)
-  if (contents.length > 0) {
-    contents[0].parts[0].text = `Instructions: ${SYSTEM_PROMPT}\n\nUser Message: ${contents[0].parts[0].text}`;
-  }
-
   const response = await fetch(geminiUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents,
+      systemInstruction: {
+        parts: [{ text: SYSTEM_PROMPT }]
+      },
       generationConfig: {
         maxOutputTokens: 2048,
         temperature: 0.7,
