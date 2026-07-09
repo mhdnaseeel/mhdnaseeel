@@ -49,8 +49,7 @@ const ProjectDetail = () => {
                 {/* Direct 3-Column High-Res Gallery Row */}
                 <div className="mb-24">
                     <h2 className="text-2xl font-bold text-zinc-100 mb-10 flex items-center">
-                        <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>
-                        System Interface Showcase
+                        <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>System Interface Showcase
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                         {project.images.map((img, i) => (

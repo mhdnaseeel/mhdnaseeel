@@ -6,7 +6,7 @@ const Footer = () => {
                     © {new Date().getFullYear()} Muhammed Naseel
                 </p>
                 <div className="flex gap-6 text-sm text-zinc-600">
-                    <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-zinc-400 transition-colors">Privacy</a>
+                    <button onClick={(e) => e.preventDefault()} className="hover:text-zinc-400 transition-colors bg-transparent border-0 p-0 cursor-pointer font-inherit text-inherit">Privacy</button>
                 </div>
             </div>
         </footer>
