@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+const secureRandom = (): number => {
+  const array = new Uint32Array(1);
+  self.crypto.getRandomValues(array);
+  return array[0] / 4294967296;
+};
+
 const TinyMovingDot = () => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
@@ -20,13 +26,13 @@ const TinyMovingDot = () => {
 
   if (windowSize.width === 0) return null;
 
-  // Generate random movement keyframes for a wandering dot
+  // Generate random movement keyframes for a wandering dot using secure random float
   const generateWander = () => {
     const xPoints = [];
     const yPoints = [];
     for (let i = 0; i < 10; i++) {
-        xPoints.push(Math.random() * windowSize.width);
-        yPoints.push(Math.random() * windowSize.height);
+        xPoints.push(secureRandom() * windowSize.width);
+        yPoints.push(secureRandom() * windowSize.height);
     }
     // Return to start for seamless loop
     xPoints.push(xPoints[0]);
