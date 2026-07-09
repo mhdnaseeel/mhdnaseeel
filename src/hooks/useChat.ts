@@ -17,9 +17,9 @@ interface UseChatReturn {
 }
 
 
-// Generate a unique ID for messages
+// Generate a unique ID for messages using a cryptographically secure random UUID
 const generateId = (): string => {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  return self.crypto.randomUUID();
 };
 
 export const useChat = (): UseChatReturn => {
