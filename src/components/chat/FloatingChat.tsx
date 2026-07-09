@@ -89,11 +89,11 @@ const FloatingChat: React.FC = () => {
   const formatMessage = (content: string) => {
     const rawHtml = content
       .replace(/\n+/g, '\n') // Collapse all consecutive newlines into a single newline
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`(.*?)`/g, '<code class="chat-inline-code">$1</code>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
-      .replace(/\[([^\]]+)\]\((mailto:[^\)]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
+      .replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^\*]+)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>')
+      .replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
+      .replace(/\[([^\]\n]+)\]\((mailto:[^\s\)]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
       .replace(/\n/g, '<br />');
 
     return DOMPurify.sanitize(rawHtml);
@@ -101,7 +101,7 @@ const FloatingChat: React.FC = () => {
 
   // Parse [[ACTION:label|target]] tags from AI responses
   const parseActions = (content: string): { text: string; actions: { label: string; target: string }[] } => {
-    const actionRegex = /\[\[ACTION:(.*?)\|(.*?)\]\]/g;
+    const actionRegex = /\[\[ACTION:([^|\]]+)\|([^\]]+)\]\]/g;
     const actions: { label: string; target: string }[] = [];
     let match;
     while ((match = actionRegex.exec(content)) !== null) {
