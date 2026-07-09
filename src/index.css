@@ -200,7 +200,7 @@ html.light .text-slate-400 {
 }
 
 html.light .text-slate-500 {
-  color: #94a3b8 !important;
+  color: #5b6b7c !important;
 }
 
 /* Light mode navbar */
@@ -222,7 +222,7 @@ html.light textarea {
 
 html.light input::placeholder,
 html.light textarea::placeholder {
-  color: #94a3b8 !important;
+  color: #5b6b7c !important;
 }
 
 /* Light mode buttons */
@@ -369,7 +369,7 @@ html.light .bg-accent\/\[0\.04\] {
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  background-color: #111113;
   color: #e2e8f0;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -379,7 +379,7 @@ html.light .bg-accent\/\[0\.04\] {
 
 .hero-pill:hover {
   border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
+  background-color: #18181a;
   color: #ffffff;
 }
 
@@ -423,7 +423,7 @@ html.light .bg-accent\/\[0\.04\] {
   padding: 0.625rem 1.25rem;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  background-color: #111113;
   color: #f8fafc;
   font-size: 0.875rem;
   font-weight: 500;
@@ -433,8 +433,7 @@ html.light .bg-accent\/\[0\.04\] {
 
 .hero-btn-secondary:hover {
   border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
-  background-color: #09090b;
+  background-color: #18181a;
   color: #fff;
   transform: translateY(-1px);
 }
@@ -457,8 +456,7 @@ html.light .bg-accent\/\[0\.04\] {
 .hero-social-icon:hover {
   border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
-  background-color: #09090b;
-  background: rgba(255, 255, 255, 0.06);
+  background-color: #18181a;
   transform: translateY(-1px);
 }
 
@@ -477,43 +475,38 @@ html.light .hero-avatar-ring {
 
 html.light .hero-pill {
   border-color: rgba(0, 0, 0, 0.08);
-  background: rgba(0, 0, 0, 0.03);
+  background-color: #f8fafc;
   color: #334155;
-  background-color: #ffffff;
 }
 
 html.light .hero-pill:hover {
   border-color: rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.06);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: #1e293b;
 }
 
 html.light .hero-btn-secondary {
   border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.03);
+  background-color: #f8fafc;
   color: #334155;
-  background-color: #ffffff;
 }
 
 html.light .hero-btn-secondary:hover {
   border-color: rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.06);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: #0f172a;
 }
 
 html.light .hero-social-icon {
   border-color: rgba(0, 0, 0, 0.08);
-  background: rgba(0, 0, 0, 0.02);
-  color: #94a3b8;
+  background-color: #f8fafc;
+  color: #475569;
 }
 
 html.light .hero-social-icon:hover {
   border-color: rgba(0, 0, 0, 0.2);
   color: #0f172a;
-  background-color: #ffffff;
-  background: rgba(0, 0, 0, 0.05);
+  background-color: #f1f5f9;
 }
 
 /* ===== Animations ===== */
@@ -701,18 +694,16 @@ html.light .chat-avatar-status {
 }
 
 html.light .chat-header-btn {
-  color: #64748b;
+  color: #475569;
 }
 
 .chat-header-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  background-color: #09090b;
+  background-color: #1a1a1e;
   color: #fff;
 }
 
 html.light .chat-header-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: #0f172a;
 }
 
@@ -794,11 +785,10 @@ html.light .chat-welcome-text {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.875rem;
-  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
   border-radius: 9999px;
   color: #e2e8f0;
-  background-color: #0c0c0f;
+  background-color: #131316;
   font-size: 0.75rem;
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -806,24 +796,21 @@ html.light .chat-welcome-text {
 }
 
 html.light .chat-suggestion-chip {
-  background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.08);
   color: #334155;
-  background-color: #ffffff;
+  background-color: #f8fafc;
 }
 
 .chat-suggestion-chip:hover {
-  background: rgba(99, 102, 241, 0.08);
   border-color: rgba(99, 102, 241, 0.25);
   color: #ffffff;
-  background-color: #0c0c0f;
+  background-color: #171721;
   transform: translateY(-1px);
 }
 
 html.light .chat-suggestion-chip:hover {
-  background: rgba(99, 102, 241, 0.05);
   border-color: rgba(99, 102, 241, 0.15);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: #0f172a;
 }
 
@@ -852,9 +839,9 @@ html.light .chat-suggestion-chip:hover {
   padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-primary);
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  background-color: #171725;
+  border: 1px solid rgba(99, 102, 241, 0.2);
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -862,20 +849,19 @@ html.light .chat-suggestion-chip:hover {
 }
 
 .chat-action-btn:hover {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
+  background-color: #202035;
+  border-color: rgba(99, 102, 241, 0.35);
   transform: translateY(-1px);
 }
 
 html.light .chat-action-btn {
   color: #4f46e5;
-  background-color: #ffffff;
-  background: rgba(99, 102, 241, 0.06);
+  background-color: #f0f2fe;
   border-color: rgba(99, 102, 241, 0.12);
 }
 
 html.light .chat-action-btn:hover {
-  background: rgba(99, 102, 241, 0.12);
+  background-color: #e0e4fd;
   border-color: rgba(99, 102, 241, 0.25);
 }
 
@@ -889,7 +875,7 @@ html.light .chat-action-btn:hover {
   font-weight: 600;
   letter-spacing: 0.02em;
   margin-top: 0.25rem;
-  opacity: 0.7;
+  opacity: 0.9;
   transition: opacity 0.2s;
 }
 
@@ -898,44 +884,38 @@ html.light .chat-action-btn:hover {
 }
 
 .chat-provider-chatgpt {
-  color: #10b981;
-  background-color: #0c0c0f;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  background-color: #0e1713;
+  border: 1px solid rgba(52, 211, 153, 0.2);
 }
 
 .chat-provider-gemini {
   color: #60a5fa;
-  background-color: #0c0c0f;
-  background: rgba(96, 165, 250, 0.08);
-  border: 1px solid rgba(96, 165, 250, 0.15);
+  background-color: #0f1622;
+  border: 1px solid rgba(96, 165, 250, 0.2);
 }
 
 .chat-provider-groq {
-  color: #f97316;
-  background-color: #0c0c0f;
-  background: rgba(249, 115, 22, 0.08);
-  border: 1px solid rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  background-color: #1a120b;
+  border: 1px solid rgba(251, 146, 60, 0.2);
 }
 
 html.light .chat-provider-chatgpt {
   color: #059669;
-  background-color: #ffffff;
-  background: rgba(5, 150, 105, 0.06);
+  background-color: #ecfdf5;
   border-color: rgba(5, 150, 105, 0.12);
 }
 
 html.light .chat-provider-gemini {
   color: #2563eb;
-  background-color: #ffffff;
-  background: rgba(37, 99, 235, 0.06);
+  background-color: #eff6ff;
   border-color: rgba(37, 99, 235, 0.12);
 }
 
 html.light .chat-provider-groq {
   color: #ea580c;
-  background-color: #ffffff;
-  background: rgba(234, 88, 12, 0.06);
+  background-color: #fff7ed;
   border-color: rgba(234, 88, 12, 0.12);
 }
 
@@ -949,38 +929,35 @@ html.light .chat-provider-groq {
 
 .chat-bubble-user {
   background: var(--color-primary);
+  background-color: #6366f1;
   color: #fff;
   border-bottom-right-radius: 0.25rem;
 }
 
 .chat-bubble-assistant {
-  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--color-border);
   color: #f8fafc;
-  background-color: #0c0c0f;
+  background-color: #131316;
   border-bottom-left-radius: 0.25rem;
 }
 
 .chat-bubble-error {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  background-color: #0c0c0f;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  background-color: #181313;
   color: #f87171;
   border-bottom-left-radius: 0.25rem;
   font-size: 0.875rem;
 }
 
 html.light .chat-bubble-assistant {
-  background: rgba(0, 0, 0, 0.03);
   border-color: rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
+  background-color: #f8fafc;
   color: #1e293b;
 }
 
 html.light .chat-bubble-error {
-  background: rgba(239, 68, 68, 0.05);
   border-color: rgba(239, 68, 68, 0.15);
-  background-color: #ffffff;
+  background-color: #fef2f2;
   color: #b91c1c;
 }
 
@@ -999,6 +976,7 @@ html.light .chat-inline-code {
 
 .chat-link {
   color: var(--color-primary);
+  color: #6366f1;
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: opacity 0.2s;
@@ -1016,7 +994,7 @@ html.light .chat-link {
 .chat-input-area {
   padding: 1rem;
   border-top: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background-color: #0c0c0f;
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -1024,12 +1002,11 @@ html.light .chat-link {
 
 html.light .chat-input-area {
   border-top-color: rgba(0, 0, 0, 0.08);
-  background: var(--color-surface-light);
+  background-color: #f8fafc;
 }
 
 .chat-input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
   border-radius: 1.5rem;
   padding: 0.75rem 1.25rem;
@@ -1043,7 +1020,6 @@ html.light .chat-input-area {
 }
 
 html.light .chat-input {
-  background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
   color: #1e293b;
@@ -1051,11 +1027,11 @@ html.light .chat-input {
 
 .chat-input:focus {
   border-color: var(--color-primary);
-  background: rgba(99, 102, 241, 0.04);
+  background-color: #0e0e13;
 }
 
 html.light .chat-input:focus {
-  background: rgba(99, 102, 241, 0.03);
+  background-color: #f5f6ff;
 }
 
 .chat-send-btn {
@@ -1079,15 +1055,13 @@ html.light .chat-input:focus {
 }
 
 .chat-send-btn:disabled {
-  background: rgba(255, 255, 255, 0.1);
-  background-color: #0c0c0f;
+  background-color: #1c1c21;
   color: rgba(255, 255, 255, 0.3);
   cursor: not-allowed;
 }
 
 html.light .chat-send-btn:disabled {
-  background: rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: rgba(0, 0, 0, 0.3);
 }
 
@@ -1126,9 +1100,9 @@ html.light .chat-typing span {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: var(--color-surface);
+  background-color: #0c0c0f;
   border: 1px solid var(--color-border);
-  color: #94a3b8;
+  color: #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1139,21 +1113,19 @@ html.light .chat-typing span {
 }
 
 html.light .chat-scroll-btn {
-  background: var(--color-surface-light);
+  background-color: #f8fafc;
   border-color: rgba(0, 0, 0, 0.1);
-  color: #64748b;
+  color: #475569;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .chat-scroll-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  background-color: #0c0c0f;
+  background-color: #1c1c21;
   color: #fff;
 }
 
 html.light .chat-scroll-btn:hover {
-  background: rgba(0, 0, 0, 0.02);
-  background-color: #ffffff;
+  background-color: #f1f5f9;
   color: #0f172a;
 }
 
