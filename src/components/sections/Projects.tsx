@@ -120,8 +120,8 @@ const Projects = () => {
 
                                 {/* Tags */}
                                 <div className="flex flex-wrap gap-1.5 mb-3 ml-[3.375rem]">
-                                    {project.tags.map((tag, tIdx) => (
-                                        <span key={tIdx} className="text-[11px] text-zinc-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className="text-[11px] text-zinc-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">
                                             {tag}
                                         </span>
                                     ))}
@@ -174,8 +174,8 @@ const Projects = () => {
                             exit={{ opacity: 0, height: 0, marginTop: 0 }}
                             className="space-y-2 overflow-hidden"
                         >
-                            {others.map((project, index) => (
-                                <div key={index} className="project-row group">
+                            {others.map((project) => (
+                                <div key={project.title} className="project-row group">
                                     <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center shrink-0">
                                         {project.icon}
                                     </div>

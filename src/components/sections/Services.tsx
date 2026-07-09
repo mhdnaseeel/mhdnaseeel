@@ -39,7 +39,7 @@ const Services = () => {
                 <div className="space-y-4">
                     {services.map((service, index) => (
                         <motion.div
-                            key={index}
+                            key={service.title}
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

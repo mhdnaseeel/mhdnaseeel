@@ -89,11 +89,11 @@ const FloatingChat: React.FC = () => {
   const formatMessage = (content: string) => {
     const rawHtml = content
       .replace(/\n+/g, '\n') // Collapse all consecutive newlines into a single newline
-      .replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^\*]+)\*/g, '<em>$1</em>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>')
-      .replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
-      .replace(/\[([^\]\n]+)\]\((mailto:[^\s\)]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
+      .replace(/\[([^\[\](\n]+)\]\((https?:\/\/[^\s()\[\]]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>')
+      .replace(/\[([^\[\](\n]+)\]\((mailto:[^\s()\[\]]+)\)/g, '<a href="$2" class="chat-link">$1</a>')
       .replace(/\n/g, '<br />');
 
     return DOMPurify.sanitize(rawHtml);
@@ -209,9 +209,9 @@ const FloatingChat: React.FC = () => {
                     How can I help you today?
                   </p>
                   <div className="chat-suggestions-grid">
-                    {SUGGESTED_QUESTIONS.map((q, i) => (
+                    {SUGGESTED_QUESTIONS.map((q) => (
                       <button
-                        key={i}
+                        key={q.text}
                         onClick={() => handleSuggestionClick(q.query)}
                         className="chat-suggestion-chip"
                         disabled={isLoading}
@@ -228,6 +228,15 @@ const FloatingChat: React.FC = () => {
                     const isAssistant = msg.role === 'assistant';
                     const { text, actions } = isAssistant ? parseActions(msg.content) : { text: msg.content, actions: [] };
 
+                    const isGroqOrChatGPT = msg.provider === 'groq' || msg.provider === 'chatgpt';
+                    const providerClass = isGroqOrChatGPT ? 'chat-provider-chatgpt' : 'chat-provider-gemini';
+                    
+                    const getProviderLabel = (provider?: string) => {
+                      if (provider === 'groq') return '⚡ OpenAI';
+                      if (provider === 'chatgpt') return '⚡ ChatGPT';
+                      return '✦ Gemini';
+                    };
+
                     return (
                       <div
                         key={msg.id}
@@ -241,25 +250,28 @@ const FloatingChat: React.FC = () => {
                         )}
                         {isAssistant && actions.length > 0 && (
                           <div className={`flex flex-col items-start gap-1.5 ${text ? 'mt-1' : ''}`}>
-                            {actions.map((action, idx) => (
-                              <button
-                                key={idx}
-                                onClick={() => handleActionClick(action.target)}
-                                className="chat-action-btn"
-                              >
-                                {action.target === 'contact' ? '✉️' : action.target.startsWith('/') ? '📄' : '→'}
-                                <span>{action.label}</span>
-                              </button>
-                            ))}
+                            {actions.map((action) => {
+                              const getActionIcon = (target: string) => {
+                                if (target === 'contact') return '✉️';
+                                if (target.startsWith('/')) return '📄';
+                                return '→';
+                              };
+                              return (
+                                <button
+                                  key={`${action.label}-${action.target}`}
+                                  onClick={() => handleActionClick(action.target)}
+                                  className="chat-action-btn"
+                                >
+                                  {getActionIcon(action.target)}
+                                  <span>{action.label}</span>
+                                </button>
+                              );
+                            })}
                           </div>
                         )}
                         {isAssistant && msg.provider && (
-                          <span className={`chat-provider-badge ${
-                            msg.provider === 'groq' ? 'chat-provider-chatgpt' :
-                            msg.provider === 'chatgpt' ? 'chat-provider-chatgpt' : 'chat-provider-gemini'
-                          }`}>
-                            {msg.provider === 'groq' ? '⚡ OpenAI' :
-                             msg.provider === 'chatgpt' ? '⚡ ChatGPT' : '✦ Gemini'}
+                          <span className={`chat-provider-badge ${providerClass}`}>
+                            {getProviderLabel(msg.provider)}
                           </span>
                         )}
                       </div>

@@ -10,6 +10,31 @@ const Contact = () => {
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const timerRef = useRef<number | null>(null);
 
+    const getSubmitButtonContent = () => {
+        if (isSubmitting) {
+            return (
+                <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Sending...
+                </>
+            );
+        }
+        if (status === 'success') {
+            return (
+                <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    Message Sent!
+                </>
+            );
+        }
+        return (
+            <>
+                Send Message
+                <Send className="w-4 h-4" />
+            </>
+        );
+    };
+
     useEffect(() => {
         return () => {
             if (timerRef.current) clearTimeout(timerRef.current);
@@ -36,7 +61,7 @@ const Contact = () => {
         setErrorMsg(null);
 
         try {
-            const result = await emailjs.sendForm(
+            await emailjs.sendForm(
                 serviceId, 
                 templateId, 
                 formRef.current, 
@@ -188,22 +213,7 @@ const Contact = () => {
                                     : 'bg-primary text-white hover:bg-blue-600'
                                 }`}
                             >
-                                {isSubmitting ? (
-                                    <>
-                                        <Loader2 className="w-4 h-4 animate-spin" />
-                                        Sending...
-                                    </>
-                                ) : status === 'success' ? (
-                                    <>
-                                        <CheckCircle2 className="w-4 h-4" />
-                                        Message Sent!
-                                    </>
-                                ) : (
-                                    <>
-                                        Send Message
-                                        <Send className="w-4 h-4" />
-                                    </>
-                                )}
+                                {getSubmitButtonContent()}
                             </button>
 
                             <AnimatePresence>

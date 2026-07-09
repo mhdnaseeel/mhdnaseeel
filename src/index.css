@@ -923,7 +923,7 @@ html.light .chat-provider-groq {
   border-radius: 1rem;
   font-size: 0.9375rem;
   line-height: 1.5;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .chat-bubble-user {

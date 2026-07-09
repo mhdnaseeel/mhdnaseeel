@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TinyMovingDot from '../ui/TinyMovingDot';
 
 const roles = ['Software Engineer', 'Backend Developer', 'Fullstack Developer', 'Problem Solver'];
@@ -65,9 +65,9 @@ const Hero = () => {
             <div className="hidden md:block absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none animate-hero-glow-reverse"></div>
 
             {/* Floating tech symbols */}
-            {floatingSymbols.map((sym, i) => (
+            {floatingSymbols.map((sym) => (
                 <motion.span
-                    key={i}
+                    key={`${sym.char}-${sym.x}-${sym.y}`}
                     className="absolute pointer-events-none font-mono select-none text-zinc-500"
                     style={{ left: sym.x, top: sym.y, fontSize: sym.size, opacity: 0 }}
                     animate={{

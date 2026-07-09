@@ -60,7 +60,7 @@ const Experience = () => {
                 <div className="space-y-4">
                     {experiences.map((exp, index) => (
                         <motion.details
-                            key={index}
+                            key={`${exp.role}-${exp.company}`}
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -79,8 +79,8 @@ const Experience = () => {
                             </summary>
                             <div className="px-5 pb-5 pt-1 border-t border-white/[0.04] ml-9">
                                 <ul className="space-y-3 mt-4">
-                                    {exp.achievements.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-zinc-500 text-sm leading-relaxed">
+                                    {exp.achievements.map((item) => (
+                                        <li key={item} className="flex items-start gap-3 text-zinc-500 text-sm leading-relaxed">
                                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0"></div>
                                             {item}
                                         </li>

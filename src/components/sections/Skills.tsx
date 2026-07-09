@@ -142,7 +142,7 @@ const Skills = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {skillCategories.map((category, index) => (
                         <motion.div
-                            key={index}
+                            key={category.title}
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -153,9 +153,9 @@ const Skills = () => {
                                 {category.title}
                             </p>
                             <div className="flex flex-wrap gap-3">
-                                {category.skills.map((skill, idx) => (
+                                {category.skills.map((skill) => (
                                     <div 
-                                        key={idx} 
+                                        key={skill.name} 
                                         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.02] hover:bg-white/[0.08] hover:border-white/[0.1] transition-all duration-300"
                                     >
                                         {renderIcon(skill)}

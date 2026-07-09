@@ -52,8 +52,8 @@ const ProjectDetail = () => {
                         <span className="w-8 h-1 bg-primary mr-3 rounded-full"></span>System Interface Showcase
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                        {project.images.map((img, i) => (
-                            <div key={i} className="group relative">
+                        {project.images.map((img) => (
+                            <div key={img.src} className="group relative">
                                 <div className="rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0c0c0f]/50 aspect-[4/3] shadow-2xl transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-primary/10 flex items-center justify-center p-2">
                                     <img 
                                         src={img.src} 
@@ -85,8 +85,8 @@ const ProjectDetail = () => {
                             Core Features
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {project.features.map((feature, i) => (
-                                <div key={i} className="flex items-start p-4 bg-[#0c0c0f]/50 rounded-2xl border border-white/[0.06]">
+                            {project.features.map((feature) => (
+                                <div key={feature} className="flex items-start p-4 bg-[#0c0c0f]/50 rounded-2xl border border-white/[0.06]">
                                     <CheckCircle className="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
                                     <p className="text-zinc-400 leading-relaxed">{feature}</p>
                                 </div>
@@ -127,8 +127,8 @@ const ProjectDetail = () => {
                         <div className="bg-[#0c0c0f] p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/[0.06]">
                             <h3 className="text-xl font-bold text-zinc-100 mb-8">Technology Stack</h3>
                             <div className="space-y-6">
-                                {project.techStack.map((tech, i) => (
-                                    <div key={i} className="flex items-center">
+                                {project.techStack.map((tech) => (
+                                    <div key={tech.name} className="flex items-center">
                                         <div className="p-3 bg-white/[0.04] rounded-xl mr-4 border border-white/[0.06]">
                                             {tech.icon}
                                         </div>
